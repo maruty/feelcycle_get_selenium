@@ -113,10 +113,10 @@ public class ExecFeelcycleController {
 
 			//jsonファイルの保存
 			//開発環境
-			BufferedWriter writer = new BufferedWriter(new FileWriter("lesson_master.json"));
+			//BufferedWriter writer = new BufferedWriter(new FileWriter("lesson_master.json"));
 
 			//本番
-			//BufferedWriter writer = new BufferedWriter(new FileWriter("/var/www/html/json/lesson_master.json"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("/var/www/html/json/lesson_master.json"));
 			writer.write(jsonText);
 			writer.close();
 
