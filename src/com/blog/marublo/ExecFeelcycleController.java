@@ -32,6 +32,7 @@ public class ExecFeelcycleController {
 		//jsonファイルで取得予定のファイルのコントロール
 		String lessonJson = "";
 		System.out.println("json情報の取得");
+		/*
 		try{
 		  BufferedReader br = new BufferedReader(new FileReader(new File("/var/www/html/json/lesson.json")));
 
@@ -48,8 +49,9 @@ public class ExecFeelcycleController {
 		}catch(IOException e){
 		  System.out.println(e);
 		}
-
-		Lesson lessonInfo = JSON.decode(lessonJson, Lesson.class);
+		*/
+		Lesson lessonInfo = JSON.decode(new FileReader("/var/www/html/json/lesson.json"), Lesson.class);
+		//Lesson lessonInfo = JSON.decode(lessonJson, Lesson.class);
 
 		final String LESSON_NAME = lessonInfo.getLessonName();
 		final String LESSON_DATE = lessonInfo.getLessonDate();
