@@ -50,8 +50,23 @@ public class ExecFeelcycleController {
 		  System.out.println(e);
 		}
 		*/
-		Lesson lessonInfo = JSON.decode(new FileReader("/var/www/html/json/lesson.json"), Lesson.class);
+		Lesson lessonInfo = new Lesson();
+		try{
+			lessonInfo = JSON.decode(new FileReader("/var/www/html/json/lesson.json"), Lesson.class);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
 		//Lesson lessonInfo = JSON.decode(lessonJson, Lesson.class);
+		System.out.println("==========================================");
+		System.out.println("json内容");
+		System.out.println("LESSON_NAME:"+lessonInfo.getLessonName());
+		System.out.println("LESSON_DATE:"+lessonInfo.getLessonDate());
+		System.out.println("LESSON_TIME:"+lessonInfo.getLessonTime());
+		System.out.println("LESSON_STATE:"+lessonInfo.getLessonState());
+		System.out.println("USER_ID:" + lessonInfo.getUserId());
+		System.out.println("USER_PASS:" + lessonInfo.getUserPass());
+		System.out.println("==========================================");
 
 		final String LESSON_NAME = lessonInfo.getLessonName();
 		final String LESSON_DATE = lessonInfo.getLessonDate();
