@@ -1,9 +1,8 @@
 package com.blog.marublo;
 
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class ExecFeelcycleController {
 
 
 		//jsonファイルで取得予定のファイルのコントロール
-		String lessonJson = "";
+		//String lessonJson = "";
 		System.out.println("json情報の取得");
 		/*
 		try{
@@ -76,8 +75,6 @@ public class ExecFeelcycleController {
 		final String USER_ID = lessonInfo.getUserId();
 		final String USER_PASS = lessonInfo.getUserPass();
 
-
-
 		WebDriver driver = new FirefoxDriver();
 		//ログインフォームからスタート
 		System.out.println("Feelcycle：Login");
@@ -107,37 +104,40 @@ public class ExecFeelcycleController {
 			selectList.selectByVisibleText(LESSON_STATE);
 
 
-			//jsonファイルの作成
-			TenpoMapDto tenpoListDto = new TenpoMapDto();
-			List<WebElement> selectElement = selectList.getOptions();
+			//jsonファイルの作成 別に握りつぶしてもOKだからtry catchにする
+			try{
+				TenpoMapDto tenpoListDto = new TenpoMapDto();
+				List<WebElement> selectElement = selectList.getOptions();
 
-			//店舗リスト
-			for(WebElement webElement : selectElement){
-				ValueDto valueDto = new ValueDto(webElement.getText(),webElement.getAttribute("value"));
-				tenpoListDto.setTenpoMap(valueDto);
+				//店舗リスト
+				for(WebElement webElement : selectElement){
+					ValueDto valueDto = new ValueDto(webElement.getText(),webElement.getAttribute("value"));
+					tenpoListDto.setTenpoMap(valueDto);
+				}
+
+				//インストラクター
+				Select instList = new Select(driver.findElement(By.name("lesson")));
+
+				for(WebElement webElement : instList.getOptions()){
+					ValueDto valueDto = new ValueDto(webElement.getText(),webElement.getAttribute("value"));
+					tenpoListDto.setProgramMap(valueDto);
+				}
+
+				String jsonText = JSON.encode(tenpoListDto,true);
+
+				//jsonファイルの保存
+				//開発環境
+				//BufferedWriter writer = new BufferedWriter(new FileWriter("lesson_master.json"));
+
+				//本番
+				BufferedWriter writer = new BufferedWriter(new FileWriter("/var/www/html/json/lesson_master.json"));
+				writer.write(jsonText);
+				writer.close();
+
+			}catch(Exception e){
+				//握りつぶす
+				//e.printStackTrace();
 			}
-
-
-			//インストラクター
-			Select instList = new Select(driver.findElement(By.name("lesson")));
-
-			for(WebElement webElement : instList.getOptions()){
-				ValueDto valueDto = new ValueDto(webElement.getText(),webElement.getAttribute("value"));
-				tenpoListDto.setProgramMap(valueDto);
-			}
-
-			String jsonText = JSON.encode(tenpoListDto,true);
-
-			//jsonファイルの保存
-			//開発環境
-			//BufferedWriter writer = new BufferedWriter(new FileWriter("lesson_master.json"));
-
-			//本番
-			BufferedWriter writer = new BufferedWriter(new FileWriter("/var/www/html/json/lesson_master.json"));
-			writer.write(jsonText);
-			writer.close();
-
-
 
 			Thread.sleep(1000);
 
@@ -236,6 +236,15 @@ public class ExecFeelcycleController {
 				if(emptySheet < 1){
 					//.no01 > a:nth-child(1)
 					driver.findElement(By.cssSelector(".no" + countString + " > a" )).click();
+
+					//driver.switchTo().defaultContent();
+					int ticketCount = driver.findElements(By.cssSelector("#TB_iframeContent")).size();
+
+					if(ticketCount > 0){
+						driver.switchTo().frame("TB_iframeContent");
+						driver.findElement(By.cssSelector(".ticket > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > span:nth-child(2)")).click();
+						Thread.sleep(1000);
+					}
 
 					//div.coment:nth-child(9) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) > a:nth-child(1)
 					//決定ボタン
