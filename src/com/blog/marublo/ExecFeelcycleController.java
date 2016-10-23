@@ -242,6 +242,7 @@ public class ExecFeelcycleController {
 
 					if(ticketCount > 0){
 						driver.switchTo().frame("TB_iframeContent");
+						Thread.sleep(2000);
 						driver.findElement(By.cssSelector(".ticket > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > span:nth-child(2)")).click();
 						Thread.sleep(1000);
 					}
