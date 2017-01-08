@@ -151,6 +151,11 @@ public class ExecFeelcycleController {
 			List<FeelcycleLessonDto> feelcycleLessonDtoList = new ArrayList<>();
 			List<WebElement> firstDayElementList = new ArrayList<>();
 
+			if(driver.findElements(By.cssSelector("#day__b >  #title_week_b")).size() == 0){
+				System.out.println("要素が見つからない");
+				System.exit(0);
+			}
+
 			// 1日目のDTO作成
 			String getValueDay = driver.findElement(
 					By.cssSelector("#day__b >  #title_week_b")).getText();
