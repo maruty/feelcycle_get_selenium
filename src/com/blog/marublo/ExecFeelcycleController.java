@@ -139,7 +139,7 @@ public class ExecFeelcycleController {
 				// e.printStackTrace();
 			}
 */
-			Thread.sleep(3000);
+			Thread.sleep(13000);
 
 			// 実際の予約連アタ処理
 			/*
