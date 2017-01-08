@@ -46,6 +46,7 @@ public class ExecFeelcycleController {
 		try {
 			lessonInfo = JSON.decode(new FileReader(
 					"/var/www/html/json/lesson.json"), Lesson.class);
+					//"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -138,7 +139,7 @@ public class ExecFeelcycleController {
 				// e.printStackTrace();
 			}
 */
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			// 実際の予約連アタ処理
 			/*
