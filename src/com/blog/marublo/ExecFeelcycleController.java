@@ -45,8 +45,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					//"/var/www/html/json/lesson.json"), Lesson.class);
-					"./lesson.json"), Lesson.class); //開発環境
+					"/var/www/html/json/lesson.json"), Lesson.class);
+					//"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
