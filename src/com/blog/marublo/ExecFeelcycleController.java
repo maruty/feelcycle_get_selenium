@@ -72,6 +72,10 @@ public class ExecFeelcycleController {
 
 		WebDriver driver = new FirefoxDriver();
 		// ログインフォームからスタート
+
+		/*ログインセクション
+		 * ログイン後2-3秒程度待たないとセッション格納されていないっぽい
+		 */
 		System.out.println("Feelcycle：Login");
 		driver.get("https://www.feelcycle.com/feelcycle_reserve/mypage.php");
 
@@ -80,15 +84,65 @@ public class ExecFeelcycleController {
 
 		driver.findElement(By.cssSelector(".submit_b")).click();
 		System.out.println("Feelcycle：ログイン成功");
-
+		//だから待つ
 		Thread.sleep(3000);
 
 		// 初回のみ後に使うjson用に店舗名　レッスンリストをパースしてjsonファイルとしてサーバーに置く
-		// Todo
 		driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
+		/*
+		 * 店舗選択
+		 */
+		// selectタグを取得
+		Select selectList = new Select(driver.findElement(By.name("tenpo")));
+		// 選択する項目をテキストで指定
+		selectList.selectByVisibleText(LESSON_STATE);
+
+		// jsonファイルの作成 別に握りつぶしてもOKだからtry catchにする
+		System.out.println("入力フォーム用json作成処理開始");
+		try {
+		  TenpoMapDto tenpoListDto = new TenpoMapDto();
+		  List<WebElement> selectElement = selectList.getOptions();
+
+		  // 店舗リスト
+
+		  for (WebElement webElement : selectElement) {
+		    ValueDto valueDto = new ValueDto(webElement.getText(),
+		        webElement.getAttribute("value"));
+		    tenpoListDto.setTenpoMap(valueDto);
+		  }
+
+		  // インストラクター
+		  Select instList = new Select(driver.findElement(By.name("lesson")));
+
+		  for (WebElement webElement : instList.getOptions()) {
+		    ValueDto valueDto = new ValueDto(webElement.getText(),
+		        webElement.getAttribute("value"));
+		    tenpoListDto.setProgramMap(valueDto);
+		  }
+
+		  String jsonText = JSON.encode(tenpoListDto, true);
+
+		  // jsonファイルの保存
+		  // 開発環境
+		  // BufferedWriter writer = new BufferedWriter(new
+		  // FileWriter("lesson_master.json"));
+
+		  // 本番
+
+		  BufferedWriter writer = new BufferedWriter(new FileWriter(
+		      "/var/www/html/json/lesson_master.json"));
+		  writer.write(jsonText);
+		  writer.close();
+
+		} catch (Exception e) {
+		  // 握りつぶす
+		  // e.printStackTrace();
+		}
 		System.out.println("Feelcycle：座席予約");
 
+
+		//実際の座席取得処理
 		while (true) {
 			driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
