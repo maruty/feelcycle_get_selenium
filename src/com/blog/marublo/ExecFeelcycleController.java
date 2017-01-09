@@ -45,8 +45,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,6 +80,9 @@ public class ExecFeelcycleController {
 
 		driver.findElement(By.cssSelector(".submit_b")).click();
 		System.out.println("Feelcycle：ログイン成功");
+
+		Thread.sleep(3000);
+
 		// 初回のみ後に使うjson用に店舗名　レッスンリストをパースしてjsonファイルとしてサーバーに置く
 		// Todo
 		driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
@@ -139,7 +142,7 @@ public class ExecFeelcycleController {
 				// e.printStackTrace();
 			}
 */
-			Thread.sleep(13000);
+			//Thread.sleep(13000);
 
 			// 実際の予約連アタ処理
 			/*
