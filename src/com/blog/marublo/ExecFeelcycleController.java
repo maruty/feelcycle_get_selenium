@@ -55,9 +55,9 @@ public class ExecFeelcycleController {
 		System.out.println("==========================================");
 		System.out.println("json内容");
 		if(lessonInfo.getGym() == "1"){
-			System.out.println("Gym:feelcycle");
+			System.out.println("GYM:feelcycle");
 		} else {
-			System.out.println("Gym:b-monster");
+			System.out.println("GYM:b-monster");
 		}
 		System.out.println("LESSON_NAME:" + lessonInfo.getLessonName());
 		System.out.println("LESSON_DATE:" + lessonInfo.getLessonDate());
@@ -75,10 +75,12 @@ public class ExecFeelcycleController {
 		final String USER_ID = lessonInfo.getUserId();
 		final String USER_PASS = lessonInfo.getUserPass();
 
+		final String GYM = lessonInfo.getGym();
+
 		WebDriver driver = new FirefoxDriver();
 
 		//feelcycle パターン
-		if(lessonInfo.getGym() == "1"){
+		if(GYM == "1"){
 			// ログインフォームからスタート
 
 			/*ログインセクション
@@ -308,7 +310,7 @@ public class ExecFeelcycleController {
 
 		}
 		//b-monsterの場合
-		if(lessonInfo.getGym() == "2"){
+		if(GYM == "2"){
 			System.out.println("b-monster:開始");
 		}
 	}
