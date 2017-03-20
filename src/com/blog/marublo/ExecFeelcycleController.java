@@ -76,7 +76,9 @@ public class ExecFeelcycleController {
 		WebDriver driver = new FirefoxDriver();
 
 		//feelcycle パターン
+		System.out.println("if手前");
 		if(GYM == "1"){
+			System.out.println("ロジック入った？1");
 			// ログインフォームからスタート
 
 			/*ログインセクション
@@ -201,7 +203,7 @@ public class ExecFeelcycleController {
 					// 握りつぶす
 					// e.printStackTrace();
 				}
-	*/
+				 */
 				//Thread.sleep(13000);
 
 				// 実際の予約連アタ処理
@@ -304,6 +306,8 @@ public class ExecFeelcycleController {
 				Thread.sleep(1000);
 			}
 
+		} else {
+			System.out.println("gym1の分岐に入らなかった");
 		}
 		//b-monsterの場合
 		if(GYM == "2"){
