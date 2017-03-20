@@ -35,6 +35,11 @@ public class Lesson {
 	public String getLessonState() {
 		return lessonState;
 	}
+
+	public void setGym(String gym){
+		this.gym = gym;
+	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}

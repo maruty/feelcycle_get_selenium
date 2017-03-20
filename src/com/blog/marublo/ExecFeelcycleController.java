@@ -54,11 +54,7 @@ public class ExecFeelcycleController {
 		// Lesson lessonInfo = JSON.decode(lessonJson, Lesson.class);
 		System.out.println("==========================================");
 		System.out.println("json内容");
-		if(lessonInfo.getGym() == "1"){
-			System.out.println("GYM:feelcycle");
-		} else {
-			System.out.println("GYM:b-monster");
-		}
+		System.out.println("GYM:" + lessonInfo.getGym());
 		System.out.println("LESSON_NAME:" + lessonInfo.getLessonName());
 		System.out.println("LESSON_DATE:" + lessonInfo.getLessonDate());
 		System.out.println("LESSON_TIME:" + lessonInfo.getLessonTime());
