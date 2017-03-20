@@ -77,7 +77,7 @@ public class ExecFeelcycleController {
 
 		//feelcycle パターン
 		System.out.println("if手前");
-		if(GYM == "1"){
+		if(GYM.equals("1")){
 			System.out.println("ロジック入った？1");
 			// ログインフォームからスタート
 
@@ -310,7 +310,7 @@ public class ExecFeelcycleController {
 			System.out.println("gym1の分岐に入らなかった");
 		}
 		//b-monsterの場合
-		if(GYM == "2"){
+		if(GYM.equals("2")){
 			System.out.println("b-monster:開始");
 		}
 	}
