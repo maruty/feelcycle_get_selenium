@@ -1,6 +1,7 @@
 package com.blog.marublo;
 
 public class Lesson {
+	String gym;
 	String userId;
 	String userPass;
 	String lessonName;
@@ -10,6 +11,10 @@ public class Lesson {
 
 	public Lesson(){
 
+	}
+
+	public String getGym(){
+		return gym;
 	}
 
 	public String getUserId() {
