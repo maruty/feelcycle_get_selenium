@@ -313,7 +313,7 @@ public class ExecFeelcycleController {
 			driver.get("https://www.b-monster.jp/");
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
-			driver.findElement(By.cssSelector("#g-console > li:nth-child(1)")).click();
+			driver.findElement(By.cssSelector("button.btn")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
 			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
