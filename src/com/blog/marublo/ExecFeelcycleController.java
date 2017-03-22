@@ -45,8 +45,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,9 +76,7 @@ public class ExecFeelcycleController {
 		WebDriver driver = new FirefoxDriver();
 
 		//feelcycle パターン
-		System.out.println("if手前");
 		if(GYM.equals("1")){
-			System.out.println("ロジック入った？1");
 			// ログインフォームからスタート
 
 			/*ログインセクション
@@ -307,11 +305,118 @@ public class ExecFeelcycleController {
 			}
 
 		} else {
-			System.out.println("gym1の分岐に入らなかった");
+			//System.out.println("gym1の分岐に入らなかった");
 		}
 		//b-monsterの場合
 		if(GYM.equals("2")){
-			System.out.println("b-monster:開始");
+			System.out.println("b-monster:ログイン開始");
+			driver.get("https://www.b-monster.jp/");
+			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
+			Thread.sleep(4000);
+			System.out.println("ログインモーダルチェック");
+			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
+			//ログイン画面
+			driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
+			driver.findElement(By.name("login-password")).sendKeys(USER_PASS);
+
+			driver.findElement(By.cssSelector("#login-btn")).click();
+			System.out.println("b-monster：ログイン成功");
+			//画面の切り替わりとクッキー関係のため待つ
+			Thread.sleep(3000);
+
+			while(true){
+				//予約画面への遷移
+				System.out.println("b-monster：予約画面の店舗選択");
+				driver.get("https://www.b-monster.jp/reserve/list");
+				int bmonTenpoCount = driver.findElements(By.cssSelector("#main-container > div.block-body > div")).size();
+				for(int i=0; i < bmonTenpoCount; i++){
+					String tenpoText = driver.findElement(By.cssSelector("#main-container > div.block-body > div:nth-child("
+																			+ (i+1) + ") > a > div > div > div > h3")).getText();
+					if(tenpoText.equals(LESSON_STATE)){
+						driver.findElement(By.cssSelector("#main-container > div.block-body > div:nth-child("
+								+ (i+1) + ") > a")).click();
+						break;
+					}
+				}
+				System.out.println("b-monster：予約画面スケジュール一覧");
+
+				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
+				int bmonLessonDayCount = driver.findElements(By.cssSelector(
+						"#scroll-box > div.grid > div")).size();
+
+				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
+
+
+				List<WebElement>bmnonLessonList = null;
+				for(int i=0; i < bmonLessonDayCount; i++) {
+					String bmonLessonDayMuch = driver.findElement(By.cssSelector(
+							"#scroll-box > div.grid > div:nth-child(" + (i+1) + ") > div > h3"
+							)).getText();
+					//日単位の合致したリストを取得してBreak
+					System.out.println(bmonLessonDayMuch);
+					System.out.println(LESSON_DATE);
+
+					if(bmonLessonDayMuch.equals(LESSON_DATE)){
+						bmnonLessonList = driver.findElements(By.cssSelector(
+								"#scroll-box > div.grid > div:nth-child(" +  (i+1) +") > ul:nth-child(2) > li"
+								));
+						break;
+					}
+				}
+
+
+				//System.out.println("bmnonLessonListの数は:" + bmnonLessonList.size());
+
+				//合致する時間のレッスンをクリックする
+				if(bmnonLessonList != null){
+					for(WebElement element : bmnonLessonList) {
+
+
+						//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
+						String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
+						//System.out.println(bmonTimeStr.substring(0, 5));
+						//System.out.println("LESSON_TIME:" + LESSON_TIME);
+						if(bmonTimeStr.substring(0, 5).equals(LESSON_TIME)){
+							element.findElement(By.cssSelector("a:nth-child(1)")).click();
+							break;
+						}
+					}
+				}
+
+				//座席ページへの移動完了 waiting-list
+				int waitingCount = driver.findElements(By.cssSelector(".waiting-list")).size();
+				if(waitingCount > 0){
+					//席が満席だった場合頭からループをやり直す
+					Calendar calendar = Calendar.getInstance();
+					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
+					continue;
+				}
+
+				//空いてるサンドバッグ選択
+				int bagStart = 7;
+				int bagEnd = 30;
+				for(int i=bagStart; i < bagEnd+1; i++){
+					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()){
+						driver.findElement(By.cssSelector(".bag" + i + "> .bag-point")).click();
+						driver.findElement(By.cssSelector("#your-reservation > span > button")).click();
+
+						//予約確認ページ
+						driver.findElement(By.cssSelector("#main-container > div.form-action > button")).click();
+						int endMsgCount = driver.findElements(By.cssSelector("#main-container > div > section > h2")).size();
+						if(endMsgCount > 0){
+							String endMsg = driver.findElement(By.cssSelector("#main-container > div > section > h2")).getText();
+							if(endMsg.equals("予約が完了いたしました。")){
+								driver.quit();
+								System.out.println("b-monster:取得完了");
+								System.exit(0);
+							}
+						}
+						Calendar calendar = Calendar.getInstance();
+						System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
+						continue;
+					}
+				}
+			}
 		}
 	}
 
