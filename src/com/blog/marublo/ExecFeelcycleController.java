@@ -316,6 +316,7 @@ public class ExecFeelcycleController {
 			//button.btn
 			int debugCount = driver.findElements(By.cssSelector(".btn")).size();
 			System.out.println("debugCount:"+debugCount + "個");
+
 			driver.findElement(By.cssSelector(".btn")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
