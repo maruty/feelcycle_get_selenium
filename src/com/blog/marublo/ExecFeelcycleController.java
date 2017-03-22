@@ -314,6 +314,8 @@ public class ExecFeelcycleController {
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
+			int debugCount = driver.findElements(By.cssSelector(".btn")).size();
+			System.out.println("debugCount:"+debugCount + "個");
 			driver.findElement(By.cssSelector(".btn")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
