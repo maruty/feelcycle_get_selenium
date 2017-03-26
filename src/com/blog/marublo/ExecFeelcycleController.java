@@ -413,7 +413,8 @@ public class ExecFeelcycleController {
 				*/
 				System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
-				Thread.sleep(1000);
+				System.out.println("30秒待つ");
+				Thread.sleep(30000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 				int bmonLessonDayCount = driver.findElements(By.cssSelector(
 						"#scroll-box > div.grid > div")).size();
