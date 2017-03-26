@@ -316,6 +316,7 @@ public class ExecFeelcycleController {
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
 			driver.manage().window().maximize();
+			driver.get("https://www.b-monster.jp/");
 			int debugCount = driver.findElements(By.cssSelector("#g-console")).size();
 			System.out.println("debugCount:"+debugCount + "個");
 
