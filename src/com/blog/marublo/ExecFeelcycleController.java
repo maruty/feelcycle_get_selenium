@@ -319,7 +319,7 @@ public class ExecFeelcycleController {
 			driver.manage().window().maximize();
 			driver.get("https://www.b-monster.jp/");
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
-			int debugCount = driver.findElements(By.cssSelector("#g-console")).size();
+			int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
 			System.out.println("debugCount:"+debugCount + "個");
 
             //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
