@@ -315,24 +315,28 @@ public class ExecFeelcycleController {
 		//b-monsterの場合
 		if(GYM.equals("2")){
 			System.out.println("b-monster:ログイン開始");
-			driver.get("https://www.b-monster.jp/");
+			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
 			driver.manage().window().maximize();
-			driver.get("https://www.b-monster.jp/");
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
-			Actions clicker = new Actions(driver);
-		    clicker.sendKeys(Keys.PAGE_DOWN);
+			//driver.get("https://www.b-monster.jp/");
+			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
+			//Actions clicker = new Actions(driver);
+		    //clicker.sendKeys(Keys.PAGE_DOWN);
 		    Thread.sleep(1000);
-			int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
-			System.out.println("debugCount:"+debugCount + "個");
+
+			// ウィンドウ切り替え
+
+			//int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
+
 
             //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
             //System.out.println("The total number of iframes are " + iframeElements.size());
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
-			driver.findElement(By.cssSelector("button")).click();
+		    System.out.println("ログイン");
+			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
