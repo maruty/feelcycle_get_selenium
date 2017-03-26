@@ -348,6 +348,11 @@ public class ExecFeelcycleController {
 		    //driver.manage().window().setSize(new Dimension(width, height));
 
 
+			Actions clicker = new Actions(driver);
+		    clicker.sendKeys(Keys.PAGE_DOWN);
+
+		    Thread.sleep(1000);
+
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				String fileName = "test.png";
@@ -363,7 +368,7 @@ public class ExecFeelcycleController {
 
 			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			//System.out.println("数:"+ debugCount + "個");
-			driver.findElement(By.cssSelector("button")).click();
+			//driver.findElement(By.cssSelector("button")).click();
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
