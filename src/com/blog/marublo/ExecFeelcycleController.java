@@ -354,7 +354,7 @@ public class ExecFeelcycleController {
 		    Thread.sleep(3000);
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
+			//js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 			Thread.sleep(3000);
 			js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 
@@ -366,7 +366,7 @@ public class ExecFeelcycleController {
 			//System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.cssSelector("#g-console > button")).click();
 			Thread.sleep(3000);
-			js.executeScript("var v = document.getElementById(\"login-btn\"); v.click();");
+			js.executeScript("document.querySelector(\"#login-btn > span\").click();");
 			Thread.sleep(3000);
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
