@@ -15,6 +15,7 @@ import net.arnx.jsonic.JSON;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
@@ -323,7 +324,7 @@ public class ExecFeelcycleController {
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
-			driver.manage().window().maximize();
+			//driver.manage().window().maximize();
 			//driver.get("https://www.b-monster.jp/");
 			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
 			//Actions clicker = new Actions(driver);
@@ -340,6 +341,11 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
+		    int width = 480;
+		    int height = 500;
+		    driver.manage().window().setSize(new Dimension(width, height));
+
+
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				String fileName = "test.png";
