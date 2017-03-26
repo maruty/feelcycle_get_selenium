@@ -84,6 +84,8 @@ public class ExecFeelcycleController {
 		final String GYM = lessonInfo.getGym();
 
 		WebDriver driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		//driver.manage().window().setSize(new Dimension(width, height));
 
 		//feelcycle パターン
 		if(GYM.equals("1")){
@@ -341,9 +343,9 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
-		    int width = 320;
-		    int height = 480;
-		    driver.manage().window().setSize(new Dimension(width, height));
+		    //int width = 320;
+		    //int height = 480;
+		    //driver.manage().window().setSize(new Dimension(width, height));
 
 
 		    try{
@@ -359,8 +361,8 @@ public class ExecFeelcycleController {
 		    }
 
 
-			int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
-			System.out.println("数:"+ debugCount + "個");
+			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
+			//System.out.println("数:"+ debugCount + "個");
 			driver.findElement(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).click();
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
