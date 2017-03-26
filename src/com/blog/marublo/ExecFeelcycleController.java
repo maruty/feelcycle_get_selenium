@@ -46,8 +46,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -315,8 +315,8 @@ public class ExecFeelcycleController {
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
-			//int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1) > button > span")).size();
-			//System.out.println("debugCount:"+debugCount + "個");
+			int debugCount = driver.findElements(By.cssSelector("#g-console")).size();
+			System.out.println("debugCount:"+debugCount + "個");
 			driver.manage().window().maximize();
             //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
             //System.out.println("The total number of iframes are " + iframeElements.size());
