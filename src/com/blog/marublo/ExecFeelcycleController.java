@@ -315,9 +315,10 @@ public class ExecFeelcycleController {
 			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
+			driver.manage().window().maximize();
 			int debugCount = driver.findElements(By.cssSelector("#g-console")).size();
 			System.out.println("debugCount:"+debugCount + "個");
-			driver.manage().window().maximize();
+
             //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
             //System.out.println("The total number of iframes are " + iframeElements.size());
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
