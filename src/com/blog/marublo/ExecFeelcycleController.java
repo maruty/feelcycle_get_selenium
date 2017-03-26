@@ -355,7 +355,7 @@ public class ExecFeelcycleController {
 
 			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			//System.out.println("数:"+ debugCount + "個");
-			driver.findElement(By.cssSelector("#g-console button")).click();
+			driver.findElement(By.cssSelector("#g-console > button")).click();
 
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
