@@ -366,7 +366,7 @@ public class ExecFeelcycleController {
 			//System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.cssSelector("#g-console > button")).click();
 			Thread.sleep(3000);
-			js.executeScript("var v = document.getElementsById('login-btn');v[0].click();");
+			js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				String fileName = "test.png";
