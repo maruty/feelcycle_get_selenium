@@ -321,6 +321,7 @@ public class ExecFeelcycleController {
 		}
 		//b-monsterの場合
 		if(GYM.equals("2")){
+			driver = new FirefoxDriver();
 			System.out.println("b-monster:ログイン開始");
 			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 			Thread.sleep(2000);
