@@ -311,13 +311,13 @@ public class ExecFeelcycleController {
 		if(GYM.equals("2")){
 			System.out.println("b-monster:ログイン開始");
 			driver.get("https://www.b-monster.jp/");
-			Thread.sleep(2000);
+			Thread.sleep(6000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
-			int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1)")).size();
+			int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1) > button")).size();
 			System.out.println("debugCount:"+debugCount + "個");
 
-			driver.findElement(By.cssSelector(".btn")).click();
+			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
 			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
@@ -392,6 +392,7 @@ public class ExecFeelcycleController {
 				//座席ページへの移動完了 waiting-list
 				int waitingCount = driver.findElements(By.cssSelector(".waiting-list")).size();
 				if(waitingCount > 0){
+					Thread.sleep(1000);
 					//席が満席だった場合頭からループをやり直す
 					Calendar calendar = Calendar.getInstance();
 					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
