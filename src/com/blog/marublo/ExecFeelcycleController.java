@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import net.arnx.jsonic.JSON;
 
@@ -317,6 +318,7 @@ public class ExecFeelcycleController {
 			//button.btn
 			driver.manage().window().maximize();
 			driver.get("https://www.b-monster.jp/");
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
 			int debugCount = driver.findElements(By.cssSelector("#g-console")).size();
 			System.out.println("debugCount:"+debugCount + "個");
 
