@@ -351,7 +351,7 @@ public class ExecFeelcycleController {
 			Actions clicker = new Actions(driver);
 		    clicker.sendKeys(Keys.PAGE_DOWN);
 
-		    Thread.sleep(1000);
+		    Thread.sleep(3000);
 
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
