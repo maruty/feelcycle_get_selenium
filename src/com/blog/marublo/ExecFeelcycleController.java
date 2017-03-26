@@ -398,6 +398,7 @@ public class ExecFeelcycleController {
 			while(true){
 				//予約画面への遷移
 				System.out.println("b-monster：予約画面の店舗選択");
+				/* いったんGINZA限定
 				driver.get("https://www.b-monster.jp/reserve/list");
 				int bmonTenpoCount = driver.findElements(By.cssSelector("#main-container > div.block-body > div")).size();
 				for(int i=0; i < bmonTenpoCount; i++){
@@ -409,8 +410,10 @@ public class ExecFeelcycleController {
 						break;
 					}
 				}
+				*/
 				System.out.println("b-monster：予約画面スケジュール一覧");
-
+				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
+				Thread.sleep(1000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 				int bmonLessonDayCount = driver.findElements(By.cssSelector(
 						"#scroll-box > div.grid > div")).size();
