@@ -359,12 +359,14 @@ public class ExecFeelcycleController {
 			js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 
 			Thread.sleep(3000);
-			js.executeScript("document.getElementById('your-id').value='yanagisawa.trade@gmail.com';");
+			js.executeScript("document.getElementById('your-id').value=' "+ USER_ID + "';");
 			Thread.sleep(3000);
+			js.executeScript("document.getElementById('your-password').value=' "+ USER_PASS + "';");
 			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			//System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.cssSelector("#g-console > button")).click();
-
+			Thread.sleep(3000);
+			js.executeScript("var v = document.getElementsById('login-btn');v[0].click();");
 		    try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				String fileName = "test.png";
@@ -384,10 +386,10 @@ public class ExecFeelcycleController {
 			System.out.println("ログインモーダルチェック");
 			//System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
-			driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
-			driver.findElement(By.name("#your-password")).sendKeys(USER_PASS);
+			//driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
+			//driver.findElement(By.name("#your-password")).sendKeys(USER_PASS);
 
-			driver.findElement(By.cssSelector("#login-btn")).click();
+			//driver.findElement(By.cssSelector("#login-btn")).click();
 			System.out.println("b-monster：ログイン成功");
 			//画面の切り替わりとクッキー関係のため待つ
 			Thread.sleep(3000);
