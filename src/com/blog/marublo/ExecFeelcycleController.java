@@ -359,9 +359,9 @@ public class ExecFeelcycleController {
 			//js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 
 			Thread.sleep(3000);
-			js.executeScript("document.getElementById('your-id').value=' "+ USER_ID + "';");
+			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
 			Thread.sleep(3000);
-			js.executeScript("document.getElementById('your-password').value=' "+ USER_PASS + "';");
+			js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
 			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			//System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.cssSelector("#g-console > button")).click();
