@@ -2,6 +2,7 @@ package com.blog.marublo;
 
 import java.io.BufferedWriter;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,9 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 import net.arnx.jsonic.JSON;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -336,6 +340,19 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
+		    try{
+			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+				String fileName = "test.png";
+				String rootPath = "/var/www/html/log_images/";
+				String URL = "http://133.242.235.62";
+				FileUtils.copyFile(srcFile, new File(rootPath + fileName));
+				System.out.println("file:" + "  " + URL + "/log_images/" + fileName);
+
+		    }catch(Exception e){
+
+		    }
+
+
 			int debugCount = driver.findElements(By.cssSelector("#humb-btn")).size();
 			System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
