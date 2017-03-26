@@ -312,11 +312,12 @@ public class ExecFeelcycleController {
 		if(GYM.equals("2")){
 			System.out.println("b-monster:ログイン開始");
 			driver.get("https://www.b-monster.jp/");
-			Thread.sleep(6000);
+			Thread.sleep(2000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
 			//int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1) > button > span")).size();
 			//System.out.println("debugCount:"+debugCount + "個");
+			driver.manage().window().maximize();
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("document.getElementsByClassName('btn').click();");
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button > span")).click();
