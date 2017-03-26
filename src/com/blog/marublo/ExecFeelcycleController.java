@@ -359,9 +359,9 @@ public class ExecFeelcycleController {
 		    }
 
 
-			int debugCount = driver.findElements(By.cssSelector("#humb-btn")).size();
+			int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			System.out.println("数:"+ debugCount + "個");
-			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
+			driver.findElement(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).click();
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
