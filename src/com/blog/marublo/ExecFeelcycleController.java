@@ -322,8 +322,8 @@ public class ExecFeelcycleController {
             //System.out.println("The total number of iframes are " + iframeElements.size());
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
-			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button > span")).click();
-			driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
+			driver.findElement(By.cssSelector("button")).click();
+			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
 			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
