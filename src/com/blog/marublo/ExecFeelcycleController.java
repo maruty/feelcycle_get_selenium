@@ -14,9 +14,12 @@ import net.arnx.jsonic.JSON;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExecFeelcycleController {
@@ -319,6 +322,9 @@ public class ExecFeelcycleController {
 			driver.manage().window().maximize();
 			driver.get("https://www.b-monster.jp/");
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
+			Actions clicker = new Actions(driver);
+		    clicker.sendKeys(Keys.PAGE_DOWN);
+		    Thread.sleep(1000);
 			int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
 			System.out.println("debugCount:"+debugCount + "個");
 
