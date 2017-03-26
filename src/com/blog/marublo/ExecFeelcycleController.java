@@ -12,6 +12,7 @@ import java.util.List;
 import net.arnx.jsonic.JSON;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -314,10 +315,11 @@ public class ExecFeelcycleController {
 			Thread.sleep(6000);
 			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
 			//button.btn
-			int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1) > button > span")).size();
-			System.out.println("debugCount:"+debugCount + "個");
-
-			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button > span")).click();
+			//int debugCount = driver.findElements(By.cssSelector("#g-console > li:nth-child(1) > button > span")).size();
+			//System.out.println("debugCount:"+debugCount + "個");
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("document.getElementsByClassName('btn').click();");
+			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button > span")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
 			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
