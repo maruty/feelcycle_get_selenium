@@ -336,7 +336,7 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
-			int debugCount = driver.findElements(By.cssSelector("#login-modal")).size();
+			int debugCount = driver.findElements(By.cssSelector("#humb-btn")).size();
 			System.out.println("数:"+ debugCount + "個");
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
