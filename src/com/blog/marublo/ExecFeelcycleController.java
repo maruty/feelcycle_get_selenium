@@ -336,7 +336,8 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
-			driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
+			driver.findElements(By.cssSelector("#g-console > li")).size();
+			System.out.println("数:"+driver.findElements(By.cssSelector("#g-console > li")).size() + "個");
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
