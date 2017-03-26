@@ -354,9 +354,9 @@ public class ExecFeelcycleController {
 		    Thread.sleep(3000);
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			//js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
+			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 			Thread.sleep(3000);
-			js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
+			//js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 
 			Thread.sleep(3000);
 			js.executeScript("document.getElementById('your-id').value=' "+ USER_ID + "';");
