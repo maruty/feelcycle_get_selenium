@@ -341,7 +341,7 @@ public class ExecFeelcycleController {
 			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
 			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
-			System.out.println(driver.findElements(By.cssSelector("login-modal")).size() + "個");
+			System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
 			driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
 			driver.findElement(By.name("login-password")).sendKeys(USER_PASS);
