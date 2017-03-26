@@ -341,8 +341,8 @@ public class ExecFeelcycleController {
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
-		    int width = 480;
-		    int height = 500;
+		    int width = 320;
+		    int height = 480;
 		    driver.manage().window().setSize(new Dimension(width, height));
 
 
