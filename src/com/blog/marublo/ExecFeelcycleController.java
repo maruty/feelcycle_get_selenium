@@ -355,6 +355,8 @@ public class ExecFeelcycleController {
 
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
+			Thread.sleep(3000);
+			js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
 
 			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
 			//System.out.println("数:"+ debugCount + "個");
