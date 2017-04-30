@@ -28,7 +28,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExecFeelcycleController {
-
+	public static WebDriver driver;
 	/**
 	 * @param args
 	 * @throws InterruptedException
@@ -97,9 +97,10 @@ public class ExecFeelcycleController {
          .build();
 	     service.start();
 	*/
-		System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
 
-		WebDriver driver = new ChromeDriver();
+		//driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(width, height));
 
