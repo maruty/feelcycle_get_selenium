@@ -100,6 +100,9 @@ public class ExecFeelcycleController {
 		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
 
 		//driver = new ChromeDriver();
+
+
+		System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(width, height));
