@@ -55,8 +55,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					//"/var/www/html/json/lesson.json"), Lesson.class);
-					"./lesson.json"), Lesson.class); //開発環境
+					"/var/www/html/json/lesson.json"), Lesson.class);
+					//"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,8 +96,7 @@ public class ExecFeelcycleController {
          .build();
 	     service.start();
 	     */
-		System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
-
+		System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
 
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
