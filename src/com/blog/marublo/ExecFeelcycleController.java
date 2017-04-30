@@ -22,9 +22,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExecFeelcycleController {
@@ -55,8 +54,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +82,8 @@ public class ExecFeelcycleController {
 
 		final String GYM = lessonInfo.getGym();
 
-		WebDriver driver = new FirefoxDriver();
+		//WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(width, height));
 
@@ -349,8 +349,8 @@ public class ExecFeelcycleController {
 		    //driver.manage().window().setSize(new Dimension(width, height));
 
 
-			Actions clicker = new Actions(driver);
-		    clicker.sendKeys(Keys.PAGE_DOWN);
+			//Actions clicker = new Actions(driver);
+		    //clicker.sendKeys(Keys.PAGE_DOWN);
 
 		    Thread.sleep(3000);
 
@@ -414,8 +414,8 @@ public class ExecFeelcycleController {
 				*/
 				System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
-				System.out.println("30秒待つ");
-				Thread.sleep(30000);
+				//System.out.println("30秒待つ");
+				//Thread.sleep(30000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 				int bmonLessonDayCount = driver.findElements(By.cssSelector(
 						"#scroll-box > div.grid > div")).size();
