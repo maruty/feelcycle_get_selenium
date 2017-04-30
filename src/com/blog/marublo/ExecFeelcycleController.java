@@ -23,6 +23,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -87,6 +88,13 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
+		ChromeDriverService service;
+	     service = new ChromeDriverService.Builder()
+         .usingDriverExecutable(new File("/opt/chromedriver/chromedriver"))
+         .usingAnyFreePort()
+         .build();
+	     service.start();
+
 
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
