@@ -83,6 +83,11 @@ public class ExecFeelcycleController {
 		final String GYM = lessonInfo.getGym();
 
 		//WebDriver driver = new FirefoxDriver();
+
+		//chrome driver用
+		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
+		//を設定している
+
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(width, height));
