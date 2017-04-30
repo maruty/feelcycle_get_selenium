@@ -88,12 +88,15 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-		ChromeDriverService service;
+		//ChromeDriverService service;
+		/*
 	     service = new ChromeDriverService.Builder()
          .usingDriverExecutable(new File("/opt/chromedriver/chromedriver"))
          .usingAnyFreePort()
          .build();
 	     service.start();
+	     */
+		System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
 
 
 		WebDriver driver = new ChromeDriver();
