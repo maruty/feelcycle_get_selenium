@@ -122,7 +122,7 @@ public class ExecFeelcycleController {
 		//ChromeOptions options = new ChromeOptions();
 		//options.setBinary("/opt/google/chrome/chrome");
 
-		FirefoxDriverManager.getInstance().setup();
+		//FirefoxDriverManager.getInstance().setup();
 		//ChromeDriverManager.getInstance().setup();
 		//FirefoxDriverManager.getInstance().version("0.14.0").setup();
 
@@ -422,8 +422,12 @@ public class ExecFeelcycleController {
 			//driver.findElement(By.cssSelector("#g-console > button")).click();
 			Thread.sleep(3000);
 			js.executeScript("document.querySelector(\"#login-btn > span\").click();");
+
+
 			Thread.sleep(3000);
-		    try{
+
+		    /*
+			try{
 			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				String fileName = "test.png";
 				String rootPath = "/var/www/html/log_images/";
@@ -434,6 +438,7 @@ public class ExecFeelcycleController {
 		    }catch(Exception e){
 
 		    }
+		    */
 
 
 
