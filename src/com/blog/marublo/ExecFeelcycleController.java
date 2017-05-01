@@ -97,7 +97,7 @@ public class ExecFeelcycleController {
          .build();
 	     service.start();
 
-		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
 
 		WebDriver driver = new ChromeDriver();
 
