@@ -165,12 +165,13 @@ public class ExecFeelcycleController {
 			 */
 			// selectタグを取得
 
-			Select selectList = new Select(driver.findElement(By.cssSelector("#pulldown > div.schedule_top_l > select")));
+			//Select selectList = new Select(driver.findElement(By.name("tenpo")));
 			// 選択する項目をテキストで指定
-			selectList.selectByVisibleText(LESSON_STATE);
+			//selectList.selectByVisibleText(LESSON_STATE);
 
 			// jsonファイルの作成 別に握りつぶしてもOKだからtry catchにする
 			System.out.println("入力フォーム用json作成処理開始");
+			/*
 			try {
 			  TenpoMapDto tenpoListDto = new TenpoMapDto();
 			  List<WebElement> selectElement = selectList.getOptions();
@@ -182,8 +183,10 @@ public class ExecFeelcycleController {
 			        webElement.getAttribute("value"));
 			    tenpoListDto.setTenpoMap(valueDto);
 			  }
+			  */
 
 			  // インストラクター
+			/*
 			  Select instList = new Select(driver.findElement(By.name("lesson")));
 
 			  for (WebElement webElement : instList.getOptions()) {
@@ -193,7 +196,7 @@ public class ExecFeelcycleController {
 			  }
 
 			  String jsonText = JSON.encode(tenpoListDto, true);
-
+			*/
 			  // jsonファイルの保存
 			  // 開発環境
 			  // BufferedWriter writer = new BufferedWriter(new
@@ -201,6 +204,7 @@ public class ExecFeelcycleController {
 
 			  // 本番
 
+			/*
 			  BufferedWriter writer = new BufferedWriter(new FileWriter(
 			      "/var/www/html/json/lesson_master.json"));
 			  writer.write(jsonText);
@@ -210,6 +214,7 @@ public class ExecFeelcycleController {
 			  // 握りつぶす
 			  // e.printStackTrace();
 			}
+			*/
 			System.out.println("Feelcycle：座席予約");
 
 
