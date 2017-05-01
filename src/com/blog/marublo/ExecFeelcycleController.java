@@ -1,7 +1,5 @@
 package com.blog.marublo;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
 import java.io.BufferedWriter;
 
