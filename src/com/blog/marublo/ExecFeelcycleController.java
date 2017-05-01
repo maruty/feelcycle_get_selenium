@@ -101,8 +101,9 @@ public class ExecFeelcycleController {
 
 	     WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
 		*/
+
 		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
 		WebDriver driver = new ChromeDriver();
 
