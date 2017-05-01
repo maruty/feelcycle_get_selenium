@@ -24,6 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -91,7 +92,7 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-
+		/*
 		ChromeDriverService service;
 
 	     service = new ChromeDriverService.Builder()
@@ -99,7 +100,8 @@ public class ExecFeelcycleController {
          .usingAnyFreePort()
          .build();
 	     service.start();
-
+	     */
+	     /*
 	     String Xport = System.getProperty("lmportal.xvfb.id", ":1");
 	     final File firefoxPath = new File(System.getProperty(
 	    		 "lmportal.deploy.firefox.path", "/usr/bin/firefox"));
@@ -107,14 +109,17 @@ public class ExecFeelcycleController {
 	    		 firefoxBinary.setEnvironmentProperty("DISPLAY", Xport);
 
 	    		 WebDriver driver = new FirefoxDriver(firefoxBinary, null);
-
+		*/
 	    // WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
 
 
 		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-		//System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
-		//WebDriver driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.setBinary("/opt/google/chrome/chrome");
+
+		WebDriver driver = new ChromeDriver(options);
 	    /*
 		WebDriver driver = new RemoteWebDriver(service.getUrl(),
 	            DesiredCapabilities.chrome());
