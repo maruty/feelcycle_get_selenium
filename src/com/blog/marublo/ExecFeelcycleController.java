@@ -92,7 +92,7 @@ public class ExecFeelcycleController {
 		//を設定している
 
 		ChromeDriverService service;
-
+		/*
 	     service = new ChromeDriverService.Builder()
          .usingDriverExecutable(new File("/opt/chromedriver/chromedriver"))
          .usingAnyFreePort()
@@ -100,10 +100,11 @@ public class ExecFeelcycleController {
 	     service.start();
 
 	     WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
+		*/
+		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
+		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 
-		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
-
-		//WebDriver driver = new ChromeDriver();
+		WebDriver driver = new ChromeDriver();
 
 		//作業時はpomからやること
 		//System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
