@@ -105,7 +105,7 @@ public class ExecFeelcycleController {
 		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new ChromeDriver(DesiredCapabilities.chrome());
 
 		//作業時はpomからやること
 		//System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
