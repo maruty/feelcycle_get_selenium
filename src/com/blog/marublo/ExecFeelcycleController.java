@@ -164,7 +164,8 @@ public class ExecFeelcycleController {
 			 * 店舗選択
 			 */
 			// selectタグを取得
-			Select selectList = new Select(driver.findElement(By.name("tenpo")));
+
+			Select selectList = new Select(driver.findElement(By.cssSelector("#pulldown > div.schedule_top_l > select")));
 			// 選択する項目をテキストで指定
 			selectList.selectByVisibleText(LESSON_STATE);
 
