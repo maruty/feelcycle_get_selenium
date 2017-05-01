@@ -123,7 +123,7 @@ public class ExecFeelcycleController {
 		//options.setBinary("/opt/google/chrome/chrome");
 
 		//FirefoxDriverManager.getInstance().setup();
-		ChromeDriverManager.getInstance().version("2.20").setup();
+		ChromeDriverManager.getInstance().version("2.25").setup();
 		//FirefoxDriverManager.getInstance().version("0.14.0").setup();
 
 		WebDriver driver = new ChromeDriver();
