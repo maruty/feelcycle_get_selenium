@@ -24,6 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -99,6 +100,14 @@ public class ExecFeelcycleController {
          .build();
 	     service.start();
 
+	     String Xport = System.getProperty("lmportal.xvfb.id", ":1");
+	     final File firefoxPath = new File(System.getProperty(
+	    		 "lmportal.deploy.firefox.path", "/usr/bin/firefox"));
+	    		 FirefoxBinary firefoxBinary = new FirefoxBinary(firefoxPath);
+	    		 firefoxBinary.setEnvironmentProperty("DISPLAY", Xport);
+
+	    		 WebDriver driver = new FirefoxDriver(firefoxBinary, null);
+
 	    // WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
 
 
@@ -106,8 +115,11 @@ public class ExecFeelcycleController {
 		//System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
 		//WebDriver driver = new ChromeDriver();
+	    /*
 		WebDriver driver = new RemoteWebDriver(service.getUrl(),
 	            DesiredCapabilities.chrome());
+		*/
+
 
 		//作業時はpomからやること
 		//System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
