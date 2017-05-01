@@ -25,6 +25,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExecFeelcycleController {
@@ -97,9 +99,11 @@ public class ExecFeelcycleController {
          .build();
 	     service.start();
 
+	     WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
+
 		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
 
-		WebDriver driver = new ChromeDriver();
+		//WebDriver driver = new ChromeDriver();
 
 		//作業時はpomからやること
 		//System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
