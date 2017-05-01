@@ -102,7 +102,7 @@ public class ExecFeelcycleController {
 		//driver = new ChromeDriver();
 
 		//作業時はpomからやること
-		//System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
+		System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		//driver.manage().window().setSize(new Dimension(width, height));
