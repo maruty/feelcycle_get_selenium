@@ -1,5 +1,6 @@
 package com.blog.marublo;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
 import java.io.BufferedWriter;
@@ -121,9 +122,10 @@ public class ExecFeelcycleController {
 		//ChromeOptions options = new ChromeOptions();
 		//options.setBinary("/opt/google/chrome/chrome");
 
-		FirefoxDriverManager.getInstance().setup();
+		//FirefoxDriverManager.getInstance().setup();
+		ChromeDriverManager.getInstance().setup();
 
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 
 		//WebDriver driver = new ChromeDriver(options);
 	    /*
