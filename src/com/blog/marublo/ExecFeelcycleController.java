@@ -114,7 +114,7 @@ public class ExecFeelcycleController {
 
 
 		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
 		ChromeOptions options = new ChromeOptions();
 		options.setBinary("/opt/google/chrome/chrome");
