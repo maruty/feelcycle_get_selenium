@@ -2,6 +2,7 @@ package com.blog.marublo;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.OperaDriverManager;
 
 import java.io.BufferedWriter;
 
@@ -30,6 +31,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -123,10 +125,10 @@ public class ExecFeelcycleController {
 		//options.setBinary("/opt/google/chrome/chrome");
 
 		//FirefoxDriverManager.getInstance().setup();
-		ChromeDriverManager.getInstance().version("2.25").setup();
+		OperaDriverManager.getInstance().setup();
 		//FirefoxDriverManager.getInstance().version("0.14.0").setup();
 
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new OperaDriver();
 
 		//WebDriver driver = new ChromeDriver(options);
 	    /*
