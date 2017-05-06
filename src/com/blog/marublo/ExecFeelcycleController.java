@@ -1,6 +1,8 @@
 package com.blog.marublo;
 
 
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
+
 import java.io.BufferedWriter;
 
 import java.io.File;
@@ -122,7 +124,7 @@ public class ExecFeelcycleController {
 
 		//FirefoxDriverManager.getInstance().setup();
 		//ChromeDriverManager.getInstance().setup();
-		//FirefoxDriverManager.getInstance().version("0.14.0").setup();
+		FirefoxDriverManager.getInstance().setup();
 
 		WebDriver driver = new FirefoxDriver();
 
@@ -382,15 +384,6 @@ public class ExecFeelcycleController {
 			driver = new FirefoxDriver();
 			System.out.println("b-monster:ログイン開始");
 			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
-			Thread.sleep(2000);
-			//driver.findElement(By.cssSelector("#g-console > li:nth-child(1) > button")).click();
-			//button.btn
-			//driver.manage().window().maximize();
-			//driver.get("https://www.b-monster.jp/");
-			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//画面表示まで10秒待つ
-			//Actions clicker = new Actions(driver);
-		    //clicker.sendKeys(Keys.PAGE_DOWN);
-		    Thread.sleep(1000);
 
 			// ウィンドウ切り替え
 
