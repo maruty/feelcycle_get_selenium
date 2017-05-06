@@ -410,51 +410,33 @@ public class ExecFeelcycleController {
 			//Actions clicker = new Actions(driver);
 		    //clicker.sendKeys(Keys.PAGE_DOWN);
 
+		   /*
 		    Thread.sleep(3000);
-
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 			Thread.sleep(3000);
-			//js.executeScript("var v = document.getElementsByTagName('button');v[1].click();");
-
 			Thread.sleep(3000);
 			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
 			Thread.sleep(3000);
 			js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
-			//int debugCount = driver.findElements(By.cssSelector("#gnav > div > div > div.gnav-btns > button")).size();
-			//System.out.println("数:"+ debugCount + "個");
-			//driver.findElement(By.cssSelector("#g-console > button")).click();
 			Thread.sleep(3000);
 			js.executeScript("document.querySelector(\"#login-btn > span\").click();");
-
-
 			Thread.sleep(3000);
-
-		    /*
-			try{
-			    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				String fileName = "test.png";
-				String rootPath = "/var/www/html/log_images/";
-				String URL = "http://133.242.235.62";
-				FileUtils.copyFile(srcFile, new File(rootPath + fileName));
-				System.out.println("file:" + "  " + URL + "/log_images/" + fileName);
-
-		    }catch(Exception e){
-
-		    }
-		    */
+		*/
 
 
-
-			//driver.findElement(By.xpath("//*[@id='g-console']/li[1]/button")).click();
+		    System.out.println("ログインボタンチェック");
+			driver.findElement(By.xpath("//*[@id=\"g-console\"]/li[1]/button")).click();
 			Thread.sleep(4000);
-			System.out.println("ログインモーダルチェック");
+
 			//System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
-			//driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
-			//driver.findElement(By.name("#your-password")).sendKeys(USER_PASS);
+			Thread.sleep(4000);
+			System.out.println("ログインモーダルチェック");
+			driver.findElement(By.xpath("//*[@id=\"your-id\"]")).sendKeys(USER_ID);
+			driver.findElement(By.name("//*[@id=\"your-password\"]")).sendKeys(USER_PASS);
 
-			//driver.findElement(By.cssSelector("#login-btn")).click();
+			driver.findElement(By.xpath("//*[@id=\"login-btn\"]")).click();
 			System.out.println("b-monster：ログイン成功");
 			//画面の切り替わりとクッキー関係のため待つ
 			//Thread.sleep(3000);
