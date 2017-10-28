@@ -477,10 +477,10 @@ public class ExecFeelcycleController {
 				//int bmonLessonDayCountint = Integer.parseInt(bmonLessonDayCount);
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
-
+				String tempStr = bmonLessonDayCount.toString();
 				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
-				int bmonLessonDayCountint =0;
+				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
 				for(int i=0; i < bmonLessonDayCountint; i++) {
 					String bmonLessonDayMuch = driver.findElement(By.cssSelector(
