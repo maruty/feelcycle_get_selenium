@@ -403,7 +403,7 @@ public class ExecFeelcycleController {
 
 			// ウィンドウ切り替え
 
-			int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
+			//int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
 			//System.out.println(debugCount);
 
             List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
