@@ -472,9 +472,9 @@ public class ExecFeelcycleController {
 				Thread.sleep(2000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
-				int bmonLessonDayCount = (int)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); return tags.length");
+				String bmonLessonDayCount = (String)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); return tags.length");
 				// var len = tags.getElementsByTagName('div');
-
+				int bmonLessonDayCountint = Integer.parseInt(bmonLessonDayCount);
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
 
@@ -482,7 +482,7 @@ public class ExecFeelcycleController {
 
 
 				List<WebElement>bmnonLessonList = null;
-				for(int i=0; i < bmonLessonDayCount; i++) {
+				for(int i=0; i < bmonLessonDayCountint; i++) {
 					String bmonLessonDayMuch = driver.findElement(By.cssSelector(
 							"#scroll-box > div.grid > div:nth-child(" + (i+1) + ") > div > h3"
 							)).getText();
