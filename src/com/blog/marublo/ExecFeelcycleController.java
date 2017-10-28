@@ -472,7 +472,9 @@ public class ExecFeelcycleController {
 				Thread.sleep(2000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
-				int bmonLessonDayCount = (int)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); var len = tags.getElementsByTagName('div'); return len.length");
+				int bmonLessonDayCount = (int)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); return tags.length");
+				// var len = tags.getElementsByTagName('div');
+
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
 
