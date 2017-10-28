@@ -138,8 +138,7 @@ public class ExecFeelcycleController {
         .build();
         service.start();
 
-        WebDriver driver = new RemoteWebDriver(service.getUrl(),
-                DesiredCapabilities.chrome());
+        WebDriver driver = new ChromeDriver();
 		//WebDriver driver = new ChromeDriver();
 
 
