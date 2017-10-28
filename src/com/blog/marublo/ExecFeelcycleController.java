@@ -134,7 +134,7 @@ public class ExecFeelcycleController {
 		ChromeDriverService service;
         service = new ChromeDriverService.Builder()
         .usingDriverExecutable(new File ("/opt/chromedriver/chromedriver"))
-        .usingPort(3821)
+        //.usingPort(3821)
         .build();
         service.start();
 
