@@ -469,7 +469,7 @@ public class ExecFeelcycleController {
 				System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
 				int bmonLessonDayCount = (int)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); var len = tags.getElementsByTagName('div'); return len.length");
