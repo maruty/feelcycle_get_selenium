@@ -386,11 +386,11 @@ public class ExecFeelcycleController {
 
 			// ウィンドウ切り替え
 
-			//int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
+			int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
+			//System.out.println(debugCount);
 
-
-            //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
-            //System.out.println("The total number of iframes are " + iframeElements.size());
+            List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
+            System.out.println("The total number of iframes are " + iframeElements.size());
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
@@ -402,33 +402,32 @@ public class ExecFeelcycleController {
 			//Actions clicker = new Actions(driver);
 		    //clicker.sendKeys(Keys.PAGE_DOWN);
 
-		   /*
-		    Thread.sleep(3000);
+
+		    Thread.sleep(1000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
-			Thread.sleep(3000);
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			Thread.sleep(1000);
 			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			js.executeScript("document.querySelector(\"#login-btn > span\").click();");
-			Thread.sleep(3000);
-		*/
+			Thread.sleep(1000);
+
 
 
 		    System.out.println("ログインボタンチェック");
-			driver.findElement(By.xpath("//*[@id=\"g-console\"]/li[1]/button")).click();
-			Thread.sleep(4000);
+			//driver.findElement(By.xpath("//*[@id=\"g-console\"]/li[1]/button")).click();
+			Thread.sleep(1000);
 
 			//System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
-			Thread.sleep(4000);
 			System.out.println("ログインモーダルチェック");
-			driver.findElement(By.xpath("//*[@id=\"your-id\"]")).sendKeys(USER_ID);
-			driver.findElement(By.name("//*[@id=\"your-password\"]")).sendKeys(USER_PASS);
+			//driver.findElement(By.xpath("//*[@id=\"your-id\"]")).sendKeys(USER_ID);
+			//driver.findElement(By.name("//*[@id=\"your-password\"]")).sendKeys(USER_PASS);
 
-			driver.findElement(By.xpath("//*[@id=\"login-btn\"]")).click();
+			//driver.findElement(By.xpath("//*[@id=\"login-btn\"]")).click();
 			System.out.println("b-monster：ログイン成功");
 			//画面の切り替わりとクッキー関係のため待つ
 			//Thread.sleep(3000);
@@ -452,7 +451,7 @@ public class ExecFeelcycleController {
 				System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
-				//Thread.sleep(30000);
+				Thread.sleep(1000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 				int bmonLessonDayCount = driver.findElements(By.cssSelector(
 						"#scroll-box > div.grid > div")).size();
@@ -497,9 +496,10 @@ public class ExecFeelcycleController {
 				}
 
 				//座席ページへの移動完了 waiting-list
+				Thread.sleep(2000);
 				int waitingCount = driver.findElements(By.cssSelector(".waiting-list")).size();
 				if(waitingCount > 0){
-					Thread.sleep(1000);
+
 					//席が満席だった場合頭からループをやり直す
 					Calendar calendar = Calendar.getInstance();
 					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
@@ -509,6 +509,7 @@ public class ExecFeelcycleController {
 				//空いてるサンドバッグ選択
 				int bagStart = 7;
 				int bagEnd = 30;
+				System.out.println("座席ページへ移動");
 				for(int i=bagStart; i < bagEnd+1; i++){
 					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()){
 						driver.findElement(By.cssSelector(".bag" + i + "> .bag-point")).click();
