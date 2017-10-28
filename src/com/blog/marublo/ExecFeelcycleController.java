@@ -29,6 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -129,7 +130,17 @@ public class ExecFeelcycleController {
 
 		//RemoteWebDriver driver = new ChromeDriver(profile);
 		System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
-		WebDriver driver = new ChromeDriver();
+
+		ChromeDriverService service;
+        service = new ChromeDriverService.Builder()
+        .usingDriverExecutable(new File ("/opt/chromedriver/chromedriver"))
+        .usingPort(3821)
+        .build();
+        service.start();
+
+        WebDriver driver = new RemoteWebDriver(service.getUrl(),
+                DesiredCapabilities.chrome());
+		//WebDriver driver = new ChromeDriver();
 
 
 
