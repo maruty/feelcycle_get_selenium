@@ -406,8 +406,8 @@ public class ExecFeelcycleController {
 			//int debugCount = driver.findElements(By.cssSelector("#g-header")).size();
 			//System.out.println(debugCount);
 
-            List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
-            System.out.println("The total number of iframes are " + iframeElements.size());
+            //List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
+            //System.out.println("The total number of iframes are " + iframeElements.size());
 			//JavascriptExecutor js = (JavascriptExecutor) driver;
 			//js.executeScript("document.getElementsByClassName('btn').click();");
 		    System.out.println("ログイン");
