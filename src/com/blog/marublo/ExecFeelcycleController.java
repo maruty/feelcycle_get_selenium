@@ -130,15 +130,16 @@ public class ExecFeelcycleController {
 
 		//RemoteWebDriver driver = new ChromeDriver(profile);
 		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
-
+		/*
 		ChromeDriverService service;
         service = new ChromeDriverService.Builder()
         .usingDriverExecutable(new File ("/opt/chromedriver/chromedriver"))
         //.usingPort(3821)
         .build();
         service.start();
+        */
 
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new FirefoxDriver();
 		//WebDriver driver = new ChromeDriver();
 
 
