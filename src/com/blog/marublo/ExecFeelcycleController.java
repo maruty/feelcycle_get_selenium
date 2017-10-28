@@ -423,6 +423,7 @@ public class ExecFeelcycleController {
 		    Thread.sleep(1000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
+
 			//Thread.sleep(3000);
 			Thread.sleep(1000);
 			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
@@ -470,8 +471,10 @@ public class ExecFeelcycleController {
 				//System.out.println("30秒待つ");
 				Thread.sleep(1000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
-				int bmonLessonDayCount = driver.findElements(By.cssSelector(
-						"#scroll-box > div.grid > div")).size();
+
+				int bmonLessonDayCount = (int)js.executeScript("var box=document.getElementById('scroll-box');var tags = box.getElementsByClassName('grid'); var len = tags.getElementsByTagName('div'); return len.length");
+				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
+				//		"#scroll-box > div.grid > div")).size();
 
 				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
