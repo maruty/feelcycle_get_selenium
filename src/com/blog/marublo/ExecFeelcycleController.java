@@ -543,6 +543,7 @@ public class ExecFeelcycleController {
 							//System.out.println(bmonTimeStr.substring(0, 5));
 							//System.out.println("LESSON_TIME:" + LESSON_TIME);
 							if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
+								System.out.println("時間マッチング：" + hourStringNameHour.substring(0, 5) + ":" +LESSON_TIME );
 								//クリックする
 								String msg2 =
 										"var box=document.getElementById('scroll-box'); " +
