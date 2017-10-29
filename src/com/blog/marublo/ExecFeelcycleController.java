@@ -524,7 +524,7 @@ public class ExecFeelcycleController {
 								"return low.length";
 						System.out.println(msg);
 						Long hourCountElement = (Long) js.executeScript(msg);
-						System.out.println("時間の要素数：" + msg);
+						System.out.println("時間の要素数：" + hourCountElement);
 						//この要素数でまわす
 						String bmonTimeStr ="";
 						//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
