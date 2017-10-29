@@ -527,14 +527,37 @@ public class ExecFeelcycleController {
 						System.out.println("時間の要素数：" + hourCountElement);
 						//この要素数でまわす
 						String bmonTimeStr ="";
-						//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
-						//String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
-						//System.out.println(bmonTimeStr.substring(0, 5));
-						//System.out.println("LESSON_TIME:" + LESSON_TIME);
-						if(bmonTimeStr.substring(0, 5).equals(LESSON_TIME)){
-							//element.findElement(By.cssSelector("a:nth-child(1)")).click();
-							break;
+						for(int i=0; i < hourCountElement; i++){
+							//時間で合致するものがあったらクリックする
+							String msg1 =
+									"var box=document.getElementById('scroll-box'); " +
+									"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
+									"var leg =  tags.getElementsByClassName('daily-panel'); " +
+									"var low =  leg[0].getElementsByClassName('panel'); " +
+									"var low2 = low[" + i + "].getElementsByClassName('tt-time')[0];" +
+									"return low2.innerHTML";
+							System.out.println("取得:" + msg1);
+							String hourStringNameHour = (String) js.executeScript(msg1);
+							//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
+							//String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
+							//System.out.println(bmonTimeStr.substring(0, 5));
+							//System.out.println("LESSON_TIME:" + LESSON_TIME);
+							if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
+								//クリックする
+								String msg2 =
+										"var box=document.getElementById('scroll-box'); " +
+										"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
+										"var leg =  tags.getElementsByClassName('daily-panel'); " +
+										"var low =  leg[0].getElementsByClassName('panel'); " +
+										"var low2 = low[" + i + "].getElementsByTagName('a')[0];" +
+										"low2.click();";
+								js.executeScript(msg2);
+								//element.findElement(By.cssSelector("a:nth-child(1)")).click();
+								break;
+							}
+
 						}
+
 					//}
 				}else{
 					System.out.println("エラーのはず");
@@ -543,6 +566,7 @@ public class ExecFeelcycleController {
 
 				//座席ページへの移動完了 waiting-list
 				Thread.sleep(2000);
+				System.out.println("座席ページに移動したはず");
 				int waitingCount = driver.findElements(By.cssSelector(".waiting-list")).size();
 				if(waitingCount > 0){
 
