@@ -482,6 +482,9 @@ public class ExecFeelcycleController {
 
 				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
+
+				int bmonLessonListCount = 100;
+
 				for(int i=0; i < bmonLessonDayCountint; i++) {
 					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i+1) + "].getElementsByClassName('column-header'); " +
 							"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
@@ -496,9 +499,12 @@ public class ExecFeelcycleController {
 
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
 						System.out.println("ここまできた");
-						bmnonLessonList = driver.findElements(By.cssSelector(
+
+						bmonLessonListCount = i;
+						/*bmnonLessonList = driver.findElements(By.cssSelector(
 								"#scroll-box > div.grid > div:nth-child(" +  (i+1) +") > ul:nth-child(2) > li"
 								));
+								*/
 						break;
 					}
 				}
@@ -506,20 +512,33 @@ public class ExecFeelcycleController {
 
 				//System.out.println("bmnonLessonListの数は:" + bmnonLessonList.size());
 
-				//合致する時間のレッスンをクリックする
-				if(bmnonLessonList != null){
-					for(WebElement element : bmnonLessonList) {
-
-
+				//合致する時間のレッスンをクリックするこの100が1週間のどこの要素と合致しているかをあわしている 2=火曜日みたいな感じ
+				if(bmonLessonListCount != 100){
+					//for(WebElement element : bmnonLessonList) {
+						//時間帯の要素数を割り出す
+						String msg =
+								"var box=document.getElementById('scroll-box'); " +
+								"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
+								"var leg =  tags.getElementsByClassName('daily-panel'); " +
+								"var low =  leg[0].getElementsByClassName('panel'); " +
+								"return low.length";
+						System.out.println(msg);
+						Long hourCountElement = (Long) js.executeScript(msg);
+						System.out.println("時間の要素数：" + msg);
+						//この要素数でまわす
+						String bmonTimeStr ="";
 						//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
-						String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
+						//String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
 						//System.out.println(bmonTimeStr.substring(0, 5));
 						//System.out.println("LESSON_TIME:" + LESSON_TIME);
 						if(bmonTimeStr.substring(0, 5).equals(LESSON_TIME)){
-							element.findElement(By.cssSelector("a:nth-child(1)")).click();
+							//element.findElement(By.cssSelector("a:nth-child(1)")).click();
 							break;
 						}
-					}
+					//}
+				}else{
+					System.out.println("エラーのはず");
+					System.exit(0);
 				}
 
 				//座席ページへの移動完了 waiting-list
