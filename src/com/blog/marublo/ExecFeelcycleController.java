@@ -483,7 +483,8 @@ public class ExecFeelcycleController {
 				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
 				for(int i=0; i < bmonLessonDayCountint; i++) {
-					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i+1) + "].getElementsByTagName('h3'); retrun leg.innerHTML;";
+					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i+1) + "].getElementsByClassName('column-header'); " +
+							"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; a.innerHTML;";
 					System.out.println(msg);
 					String bmonLessonDayMuch = (String)js.executeScript(msg);
 					//String bmonLessonDayMuch = driver.findElement(By.cssSelector(
