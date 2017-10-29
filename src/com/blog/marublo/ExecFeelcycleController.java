@@ -500,7 +500,7 @@ public class ExecFeelcycleController {
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
 						System.out.println("ここまできた");
 
-						bmonLessonListCount = i;
+						bmonLessonListCount = i + 1;
 						/*bmnonLessonList = driver.findElements(By.cssSelector(
 								"#scroll-box > div.grid > div:nth-child(" +  (i+1) +") > ul:nth-child(2) > li"
 								));
