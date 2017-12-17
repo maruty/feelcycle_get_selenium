@@ -50,8 +50,8 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					//"/var/www/html/json/lesson.json"), Lesson.class);
-					"./lesson.json"), Lesson.class); //開発環境
+					"/var/www/html/json/lesson.json"), Lesson.class);
+					//"./lesson.json"), Lesson.class); //開発環境
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -546,18 +546,20 @@ public class ExecFeelcycleController {
 						Thread.sleep(1500);
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
-						String msg3 = "var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();";
+						String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
 						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
 
 						Thread.sleep(1500);
 						//確認ページ
-						String msg2 = "var des =  document.getElementsByClassName('btn btn-large btn-orange');" +
-									  "des[0].click();";
+						String msg2 = "var des =  document.getElementsByClassName('btn');" +
+									  "des[7].click();";
+						js.executeScript(msg2);
+
 						System.out.println("最終確認タップ");
 						///js.executeScript(msg2);
 						//Thread.sleep(2000);
-						js.executeScript(msg2);
+
 						Thread.sleep(1000);
 						driver.quit();
 						System.out.println("b-monster:取得完了");
