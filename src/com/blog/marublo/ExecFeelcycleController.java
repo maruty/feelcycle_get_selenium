@@ -536,14 +536,20 @@ public class ExecFeelcycleController {
 
 				for(int i=7; i<=30; i++) {
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
-									"if(!bag.disabled) {bag.click(); count = 1; var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();} return count;";
+									"if(!bag.disabled) {bag.click(); count = 1; } return count;";
 					Long judgeMent = (Long) js.executeScript(msg);
 
 					//System.out.println("judgeMent:" + judgeMent);
 
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
-						Thread.sleep(2500);
+						Thread.sleep(1500);
+						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
+
+						String msg3 = "var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();";
+						js.executeScript(msg3);
+
+						Thread.sleep(1500);
 						//確認ページ
 						String msg2 = "var des =  document.getElementsByClassName('btn btn-large btn-orange');" +
 									  "des[0].click();";
