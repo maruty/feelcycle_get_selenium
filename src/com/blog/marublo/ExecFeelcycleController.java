@@ -545,8 +545,8 @@ public class ExecFeelcycleController {
 						System.out.println("座席bag=" + i + "をタップ");
 						Thread.sleep(1500);
 						//確認ページ
-						String msg2 = "var leg =  document.getElementsByClassName('btn btn-large btn-orange');" +
-									  "leg[0].click();";
+						String msg2 = "var des =  document.getElementsByClassName('btn btn-large btn-orange');" +
+									  "des[0].click();";
 						///js.executeScript(msg2);
 						//Thread.sleep(2000);
 						js.executeScript(msg2);
