@@ -543,7 +543,7 @@ public class ExecFeelcycleController {
 
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
-						Thread.sleep(1500);
+						Thread.sleep(2500);
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
 						String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
