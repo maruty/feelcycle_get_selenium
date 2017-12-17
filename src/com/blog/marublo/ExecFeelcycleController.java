@@ -415,7 +415,7 @@ public class ExecFeelcycleController {
 				//System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
 				Long bmonLessonDayCount = (Long) js.executeScript("var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  return tags.length;");
@@ -512,7 +512,7 @@ public class ExecFeelcycleController {
 				}
 
 				//座席ページへの移動完了 waiting-list
-				Thread.sleep(2000);
+				Thread.sleep(1500);
 				//System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
@@ -526,6 +526,7 @@ public class ExecFeelcycleController {
 					Calendar calendar = Calendar.getInstance();
 					// System.out.println(calendar.getTime().toString());
 					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
+					Thread.sleep(1000);
 					continue;
 				}
 
@@ -538,7 +539,7 @@ public class ExecFeelcycleController {
 									"if(!bag.disabled) {bag.click(); count = 1; var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();} return count;";
 					Long judgeMent = (Long) js.executeScript(msg);
 
-					System.out.println("judgeMent:" + judgeMent);
+					//System.out.println("judgeMent:" + judgeMent);
 
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
