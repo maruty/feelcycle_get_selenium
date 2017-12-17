@@ -46,18 +46,7 @@ public class ExecFeelcycleController {
 		// jsonファイルで取得予定のファイルのコントロール
 		// String lessonJson = "";
 		System.out.println("json情報の取得");
-		/*
-		 * try{ BufferedReader br = new BufferedReader(new FileReader(new
-		 * File("/var/www/html/json/lesson.json")));
-		 *
-		 * lessonJson = br.readLine(); while(lessonJson != null){
-		 * System.out.println(lessonJson);
-		 *
-		 * lessonJson = br.readLine(); }
-		 *
-		 * br.close(); }catch(FileNotFoundException e){ System.out.println(e);
-		 * }catch(IOException e){ System.out.println(e); }
-		 */
+
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
@@ -94,50 +83,7 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-		/*
-		ChromeDriverService service;
 
-	     service = new ChromeDriverService.Builder()
-         .usingDriverExecutable(new File("/opt/chromedriver/chromedriver"))
-         .usingAnyFreePort()
-         .build();
-	     service.start();
-	     */
-	     /*
-	     String Xport = System.getProperty("lmportal.xvfb.id", ":1");
-	     final File firefoxPath = new File(System.getProperty(
-	    		 "lmportal.deploy.firefox.path", "/usr/bin/firefox"));
-	    		 FirefoxBinary firefoxBinary = new FirefoxBinary(firefoxPath);
-	    		 firefoxBinary.setEnvironmentProperty("DISPLAY", Xport);
-
-	    		 WebDriver driver = new FirefoxDriver(firefoxBinary, null);
-		*/
-	    // WebDriver driver = new RemoteWebDriver(DesiredCapabilities.chrome());
-
-
-		///usr/local/bin/chromedriver /opt/chromedriver/chromedriver
-		//System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-
-		//ChromeOptions options = new ChromeOptions();
-		//options.setBinary("/opt/google/chrome/chrome");
-
-		//FirefoxDriverManager.getInstance().setup();
-		//ChromeDriverManager.getInstance().setup();
-		//FirefoxDriverManager.getInstance().setup();
-
-		//FirefoxProfile profile = new FirefoxProfile();
-		//profile.setPreference("general.useragent.override", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:43.0) Gecko/20100101 Firefox/43.0");
-
-		//RemoteWebDriver driver = new ChromeDriver(profile);
-		//System.setProperty("webdriver.chrome.driver", "/opt/chromedriver/chromedriver");
-		/*
-		ChromeDriverService service;
-        service = new ChromeDriverService.Builder()
-        .usingDriverExecutable(new File ("/opt/chromedriver/chromedriver"))
-        //.usingPort(3821)
-        .build();
-        service.start();
-        */
 
         WebDriver driver = new FirefoxDriver();
 		//WebDriver driver = new ChromeDriver();
@@ -452,7 +398,7 @@ public class ExecFeelcycleController {
 
 			while(true){
 				//予約画面への遷移
-				System.out.println("b-monster：予約画面の店舗選択");
+				//System.out.println("b-monster：予約画面の店舗選択");
 				/* いったんGINZA限定
 				driver.get("https://www.b-monster.jp/reserve/list");
 				int bmonTenpoCount = driver.findElements(By.cssSelector("#main-container > div.block-body > div")).size();
@@ -466,7 +412,7 @@ public class ExecFeelcycleController {
 					}
 				}
 				*/
-				System.out.println("b-monster：予約画面スケジュール一覧");
+				//System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
 				Thread.sleep(2000);
@@ -478,7 +424,7 @@ public class ExecFeelcycleController {
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
 				String tempStr = bmonLessonDayCount.toString();
-				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
+				//System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
 				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
@@ -486,21 +432,21 @@ public class ExecFeelcycleController {
 				int bmonLessonListCount = 100;
 
 				for(int i=0; i < bmonLessonDayCountint; i++) {
-					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i+1) + "].getElementsByClassName('column-header'); " +
+					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
 							"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
-					System.out.println(msg);
+					//System.out.println(msg);
 					String bmonLessonDayMuch = (String)js.executeScript(msg);
 					//String bmonLessonDayMuch = driver.findElement(By.cssSelector(
 					//		"#scroll-box > div.grid > div:nth-child(" + (i+1) + ") > div > h3"
 					//		)).getText();
 					//日単位の合致したリストを取得してBreak
-					System.out.println(bmonLessonDayMuch);
-					System.out.println(LESSON_DATE);
+					//System.out.println(bmonLessonDayMuch);
+					//System.out.println(LESSON_DATE);
 
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
 						System.out.println("ここまできた");
 
-						bmonLessonListCount = i + 1;
+						bmonLessonListCount = i;
 						/*bmnonLessonList = driver.findElements(By.cssSelector(
 								"#scroll-box > div.grid > div:nth-child(" +  (i+1) +") > ul:nth-child(2) > li"
 								));
@@ -522,9 +468,9 @@ public class ExecFeelcycleController {
 								"var leg =  tags.getElementsByClassName('daily-panel'); " +
 								"var low =  leg[0].getElementsByClassName('panel'); " +
 								"return low.length";
-						System.out.println(msg);
+						//System.out.println(msg);
 						Long hourCountElement = (Long) js.executeScript(msg);
-						System.out.println("時間の要素数：" + hourCountElement);
+						//System.out.println("時間の要素数：" + hourCountElement);
 						//この要素数でまわす
 						String bmonTimeStr ="";
 						for(int i=0; i < hourCountElement; i++){
@@ -536,14 +482,14 @@ public class ExecFeelcycleController {
 									"var low =  leg[0].getElementsByClassName('panel'); " +
 									"var low2 = low[" + i + "].getElementsByClassName('tt-time')[0];" +
 									"return low2.innerHTML";
-							System.out.println("取得:" + msg1);
+							//System.out.println("取得:" + msg1);
 							String hourStringNameHour = (String) js.executeScript(msg1);
 							//System.out.println(element.findElements(By.cssSelector("a > .panel-content > p:nth-child(1)")).size() + "個");
 							//String bmonTimeStr = element.findElement(By.cssSelector("a:nth-child(1) > .panel-content >  p:nth-child(1)")).getText();
 							//System.out.println(bmonTimeStr.substring(0, 5));
 							//System.out.println("LESSON_TIME:" + LESSON_TIME);
 							if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
-								System.out.println("時間マッチング：" + hourStringNameHour.substring(0, 5) + ":" +LESSON_TIME );
+								//System.out.println("時間マッチング：" + hourStringNameHour.substring(0, 5) + ":" +LESSON_TIME );
 								//クリックする
 								String msg2 =
 										"var box=document.getElementById('scroll-box'); " +
@@ -567,41 +513,52 @@ public class ExecFeelcycleController {
 
 				//座席ページへの移動完了 waiting-list
 				Thread.sleep(2000);
-				System.out.println("座席ページに移動したはず");
-				int waitingCount = driver.findElements(By.cssSelector(".waiting-list")).size();
-				if(waitingCount > 0){
+				//System.out.println("座席ページに移動したはず");
 
-					//席が満席だった場合頭からループをやり直す
+				//満員だとキャン待ち画面になるのでチェック
+				String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
+						"if(bag.length > 0) {count = 1} return count;";
+				Long judgeMent1 = (Long) js.executeScript(msg0);
+
+				if(judgeMent1 == 1){
+
+					//ここまで来るということは座席空席なし
 					Calendar calendar = Calendar.getInstance();
+					// System.out.println(calendar.getTime().toString());
 					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
 					continue;
 				}
 
-				//空いてるサンドバッグ選択
-				int bagStart = 7;
-				int bagEnd = 30;
-				System.out.println("座席ページへ移動");
-				for(int i=bagStart; i < bagEnd+1; i++){
-					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()){
-						driver.findElement(By.cssSelector(".bag" + i + "> .bag-point")).click();
-						driver.findElement(By.cssSelector("#your-reservation > span > button")).click();
+				/*
+				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
+				 */
 
-						//予約確認ページ
-						driver.findElement(By.cssSelector("#main-container > div.form-action > button")).click();
-						int endMsgCount = driver.findElements(By.cssSelector("#main-container > div > section > h2")).size();
-						if(endMsgCount > 0){
-							String endMsg = driver.findElement(By.cssSelector("#main-container > div > section > h2")).getText();
-							if(endMsg.equals("予約が完了いたしました。")){
-								driver.quit();
-								System.out.println("b-monster:取得完了");
-								System.exit(0);
-							}
-						}
-						Calendar calendar = Calendar.getInstance();
-						System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
-						continue;
+				for(int i=7; i<=30; i++) {
+					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
+									"if(!bag.disabled) {bag.click(); count = 1; var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();} return count;";
+					Long judgeMent = (Long) js.executeScript(msg);
+
+					System.out.println("judgeMent:" + judgeMent);
+
+					if(judgeMent == 1){
+						System.out.println("座席bag=" + i + "をタップ");
+						Thread.sleep(1000);
+						//確認ページ
+						String msg2 = "var leg =  document.getElementsByClassName('btn btn-large btn-orange');" +
+									  "leg[0].click();";
+						///js.executeScript(msg2);
+						//Thread.sleep(2000);
+						js.executeScript(msg2);
+						Thread.sleep(1000);
+						driver.quit();
+						System.out.println("b-monster:取得完了");
+						System.exit(0);
 					}
 				}
+				//ここまで来るということは座席空席なし
+				Calendar calendar = Calendar.getInstance();
+				// System.out.println(calendar.getTime().toString());
+				System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
 			}
 		}
 	}
