@@ -444,7 +444,7 @@ public class ExecFeelcycleController {
 					//System.out.println(LESSON_DATE);
 
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
-						System.out.println("ここまできた");
+						//System.out.println("ここまできた");
 
 						bmonLessonListCount = i;
 						/*bmnonLessonList = driver.findElements(By.cssSelector(
