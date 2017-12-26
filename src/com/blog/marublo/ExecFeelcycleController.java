@@ -552,6 +552,11 @@ public class ExecFeelcycleController {
 						String hiddenCall = (String) js.executeScript(msg1);
 						System.out.println("lessonID = " + hiddenCall);
 
+						//確認画面遷移
+						//https://www.b-monster.jp/reserve/confirm?punchbag=12&lesson_id=22471&studio_code=0001
+						String confirmURL = "https://www.b-monster.jp/reserve/confirm?punchbag=" + i + "&" + hiddenCall + "&studio_code=0001";
+						driver.get(confirmURL);
+
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
 						//String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
