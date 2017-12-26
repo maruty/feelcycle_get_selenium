@@ -548,8 +548,9 @@ public class ExecFeelcycleController {
 						Thread.sleep(2500);
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
-						String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
-						js.executeScript(msg3);
+						//String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
+						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
+						//js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
 						ExecFeelcycleController.getCapture(driver,"test");
 
