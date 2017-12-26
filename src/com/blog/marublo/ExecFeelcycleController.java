@@ -548,7 +548,7 @@ public class ExecFeelcycleController {
 						Thread.sleep(2500);
 
 						//hidden要素のLessonIDを取得する
-						String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].baseURI;";
+						String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
 						String hiddenCall = (String) js.executeScript(msg1);
 						System.out.println("lessonID = " + hiddenCall);
 
