@@ -546,13 +546,20 @@ public class ExecFeelcycleController {
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
 						Thread.sleep(2500);
+
+						//hidden要素のLessonIDを取得する
+						String hiddenCall = "var val = document.getElementsByName('lesson_id').value; return val;";
+						System.out.println("lessonID = " + hiddenCall);
+
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
 						//String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
-						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
+						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						//js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
 						ExecFeelcycleController.getCapture(driver,"test");
+
+
 
 						Thread.sleep(1500);
 						//確認ページ
