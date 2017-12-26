@@ -412,7 +412,7 @@ public class ExecFeelcycleController {
 					}
 				}
 				*/
-				//System.out.println("b-monster：予約画面スケジュール一覧");
+				System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
 				Thread.sleep(1000);
@@ -424,7 +424,7 @@ public class ExecFeelcycleController {
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
 				String tempStr = bmonLessonDayCount.toString();
-				//System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
+				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
 				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
@@ -440,11 +440,11 @@ public class ExecFeelcycleController {
 					//		"#scroll-box > div.grid > div:nth-child(" + (i+1) + ") > div > h3"
 					//		)).getText();
 					//日単位の合致したリストを取得してBreak
-					//System.out.println(bmonLessonDayMuch);
-					//System.out.println(LESSON_DATE);
+					System.out.println(bmonLessonDayMuch);
+					System.out.println(LESSON_DATE);
 
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
-						//System.out.println("ここまできた");
+						System.out.println("ここまできた");
 
 						bmonLessonListCount = i;
 						/*bmnonLessonList = driver.findElements(By.cssSelector(
