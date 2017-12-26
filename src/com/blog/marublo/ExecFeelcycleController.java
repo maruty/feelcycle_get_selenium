@@ -539,7 +539,7 @@ public class ExecFeelcycleController {
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 									"if(!bag.disabled) {bag.click(); count = 1; } return count;";
 					Long judgeMent = (Long) js.executeScript(msg);
-					ExecFeelcycleController.getCapture(driver,"test");
+
 
 					//System.out.println("judgeMent:" + judgeMent);
 
@@ -551,6 +551,7 @@ public class ExecFeelcycleController {
 						String msg3 = "var leg =  document.getElementsByClassName('btn'); leg[6].click();";
 						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
+						ExecFeelcycleController.getCapture(driver,"test");
 
 						Thread.sleep(1500);
 						//確認ページ
