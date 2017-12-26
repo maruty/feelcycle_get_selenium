@@ -535,9 +535,11 @@ public class ExecFeelcycleController {
 				 */
 
 				for(int i=7; i<=30; i++) {
+
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 									"if(!bag.disabled) {bag.click(); count = 1; } return count;";
 					Long judgeMent = (Long) js.executeScript(msg);
+					ExecFeelcycleController.getCapture(driver,"test");
 
 					//System.out.println("judgeMent:" + judgeMent);
 
@@ -572,6 +574,16 @@ public class ExecFeelcycleController {
 				System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
 			}
 		}
+	}
+
+
+	public static void getCapture(WebDriver driver,String site) throws IOException{
+		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			String fileName = site + "_"  + ".png";
+			String rootPath = "/var/www/html/log_images/";
+			String URL = "http://133.242.235.62";
+			FileUtils.copyFile(srcFile, new File(rootPath + fileName));
+			System.out.println("file:" + "  " + URL + "/log_images/" + fileName);
 	}
 
 	public static void getLesson(WebDriver driver, WebElement element,
