@@ -545,7 +545,7 @@ public class ExecFeelcycleController {
 				//driver.get(studioLessonURL);
 				//ExecFeelcycleController.getCapture(driver,"test1");
 				//System.out.println("リロード1");
-
+				ExecFeelcycleController.getCapture(driver,"test0");
 				for(int i=7; i<=30; i++) {
 
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
@@ -569,7 +569,7 @@ public class ExecFeelcycleController {
 						//driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
-
+						ExecFeelcycleController.getCapture(driver,"test1");
 						String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						js.executeScript(msg3);
