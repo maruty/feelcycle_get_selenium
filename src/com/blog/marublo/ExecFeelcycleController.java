@@ -541,11 +541,14 @@ public class ExecFeelcycleController {
 				//driverの遷移をいったん覚えさせる
 				//https://www.b-monster.jp/reserve/punchbag?lesson_id=22471&studio_code=0001
 				//
-				//String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=0001";
-				//driver.get(studioLessonURL);
-				//ExecFeelcycleController.getCapture(driver,"test1");
-				//System.out.println("リロード1");
+				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=0001";
+				driver.get(studioLessonURL);
 				ExecFeelcycleController.getCapture(driver,"test0");
+				System.out.println("リロード1");
+
+				js = (JavascriptExecutor) driver;
+
+				ExecFeelcycleController.getCapture(driver,"test1");
 				for(int i=7; i<=30; i++) {
 
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
@@ -569,12 +572,12 @@ public class ExecFeelcycleController {
 						//driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
-						ExecFeelcycleController.getCapture(driver,"test1");
+						ExecFeelcycleController.getCapture(driver,"test2");
 						String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						ExecFeelcycleController.getCapture(driver,"test2");
+						ExecFeelcycleController.getCapture(driver,"test3");
 
 
 
