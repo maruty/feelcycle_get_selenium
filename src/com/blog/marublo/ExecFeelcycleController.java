@@ -534,6 +534,18 @@ public class ExecFeelcycleController {
 				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
 				 */
 
+				//hidden要素のLessonIDを取得する
+				String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
+				String hiddenCall = (String) js.executeScript(msg1);
+
+				//driverの遷移をいったん覚えさせる
+				//https://www.b-monster.jp/reserve/punchbag?lesson_id=22471&studio_code=0001
+				//
+				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=0001";
+				driver.get(studioLessonURL);
+				ExecFeelcycleController.getCapture(driver,"test1");
+				System.out.println("リロード1");
+
 				for(int i=7; i<=30; i++) {
 
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
@@ -547,9 +559,7 @@ public class ExecFeelcycleController {
 						System.out.println("座席bag=" + i + "をタップ");
 						Thread.sleep(2500);
 
-						//hidden要素のLessonIDを取得する
-						String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
-						String hiddenCall = (String) js.executeScript(msg1);
+
 						System.out.println("lessonID = " + hiddenCall);
 
 						//確認画面遷移
@@ -563,7 +573,7 @@ public class ExecFeelcycleController {
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						//js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						ExecFeelcycleController.getCapture(driver,"test");
+						ExecFeelcycleController.getCapture(driver,"test2");
 
 
 
