@@ -565,6 +565,7 @@ public class ExecFeelcycleController {
 						//確認画面遷移
 						//https://www.b-monster.jp/reserve/confirm?punchbag=12&lesson_id=22471&studio_code=0001
 						String confirmURL = "https://www.b-monster.jp/reserve/confirm?punchbag=" + i + "&" + hiddenCall + "&studio_code=0001";
+						System.out.println("URL:"  + confirmURL );
 						driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
