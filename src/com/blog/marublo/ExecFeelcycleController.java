@@ -371,7 +371,7 @@ public class ExecFeelcycleController {
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 
 			//Thread.sleep(3000);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
 			Thread.sleep(1000);
 			js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
@@ -383,7 +383,7 @@ public class ExecFeelcycleController {
 
 		    System.out.println("ログインボタンチェック");
 			//driver.findElement(By.xpath("//*[@id=\"g-console\"]/li[1]/button")).click();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			//System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
@@ -512,7 +512,7 @@ public class ExecFeelcycleController {
 				}
 
 				//座席ページへの移動完了 waiting-list
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				//System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
@@ -560,7 +560,7 @@ public class ExecFeelcycleController {
 
 					if(judgeMent == 1){
 						//System.out.println("座席bag=" + i + "をタップ");
-						Thread.sleep(5500);
+						Thread.sleep(1000);
 
 
 						//System.out.println("lessonID = " + hiddenCall);
@@ -582,7 +582,7 @@ public class ExecFeelcycleController {
 
 
 
-						Thread.sleep(1500);
+						Thread.sleep(1000);
 						//確認ページ
 						String msg2 = "var des =  document.getElementsByClassName('btn');" +
 									  "des[7].click();";
