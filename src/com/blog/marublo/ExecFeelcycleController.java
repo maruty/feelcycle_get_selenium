@@ -424,7 +424,7 @@ public class ExecFeelcycleController {
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
 				String tempStr = bmonLessonDayCount.toString();
-				System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
+				//System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
 				int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
@@ -440,11 +440,11 @@ public class ExecFeelcycleController {
 					//		"#scroll-box > div.grid > div:nth-child(" + (i+1) + ") > div > h3"
 					//		)).getText();
 					//日単位の合致したリストを取得してBreak
-					System.out.println(bmonLessonDayMuch);
-					System.out.println(LESSON_DATE);
+					//System.out.println(bmonLessonDayMuch);
+					//System.out.println(LESSON_DATE);
 
 					if(bmonLessonDayMuch.equals(LESSON_DATE)){
-						System.out.println("ここまできた");
+						//System.out.println("ここまできた");
 
 						bmonLessonListCount = i;
 						/*bmnonLessonList = driver.findElements(By.cssSelector(
@@ -543,12 +543,12 @@ public class ExecFeelcycleController {
 				//
 				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=0001";
 				driver.get(studioLessonURL);
-				ExecFeelcycleController.getCapture(driver,"test0");
-				System.out.println("リロード1");
+				//ExecFeelcycleController.getCapture(driver,"test0");
+				//System.out.println("リロード1");
 
 				js = (JavascriptExecutor) driver;
 
-				ExecFeelcycleController.getCapture(driver,"test1");
+				//ExecFeelcycleController.getCapture(driver,"test1");
 				for(int i=7; i<=30; i++) {
 
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
@@ -559,11 +559,11 @@ public class ExecFeelcycleController {
 					//System.out.println("judgeMent:" + judgeMent);
 
 					if(judgeMent == 1){
-						System.out.println("座席bag=" + i + "をタップ");
+						//System.out.println("座席bag=" + i + "をタップ");
 						Thread.sleep(5500);
 
 
-						System.out.println("lessonID = " + hiddenCall);
+						//System.out.println("lessonID = " + hiddenCall);
 
 						//確認画面遷移
 						//https://www.b-monster.jp/reserve/confirm?punchbag=12&lesson_id=22471&studio_code=0001
@@ -572,13 +572,13 @@ public class ExecFeelcycleController {
 						//driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
-						ExecFeelcycleController.getCapture(driver,"test2");
+						//ExecFeelcycleController.getCapture(driver,"test2");
 
-						//String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
-						driver.findElement(By.xpath("//*[@id=\"your-reservation\"]/button[1]")).click();
-						//js.executeScript(msg3);
+						String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
+						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
+						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						ExecFeelcycleController.getCapture(driver,"test3");
+						//ExecFeelcycleController.getCapture(driver,"test3");
 
 
 
