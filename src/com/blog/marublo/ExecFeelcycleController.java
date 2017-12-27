@@ -560,7 +560,7 @@ public class ExecFeelcycleController {
 
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
-						Thread.sleep(2500);
+						Thread.sleep(5500);
 
 
 						System.out.println("lessonID = " + hiddenCall);
