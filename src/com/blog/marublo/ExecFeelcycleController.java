@@ -412,7 +412,7 @@ public class ExecFeelcycleController {
 					}
 				}
 				*/
-				System.out.println("b-monster：予約画面スケジュール一覧");
+				//System.out.println("b-monster：予約画面スケジュール一覧");
 				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				//System.out.println("30秒待つ");
 				Thread.sleep(1000);
