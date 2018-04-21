@@ -51,12 +51,12 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
 		    	//本番	   
-		    	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
+		    //	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		    	//開発環境
-		    //System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
+		    System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -530,11 +530,12 @@ public class ExecFeelcycleController {
 				System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
-				String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
-						"if(bag.length > 0) {count = 1} return count;";
-				Long judgeMent1 = (Long) js.executeScript(msg0);
+				int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
+				//String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
+				//		"if(bag.length > 0) {count = 1} return count;";
+				//Long judgeMent1 = (Long) js.executeScript(msg0);
 
-				if(judgeMent1 == 1){
+				if(judgeMent1 > 0){
 
 					//ここまで来るということは座席空席なし
 					Calendar calendar = Calendar.getInstance();
@@ -547,9 +548,11 @@ public class ExecFeelcycleController {
 
 
 				//hidden要素のLessonIDを取得する
-				ExecFeelcycleController.getCapture(driver,"test0");
+				//ExecFeelcycleController.getCapture(driver,"test0");
+				//lesson_id
 				String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
-				String hiddenCall = (String) js.executeScript(msg1);
+				String hiddenCall = driver.findElement(By.name("lesson_id")).getAttribute("value");
+				//String hiddenCall = (String) js.executeScript(msg1);
 
 				//driverの遷移をいったん覚えさせる
 				//https://www.b-monster.jp/reserve/punchbag?lesson_id=22471&studio_code=0001
@@ -569,7 +572,7 @@ public class ExecFeelcycleController {
 					
 					
 					int judgeMent = 0;
-					ExecFeelcycleController.getCapture(driver,"test1");
+					//ExecFeelcycleController.getCapture(driver,"test1");
 					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
 						judgeMent = 1;
 						//driver.findElement(By.cssSelector("#bag" + i)).click();
@@ -582,7 +585,7 @@ public class ExecFeelcycleController {
 						 
 						Actions act = new Actions(driver);
 						act.sendKeys(Keys.PAGE_DOWN);
-						ExecFeelcycleController.getCapture(driver,"test2");
+						//ExecFeelcycleController.getCapture(driver,"test2");
 					}
 					
 
@@ -614,7 +617,7 @@ public class ExecFeelcycleController {
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						//js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						ExecFeelcycleController.getCapture(driver,"test3");
+						//ExecFeelcycleController.getCapture(driver,"test3");
 						//ExecFeelcycleController.getCapture(driver,"test3");
 
 
@@ -630,7 +633,7 @@ public class ExecFeelcycleController {
 						//Thread.sleep(2000);
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-						ExecFeelcycleController.getCapture(driver,"test4");
+						//ExecFeelcycleController.getCapture(driver,"test4");
 						driver.quit();
 						System.out.println("b-monster:取得完了");
 						System.exit(0);
