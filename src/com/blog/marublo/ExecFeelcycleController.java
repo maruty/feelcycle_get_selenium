@@ -29,6 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -594,7 +595,11 @@ public class ExecFeelcycleController {
 						//driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
+						Actions act = new Actions(driver);
+						act.sendKeys(Keys.PAGE_DOWN);
 						ExecFeelcycleController.getCapture(driver,"test2");
+						
+						
 						
 						String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
