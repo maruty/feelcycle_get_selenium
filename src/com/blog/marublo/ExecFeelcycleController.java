@@ -567,6 +567,7 @@ public class ExecFeelcycleController {
 					
 					
 					int judgeMent = 0;
+					driver.findElement(By.cssSelector("#bag" + i)).click();
 					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
 						judgeMent = 1;
 						//driver.findElement(By.cssSelector("#bag" + i)).click();
