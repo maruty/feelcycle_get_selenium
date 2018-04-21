@@ -563,7 +563,7 @@ public class ExecFeelcycleController {
 				/*
 				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
 				 */
-				for(int i=7; i<=30; i++) {
+				for(int i=1; i<=30; i++) {
 					
 					
 					int judgeMent = 0;
