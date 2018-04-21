@@ -563,10 +563,16 @@ public class ExecFeelcycleController {
 				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
 				 */
 				for(int i=7; i<=30; i++) {
-
-					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
-									"if(!bag.disabled) {bag.click(); count = 1; } return count;";
-					Long judgeMent = (Long) js.executeScript(msg);
+					
+					
+					int judgeMent = 0;
+					if(!driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
+						judgeMent = 1;
+					}
+					
+					//String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
+					//				"if(!bag.disabled) {bag.click(); count = 1; } return count;";
+					//Long judgeMent = (Long) js.executeScript(msg);
 
 
 					//System.out.println("judgeMent:" + judgeMent);
@@ -586,7 +592,7 @@ public class ExecFeelcycleController {
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 						//ExecFeelcycleController.getCapture(driver,"test2");
-
+						
 						//String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
 						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
