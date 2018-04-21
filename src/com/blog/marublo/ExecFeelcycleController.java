@@ -422,7 +422,7 @@ public class ExecFeelcycleController {
 					}
 				}
 				*/
-				//System.out.println("b-monster：予約画面スケジュール一覧");
+				System.out.println("b-monster：予約画面スケジュール一覧");
 				
 				String bmonsterStudioUrl = "https://www.b-monster.jp/reserve/?studio_code=" + LESSON_STATE;
 				
@@ -526,7 +526,7 @@ public class ExecFeelcycleController {
 				}
 
 				//座席ページへの移動完了 waiting-list
-				Thread.sleep(1000);
+				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				//System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
@@ -540,7 +540,7 @@ public class ExecFeelcycleController {
 					Calendar calendar = Calendar.getInstance();
 					// System.out.println(calendar.getTime().toString());
 					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
-					Thread.sleep(1000);
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					continue;
 				}
 
@@ -592,7 +592,7 @@ public class ExecFeelcycleController {
 
 					if(judgeMent == 1){
 						//System.out.println("座席bag=" + i + "をタップ");
-						Thread.sleep(1000);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 
 
 						//System.out.println("lessonID = " + hiddenCall);
@@ -618,7 +618,7 @@ public class ExecFeelcycleController {
 
 
 
-						Thread.sleep(1000);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						//確認ページ
 						String msg2 = "var des =  document.getElementsByClassName('btn');" +
 									  "des[7].click();";
@@ -628,7 +628,7 @@ public class ExecFeelcycleController {
 						///js.executeScript(msg2);
 						//Thread.sleep(2000);
 
-						Thread.sleep(1000);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						ExecFeelcycleController.getCapture(driver,"test4");
 						driver.quit();
 						System.out.println("b-monster:取得完了");
