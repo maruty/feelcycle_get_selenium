@@ -660,7 +660,7 @@ public class ExecFeelcycleController {
 	}
 
 	public static void getLesson(WebDriver driver, WebElement element,
-			FeelcycleLessonDto fc) throws InterruptedException {
+			FeelcycleLessonDto fc) throws InterruptedException, IOException {
 
 		element.findElement(By.cssSelector(".unit")).click();
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
@@ -719,6 +719,7 @@ public class ExecFeelcycleController {
 				sheetCountNumber++;
 			}
 		}
+		ExecFeelcycleController.getCapture(driver,"test0");
 		System.out.println("feelcycle:座席画面までいきましたが処理完了が出来ませんでした。再度取得して下さい");
 		driver.quit();
 		System.exit(0);
