@@ -404,6 +404,7 @@ public class ExecFeelcycleController {
 			System.out.println("b-monster：ログイン成功");
 			//画面の切り替わりとクッキー関係のため待つ
 			//Thread.sleep(3000);
+			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
 
 			while(true){
 				//予約画面への遷移
