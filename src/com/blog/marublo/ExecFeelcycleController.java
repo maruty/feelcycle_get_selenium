@@ -570,6 +570,8 @@ public class ExecFeelcycleController {
 					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
 						judgeMent = 1;
 						driver.findElement(By.cssSelector("#bag" + i)).click();
+						driver.findElement(By.cssSelector("#bag" + i)).click();
+						driver.findElement(By.cssSelector("#bag" + i)).click();
 						/*
 						String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 								"if(!bag.disabled) {bag.click(); count = 1; } ;";
