@@ -50,8 +50,12 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					"/var/www/html/json/lesson.json"), Lesson.class);
-					//"./lesson.json"), Lesson.class); //開発環境
+					//"/var/www/html/json/lesson.json"), Lesson.class);
+					"./lesson.json"), Lesson.class); //開発環境
+		    	//本番	   
+		    	//System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
+		    	//開発環境
+		    System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -345,6 +349,7 @@ public class ExecFeelcycleController {
 		if(GYM.equals("2")){
 			driver = new FirefoxDriver();
 			System.out.println("b-monster:ログイン開始");
+			
 			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 
 			// ウィンドウ切り替え
@@ -366,19 +371,22 @@ public class ExecFeelcycleController {
 		    //clicker.sendKeys(Keys.PAGE_DOWN);
 
 
-		    Thread.sleep(1000);
+		    driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 
 			//Thread.sleep(3000);
 			//Thread.sleep(1000);
-			js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
-			Thread.sleep(1000);
-			js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
-			Thread.sleep(1000);
-			js.executeScript("document.querySelector(\"#login-btn > span\").click();");
-			Thread.sleep(1000);
-
+			
+			driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
+			//js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
+			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+			//js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
+			driver.findElement(By.cssSelector("#your-password")).sendKeys(USER_PASS);
+			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+			//js.executeScript("document.querySelector(\"#login-btn > span\").click();");
+			driver.findElement(By.cssSelector("#login-btn")).click();
+			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 
 
 		    System.out.println("ログインボタンチェック");
@@ -413,20 +421,24 @@ public class ExecFeelcycleController {
 				}
 				*/
 				//System.out.println("b-monster：予約画面スケジュール一覧");
-				driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
+				
+				String bmonsterStudioUrl = "https://www.b-monster.jp/reserve/?studio_code=" + LESSON_STATE;
+				
+				driver.get(bmonsterStudioUrl);
 				//System.out.println("30秒待つ");
-				Thread.sleep(1000);
+				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
-				Long bmonLessonDayCount = (Long) js.executeScript("var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  return tags.length;");
+				//Long bmonLessonDayCount = (Long) js.executeScript("var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  return tags.length;");
+				int bmonLessonDayCountint = driver.findElements(By.cssSelector(".flex-no-wrap")).size();
 				// var len = tags.getElementsByTagName('div');
 				//int bmonLessonDayCountint = Integer.parseInt(bmonLessonDayCount);
 				//int bmonLessonDayCount = driver.findElements(By.cssSelector(
 				//		"#scroll-box > div.grid > div")).size();
-				String tempStr = bmonLessonDayCount.toString();
+				//String tempStr = bmonLessonDayCount.toString();
 				//System.out.println("bmonLessonDayCount：" + bmonLessonDayCount);
 
-				int bmonLessonDayCountint = Integer.parseInt(tempStr);
+				//int bmonLessonDayCountint = Integer.parseInt(tempStr);
 				List<WebElement>bmnonLessonList = null;
 
 				int bmonLessonListCount = 100;
@@ -530,9 +542,7 @@ public class ExecFeelcycleController {
 					continue;
 				}
 
-				/*
-				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
-				 */
+
 
 				//hidden要素のLessonIDを取得する
 				String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
@@ -541,7 +551,7 @@ public class ExecFeelcycleController {
 				//driverの遷移をいったん覚えさせる
 				//https://www.b-monster.jp/reserve/punchbag?lesson_id=22471&studio_code=0001
 				//
-				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=0001";
+				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=" + LESSON_STATE;
 				driver.get(studioLessonURL);
 				//ExecFeelcycleController.getCapture(driver,"test0");
 				//System.out.println("リロード1");
@@ -549,6 +559,9 @@ public class ExecFeelcycleController {
 				js = (JavascriptExecutor) driver;
 
 				//ExecFeelcycleController.getCapture(driver,"test1");
+				/*
+				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
+				 */
 				for(int i=7; i<=30; i++) {
 
 					String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
@@ -605,6 +618,8 @@ public class ExecFeelcycleController {
 			}
 		}
 	}
+
+
 
 
 	public static void getCapture(WebDriver driver,String site) throws IOException{
