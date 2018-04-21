@@ -547,6 +547,7 @@ public class ExecFeelcycleController {
 
 
 				//hidden要素のLessonIDを取得する
+				ExecFeelcycleController.getCapture(driver,"test0");
 				String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
 				String hiddenCall = (String) js.executeScript(msg1);
 
