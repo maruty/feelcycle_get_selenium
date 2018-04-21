@@ -396,7 +396,7 @@ public class ExecFeelcycleController {
 
 			//System.out.println(driver.findElements(By.cssSelector("#login-modal")).size() + "個");
 			//ログイン画面
-			System.out.println("ログインモーダルチェック");
+			//System.out.println("ログインモーダルチェック");
 			//driver.findElement(By.xpath("//*[@id=\"your-id\"]")).sendKeys(USER_ID);
 			//driver.findElement(By.name("//*[@id=\"your-password\"]")).sendKeys(USER_PASS);
 
@@ -527,7 +527,7 @@ public class ExecFeelcycleController {
 
 				//座席ページへの移動完了 waiting-list
 				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-				//System.out.println("座席ページに移動したはず");
+				System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
 				String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
