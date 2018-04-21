@@ -573,6 +573,9 @@ public class ExecFeelcycleController {
 						String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 								"if(!bag.disabled) {bag.click(); count = 1; } ;";
 						 js.executeScript(msg);
+						Actions act = new Actions(driver);
+						act.sendKeys(Keys.PAGE_DOWN);
+						ExecFeelcycleController.getCapture(driver,"test2");
 					}
 					
 
@@ -595,9 +598,7 @@ public class ExecFeelcycleController {
 						//driver.get(confirmURL);
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
-						Actions act = new Actions(driver);
-						act.sendKeys(Keys.PAGE_DOWN);
-						ExecFeelcycleController.getCapture(driver,"test2");
+
 						
 						
 						
