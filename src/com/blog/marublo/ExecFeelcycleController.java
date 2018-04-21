@@ -611,6 +611,7 @@ public class ExecFeelcycleController {
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
+						ExecFeelcycleController.getCapture(driver,"test3");
 						//ExecFeelcycleController.getCapture(driver,"test3");
 
 
@@ -626,6 +627,7 @@ public class ExecFeelcycleController {
 						//Thread.sleep(2000);
 
 						Thread.sleep(1000);
+						ExecFeelcycleController.getCapture(driver,"test4");
 						driver.quit();
 						System.out.println("b-monster:取得完了");
 						System.exit(0);
