@@ -50,12 +50,12 @@ public class ExecFeelcycleController {
 		Lesson lessonInfo = new Lesson();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
-					//"/var/www/html/json/lesson.json"), Lesson.class);
-					"./lesson.json"), Lesson.class); //開発環境
+					"/var/www/html/json/lesson.json"), Lesson.class);
+					//"./lesson.json"), Lesson.class); //開発環境
 		    	//本番	   
-		    	//System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
+		    	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		    	//開発環境
-		    System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
+		    //System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
