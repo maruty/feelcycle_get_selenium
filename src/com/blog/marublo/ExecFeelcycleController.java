@@ -333,6 +333,7 @@ public class ExecFeelcycleController {
 									&& perseTime.equals(LESSON_TIME)
 									&& feelcycleDto.lessonName.equals(LESSON_NAME)) {
 								System.out.println("ここまできた2");
+								
 								getLesson(driver, ae, feelcycleDto);
 								// e.findElement(By.cssSelector(".unit")).click();
 							}
@@ -665,6 +666,7 @@ public class ExecFeelcycleController {
 			FeelcycleLessonDto fc) throws InterruptedException {
 
 		element.findElement(By.cssSelector(".unit")).click();
+		System.out.println("ここまできた3");
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
 		// 座席のページに入る
 		int sheetCount = driver.findElements(By.cssSelector(".seat_map > div"))
