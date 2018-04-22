@@ -664,8 +664,11 @@ public class ExecFeelcycleController {
 
 	public static void getLesson(WebDriver driver, WebElement element,
 			FeelcycleLessonDto fc) throws InterruptedException, IOException {
-
+		//#day_ > a:nth-child(2)
+		//#day__b > a:nth-child(2)
+		
 		element.findElement(By.cssSelector(".unit")).click();
+		driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 		System.out.println("ここまできた3");
 		ExecFeelcycleController.getCapture(driver,"test2");
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
