@@ -2,12 +2,15 @@ package com.blog.marublo;
 
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -49,10 +52,14 @@ public class ExecFeelcycleController {
 		System.out.println("json情報の取得");
 
 		Lesson lessonInfo = new Lesson();
+		JenkinsInfo jenkinsInfo = new JenkinsInfo();
 		try {
 			lessonInfo = JSON.decode(new FileReader(
 					"/var/www/html/json/lesson.json"), Lesson.class);
 					//"./lesson.json"), Lesson.class); //開発環境
+			jenkinsInfo = JSON.decode(new FileReader(
+					"/var/www/html/json/jenkins.json"), JenkinsInfo.class);
+					//"./jenkins.json"), JenkinsInfo.class); //開発環境
 		    	//本番	   
 		    	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		    	//開発環境
@@ -637,8 +644,27 @@ public class ExecFeelcycleController {
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						//ExecFeelcycleController.getCapture(driver,"test4");
+						
+						
+						if(driver.findElement(By.cssSelector("#main-container > div > section > h2")).getText().equals("予約が完了いたしました。")) {
+							System.out.println("b-monster:取得完了");
+						} else {
+							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
+						    String command = "curl -sS 'http://133.242.235.62:8008/job/feelcycle_get_selenium/build?token=feelcycleBuild' -I -u " + jenkinsInfo.getId() + ":" + jenkinsInfo.getPass();
+						    Process p = Runtime.getRuntime().exec(command);
+					        p.waitFor();
+					        InputStream input = p.getInputStream();
+					        try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+					            String lines = "";
+					            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+					                lines += line + "\n";
+					            }
+					            System.out.println(lines);
+					        }
+
+						}
 						driver.quit();
-						System.out.println("b-monster:取得完了");
+						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
 						System.exit(0);
 					}
 				}
@@ -669,8 +695,8 @@ public class ExecFeelcycleController {
 		
 		element.findElement(By.cssSelector(".unit")).click();
 		driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-		System.out.println("ここまできた3");
-		ExecFeelcycleController.getCapture(driver,"test2");
+		//System.out.println("ここまできた3");
+		
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
 		// 座席のページに入る
 		int sheetCount = driver.findElements(By.cssSelector(".seat_map > div"))
@@ -708,6 +734,8 @@ public class ExecFeelcycleController {
 								.click();
 						Thread.sleep(1000);
 					}
+					
+					
 
 					// div.coment:nth-child(9) > table:nth-child(1) >
 					// tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) >
@@ -722,6 +750,7 @@ public class ExecFeelcycleController {
 					Calendar calendar = Calendar.getInstance();
 					System.out.println(calendar.getTime().toString()
 							+ ": feelcycle:取得完了");
+					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
 					// System.out.println("feelcycle:取得完了");
 					driver.quit();
 					System.exit(0);

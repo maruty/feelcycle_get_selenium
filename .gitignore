@@ -33,3 +33,5 @@ bin
 *.log
 *.swp
 *.bak
+jenkins.json
+lesson.json
