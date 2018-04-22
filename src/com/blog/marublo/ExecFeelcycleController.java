@@ -663,14 +663,17 @@ public class ExecFeelcycleController {
 	}
 
 	public static void getLesson(WebDriver driver, WebElement element,
-			FeelcycleLessonDto fc) throws InterruptedException {
+			FeelcycleLessonDto fc) throws InterruptedException, IOException {
 
 		element.findElement(By.cssSelector(".unit")).click();
 		System.out.println("ここまできた3");
+		ExecFeelcycleController.getCapture(driver,"test2");
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
 		// 座席のページに入る
 		int sheetCount = driver.findElements(By.cssSelector(".seat_map > div"))
 				.size();
+		
+		
 		// 0番目と1番目はインストラクターと入り口だからそれ以降でぶんまわす
 		if (sheetCount > 2) {
 			int sheetCountNumber = 1;
