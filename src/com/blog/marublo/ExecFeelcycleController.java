@@ -682,7 +682,7 @@ public class ExecFeelcycleController {
 						//ExecFeelcycleController.getCapture(driver,"test4");
 						
 						
-						if(driver.findElement(By.cssSelector("#main-container > div > section > h2")).getText().equals("予約が完了いたしました。")) {
+						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
 							System.out.println("b-monster:取得完了");
 						} else {
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
