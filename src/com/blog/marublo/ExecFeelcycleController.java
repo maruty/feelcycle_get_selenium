@@ -678,8 +678,8 @@ public class ExecFeelcycleController {
 						//js.executeScript(msg2);
 						//button.btn:nth-child(2) > span:nth-child(1)
 						
-						driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button")).click();
-
+						int checkLastButton = driver.findElements(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button")).size();
+						System.out.println("数字：" + checkLastButton);
 
 						System.out.println("最終確認タップ");
 						///js.executeScript(msg2);
