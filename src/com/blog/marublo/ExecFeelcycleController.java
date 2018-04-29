@@ -605,7 +605,7 @@ public class ExecFeelcycleController {
 				
 				boolean firstFlagSheets = true;
 				
-				for(int i=0; i<=sheetMax; i++) {
+				for(int i=1; i<=sheetMax; i++) {
 					if(firstFlagSheets) {
 						switch (LESSON_STATE) {
 						case "0001":
