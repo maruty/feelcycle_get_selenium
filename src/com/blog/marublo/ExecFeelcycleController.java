@@ -687,6 +687,7 @@ public class ExecFeelcycleController {
 						} else {
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
 						    String command = "curl -sS 'http://133.242.235.62:8008/job/feelcycle_get_selenium/build?token=feelcycleBuild' -I -u " + jenkinsInfo.getId() + ":" + jenkinsInfo.getPass();
+						    System.out.println(command);
 						    Process p = Runtime.getRuntime().exec(command);
 					        p.waitFor();
 					        InputStream input = p.getInputStream();
@@ -696,7 +697,10 @@ public class ExecFeelcycleController {
 					                lines += line + "\n";
 					            }
 					            System.out.println(lines);
-					        }
+					        }catch (Exception e) {
+								System.out.println("コマンドが入りませんでした");
+								System.out.println(e);
+							}
 
 						}
 						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
