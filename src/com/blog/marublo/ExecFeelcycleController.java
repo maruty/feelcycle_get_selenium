@@ -619,20 +619,23 @@ public class ExecFeelcycleController {
 					
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
-					if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
-						judgeMent = 1;
-						//driver.findElement(By.cssSelector("#bag" + i)).click();
-						//driver.findElement(By.cssSelector("#bag" + i)).click();
-						//driver.findElement(By.cssSelector("#bag" + i)).click();
-						
-						String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
-								"if(!bag.disabled) {bag.click(); count = 1; } ;";
-						 js.executeScript(msg);
-						 
-						Actions act = new Actions(driver);
-						act.sendKeys(Keys.PAGE_DOWN);
-						//ExecFeelcycleController.getCapture(driver,"test2");
+					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
+						if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
+							judgeMent = 1;
+							//driver.findElement(By.cssSelector("#bag" + i)).click();
+							//driver.findElement(By.cssSelector("#bag" + i)).click();
+							//driver.findElement(By.cssSelector("#bag" + i)).click();
+							
+							String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
+									"if(!bag.disabled) {bag.click(); count = 1; } ;";
+							 js.executeScript(msg);
+							 
+							Actions act = new Actions(driver);
+							act.sendKeys(Keys.PAGE_DOWN);
+							//ExecFeelcycleController.getCapture(driver,"test2");
+						}
 					}
+			
 					
 
 					//Long judgeMent = (Long) js.executeScript(msg);
