@@ -676,8 +676,8 @@ public class ExecFeelcycleController {
 						//String msg2 = "var des =  document.getElementsByClassName('btn');" +
 									 // "des[7].click();";
 						//js.executeScript(msg2);
-						
-						driver.findElement(By.cssSelector("#main-container > div.form-action > button > span")).click();
+						//button.btn:nth-child(2) > span:nth-child(1)
+						driver.findElement(By.cssSelector("button.btn:nth-child(2) > span:nth-child(1)")).click();
 
 
 						System.out.println("最終確認タップ");
