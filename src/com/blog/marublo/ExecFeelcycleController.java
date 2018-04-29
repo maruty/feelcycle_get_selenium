@@ -699,8 +699,8 @@ public class ExecFeelcycleController {
 					        }
 
 						}
-						driver.quit();
 						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
+						driver.quit();
 						System.exit(0);
 					}
 					firstFlagSheets = false;
