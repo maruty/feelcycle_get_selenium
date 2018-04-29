@@ -673,9 +673,12 @@ public class ExecFeelcycleController {
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						//確認ページ
-						String msg2 = "var des =  document.getElementsByClassName('btn');" +
-									  "des[7].click();";
-						js.executeScript(msg2);
+						//String msg2 = "var des =  document.getElementsByClassName('btn');" +
+									 // "des[7].click();";
+						//js.executeScript(msg2);
+						
+						driver.findElement(By.cssSelector("#main-container > div.form-action > button > span")).click();
+
 
 						System.out.println("最終確認タップ");
 						///js.executeScript(msg2);
