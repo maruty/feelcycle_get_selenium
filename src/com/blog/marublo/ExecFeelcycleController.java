@@ -666,7 +666,7 @@ public class ExecFeelcycleController {
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						//ExecFeelcycleController.getCapture(driver,"test3");
+						ExecFeelcycleController.getCapture(driver,"test3");
 						//ExecFeelcycleController.getCapture(driver,"test3");
 
 
@@ -682,12 +682,12 @@ public class ExecFeelcycleController {
 						//Thread.sleep(2000);
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-						///ExecFeelcycleController.getCapture(driver,"test4");
-						
+						ExecFeelcycleController.getCapture(driver,"test4");
 						
 						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
 							System.out.println("b-monster:取得完了");
 						} else {
+							ExecFeelcycleController.getCapture(driver,"test5");
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
 						    String command = "curl -sS 'http://133.242.235.62:8008/job/feelcycle_get_selenium/build?token=feelcycleBuild' -I -u " + jenkinsInfo.getId() + ":" + jenkinsInfo.getPass();
 						    System.out.println(command);
