@@ -679,7 +679,7 @@ public class ExecFeelcycleController {
 						//Thread.sleep(2000);
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-						///ExecFeelcycleController.getCapture(driver,"test4");
+						//ExecFeelcycleController.getCapture(driver,"test4");
 						
 						
 						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
