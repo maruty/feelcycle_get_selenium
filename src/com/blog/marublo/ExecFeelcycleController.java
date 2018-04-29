@@ -578,8 +578,44 @@ public class ExecFeelcycleController {
 				/*
 				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
 				 */
-				for(int i=7; i<=30; i++) {
-					
+				
+				
+				boolean firstLoopFlag = true;
+				
+				int sheetMax = 0;
+				switch (LESSON_STATE) {
+				case "0001":
+					sheetMax = 30;
+					break;
+				case "0002":
+					sheetMax = 54;
+					break;
+				case "0003":
+					sheetMax = 94;
+					break;
+				case "0006":
+					sheetMax = 55;
+					break;			
+
+				default:
+					sheetMax = 30;
+					break;
+				}
+				
+				
+				boolean firstFlagSheets = true;
+				
+				for(int i=0; i<=sheetMax; i++) {
+					if(firstFlagSheets) {
+						switch (LESSON_STATE) {
+						case "0001":
+							i = 7;
+							break;
+
+						default:
+							break;
+						}
+					}
 					
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
@@ -667,6 +703,7 @@ public class ExecFeelcycleController {
 						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
 						System.exit(0);
 					}
+					firstFlagSheets = false;
 				}
 				//ここまで来るということは座席空席なし
 				Calendar calendar = Calendar.getInstance();
