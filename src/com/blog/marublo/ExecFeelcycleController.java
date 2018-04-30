@@ -350,7 +350,7 @@ public class ExecFeelcycleController {
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
 				System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
-				Thread.sleep(1000);
+				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 			}
 
 		} else {
@@ -777,11 +777,11 @@ public class ExecFeelcycleController {
 
 					if (ticketCount > 0) {
 						driver.switchTo().frame("TB_iframeContent");
-						Thread.sleep(2000);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						driver.findElement(
 								By.cssSelector(".ticket > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > span:nth-child(2)"))
 								.click();
-						Thread.sleep(1000);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					}
 					
 					
@@ -793,7 +793,7 @@ public class ExecFeelcycleController {
 					driver.findElement(
 							By.cssSelector("div.coment:nth-child(9) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) > a:nth-child(1)"))
 							.click();
-					Thread.sleep(1000);
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					// 取得完了
 
 					Calendar calendar = Calendar.getInstance();
