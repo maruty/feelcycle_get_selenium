@@ -106,6 +106,7 @@ public class ExecFeelcycleController {
 	    	profile.setPreference("browser.cache.disk.enable", "false");
 	    	profile.setPreference("network.http.pipelining", "true");
 	    	profile.setPreference("network.http.pipelining.maxrequests", "8");
+	    	profile.setPreference("ui.submenuDelay", "0");
 	    	
 	    	
 	    	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
