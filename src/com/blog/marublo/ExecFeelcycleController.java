@@ -64,6 +64,12 @@ public class ExecFeelcycleController {
 		    	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		    	//開発環境
 		    //System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
+		    	
+
+		    	
+		    
+
+		    	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,9 +101,13 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-
-
-        WebDriver driver = new FirefoxDriver();
+	    	FirefoxProfile profile = new FirefoxProfile();
+	    	profile.setPreference("network.http.spdy.enabled.http2", "false");
+	    	profile.setPreference("browser.cache.disk.enable", "false");
+	    	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+	    	capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        @SuppressWarnings("deprecation")
+		WebDriver driver = new FirefoxDriver(capabilities);
 		//WebDriver driver = new ChromeDriver();
 
 
@@ -350,7 +360,7 @@ public class ExecFeelcycleController {
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
 				System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
-				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+				//driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 			}
 
 		} else {
@@ -666,7 +676,7 @@ public class ExecFeelcycleController {
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
 						//js.executeScript(msg3);
 						System.out.println("最終確認前タップ");
-						ExecFeelcycleController.getCapture(driver,"test3");
+						//ExecFeelcycleController.getCapture(driver,"test3");
 						//ExecFeelcycleController.getCapture(driver,"test3");
 
 
