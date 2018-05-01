@@ -104,6 +104,10 @@ public class ExecFeelcycleController {
 	    	FirefoxProfile profile = new FirefoxProfile();
 	    	profile.setPreference("network.http.spdy.enabled.http2", "false");
 	    	profile.setPreference("browser.cache.disk.enable", "false");
+	    	profile.setPreference("network.http.pipelining", "true");
+	    	profile.setPreference("network.http.pipelining.maxrequests", "8");
+	    	
+	    	
 	    	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 	    	capabilities.setCapability(FirefoxDriver.PROFILE, profile);
         @SuppressWarnings("deprecation")
