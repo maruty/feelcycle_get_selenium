@@ -264,9 +264,10 @@ public class ExecFeelcycleController {
 			System.out.println("Feelcycle：座席予約");
 			//json作るのは１回でいいよね
 			boolean firstFlag = true;
-			int loopCount = 0;
+			//int loopCount = 0;
 			//実際の座席取得処理
 			while (true) {
+				/*
 				loopCount++;
 				if(loopCount > 20) {
 					System.out.println("20回");
@@ -275,7 +276,7 @@ public class ExecFeelcycleController {
 					driver = new FirefoxDriver(options);
 					System.out.println("Feelcycle：Login");
 					driver =  driver2;
-					/*
+					
 					driver.get("https://www.feelcycle.com/feelcycle_reserve/mypage.php");
 
 					driver.findElement(By.name("login_id")).sendKeys(USER_ID);
@@ -283,10 +284,11 @@ public class ExecFeelcycleController {
 
 					driver.findElement(By.cssSelector(".submit_b")).click();
 					System.out.println("Feelcycle：ログイン成功");
-					*/
+					
 					loopCount = 0;
 					//driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				}
+			*/
 				
 				driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
