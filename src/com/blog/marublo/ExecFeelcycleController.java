@@ -285,7 +285,7 @@ public class ExecFeelcycleController {
 					System.out.println("Feelcycle：ログイン成功");
 					*/
 					loopCount = 0;
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					//driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				}
 				
 				driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
