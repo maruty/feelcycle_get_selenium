@@ -214,7 +214,7 @@ public class ExecFeelcycleController {
 			//selectList.selectByVisibleText(LESSON_STATE);
 
 			// jsonファイルの作成 別に握りつぶしてもOKだからtry catchにする
-			System.out.println("入力フォーム用json作成処理開始");
+
 			/*
 			try {
 			  TenpoMapDto tenpoListDto = new TenpoMapDto();
@@ -260,7 +260,8 @@ public class ExecFeelcycleController {
 			}
 			*/
 			System.out.println("Feelcycle：座席予約");
-
+			//json作るのは１回でいいよね
+			boolean firstFlag = true;
 
 			//実際の座席取得処理
 			while (true) {
@@ -275,46 +276,52 @@ public class ExecFeelcycleController {
 				selectList.selectByVisibleText(LESSON_STATE);
 
 				// jsonファイルの作成 別に握りつぶしてもOKだからtry catchにする
+				if(firstFlag){
+					System.out.println("入力フォーム用json作成処理開始");
+					try {
+						TenpoMapDto tenpoListDto = new TenpoMapDto();
+						List<WebElement> selectElement = selectList.getOptions();
 
-				try {
-					TenpoMapDto tenpoListDto = new TenpoMapDto();
-					List<WebElement> selectElement = selectList.getOptions();
+						// 店舗リスト
 
-					// 店舗リスト
+						for (WebElement webElement : selectElement) {
+							ValueDto valueDto = new ValueDto(webElement.getText(),
+									webElement.getAttribute("value"));
+							tenpoListDto.setTenpoMap(valueDto);
+						}
 
-					for (WebElement webElement : selectElement) {
-						ValueDto valueDto = new ValueDto(webElement.getText(),
-								webElement.getAttribute("value"));
-						tenpoListDto.setTenpoMap(valueDto);
+						// インストラクター
+						Select instList = new Select(driver.findElement(By.name("lesson")));
+
+						for (WebElement webElement : instList.getOptions()) {
+							ValueDto valueDto = new ValueDto(webElement.getText(),
+									webElement.getAttribute("value"));
+							tenpoListDto.setProgramMap(valueDto);
+						}
+
+						String jsonText = JSON.encode(tenpoListDto, true);
+
+						// jsonファイルの保存
+						// 開発環境
+						// BufferedWriter writer = new BufferedWriter(new
+						// FileWriter("lesson_master.json"));
+
+						// 本番
+
+						BufferedWriter writer = new BufferedWriter(new FileWriter(
+								"/var/www/html/json/lesson_master.json"));
+						writer.write(jsonText);
+						writer.close();
+
+						firstFlag = false;
+
+					} catch (Exception e) {
+						// 握りつぶす
+						// e.printStackTrace();
 					}
 
-					// インストラクター
-					Select instList = new Select(driver.findElement(By.name("lesson")));
-
-					for (WebElement webElement : instList.getOptions()) {
-						ValueDto valueDto = new ValueDto(webElement.getText(),
-								webElement.getAttribute("value"));
-						tenpoListDto.setProgramMap(valueDto);
-					}
-
-					String jsonText = JSON.encode(tenpoListDto, true);
-
-					// jsonファイルの保存
-					// 開発環境
-					// BufferedWriter writer = new BufferedWriter(new
-					// FileWriter("lesson_master.json"));
-
-					// 本番
-
-					BufferedWriter writer = new BufferedWriter(new FileWriter(
-							"/var/www/html/json/lesson_master.json"));
-					writer.write(jsonText);
-					writer.close();
-
-				} catch (Exception e) {
-					// 握りつぶす
-					// e.printStackTrace();
 				}
+
 
 				//Thread.sleep(13000);
 
