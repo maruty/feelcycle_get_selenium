@@ -267,7 +267,7 @@ public class ExecFeelcycleController {
 			int loopCount = 0;
 			//実際の座席取得処理
 			while (true) {
-				
+				loopCount++;
 				if(loopCount > 20) {
 					System.out.println("20回");
 					driver.quit();
@@ -280,7 +280,7 @@ public class ExecFeelcycleController {
 
 					driver.findElement(By.cssSelector(".submit_b")).click();
 					System.out.println("Feelcycle：ログイン成功");
-					loopCount++;
+					loopCount = 0;
 				}
 				driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
