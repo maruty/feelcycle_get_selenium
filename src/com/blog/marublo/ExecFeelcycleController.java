@@ -153,7 +153,7 @@ public class ExecFeelcycleController {
 
     	//options.setProfile(profile);
 		WebDriver driver = new FirefoxDriver(options);
-
+		WebDriver driver2 = new FirefoxDriver(options);
 
 
 
@@ -270,9 +270,11 @@ public class ExecFeelcycleController {
 				loopCount++;
 				if(loopCount > 20) {
 					System.out.println("20回");
+					driver2 = driver;
 					driver.close();
-					//driver = new FirefoxDriver(options);
+					driver = new FirefoxDriver(options);
 					System.out.println("Feelcycle：Login");
+					driver =  driver2;
 					/*
 					driver.get("https://www.feelcycle.com/feelcycle_reserve/mypage.php");
 
