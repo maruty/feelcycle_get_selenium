@@ -137,7 +137,14 @@ public class ExecFeelcycleController {
 		profile.setPreference("content.notify.interval", 750000);
 		profile.setPreference("content.notify.ontimer", true);
 		profile.setPreference("content.switch.threshold", 750000);
-		profile.setPreference("browser.cache.memory.capacity", 65536);
+		profile.setPreference("browser.cache.memory.enable", true);
+		profile.setPreference("browser.cache.memory.capacity", -1);
+
+		//browser.cache.memory.enableをtrueに
+		profile.setPreference("browser.sessionstore.interval", 6000000);
+		profile.setPreference("network.http.spdy.enabled.http2", false);
+
+
 
     	FirefoxOptions options = new FirefoxOptions();
     	options.setProfile(profile);
