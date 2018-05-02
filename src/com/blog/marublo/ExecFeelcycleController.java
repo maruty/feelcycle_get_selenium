@@ -4,7 +4,6 @@ package com.blog.marublo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,26 +15,21 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import net.arnx.jsonic.JSON;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import net.arnx.jsonic.JSON;
 
 public class ExecFeelcycleController {
 
@@ -60,16 +54,16 @@ public class ExecFeelcycleController {
 			jenkinsInfo = JSON.decode(new FileReader(
 					"/var/www/html/json/jenkins.json"), JenkinsInfo.class);
 					//"./jenkins.json"), JenkinsInfo.class); //開発環境
-		    	//本番	   
+		    	//本番
 		    	System.setProperty("webdriver.gecko.driver", "/opt/geckodriver/geckodriver");
 		    	//開発環境
 		    //System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
-		    	
 
-		    	
-		    
 
-		    	
+
+
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,18 +95,63 @@ public class ExecFeelcycleController {
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-	    	FirefoxProfile profile = new FirefoxProfile();
-	    	profile.setPreference("network.http.spdy.enabled.http2", "false");
-	    	profile.setPreference("browser.cache.disk.enable", "false");
-	    	profile.setPreference("network.http.pipelining", "true");
-	    	profile.setPreference("network.http.pipelining.maxrequests", "8");
-	    	profile.setPreference("ui.submenuDelay", "0");
-	    	
-	    	
-	    	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	    	capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+
+
+		FirefoxProfile profile = new FirefoxProfile();
+
+		/*
+		profile.setPreference("network.http.pipelining", true);
+		profile.setPreference("network.http.pipelining.firstrequest", true);
+		profile.setPreference("network.http.pipelining.maxrequests", 8);
+		profile.setPreference("network.http.max-connections", 32);
+		profile.setPreference("network.http.max-connections-per-server", 8);
+		profile.setPreference("network.http.max-persistent-connections-per-proxy", 8);
+		profile.setPreference("network.http.max-persistent-connections-per-server", 4);
+		profile.setPreference("nglayout.initialpaint.delay", 0);
+		profile.setPreference("content.notify.backoffcount", 5);
+		profile.setPreference("plugin.expose_full_path", true);
+		profile.setPreference("ui.submenuDelay", 0);
+		profile.setPreference("content.interrupt.parsing", true);
+		profile.setPreference("content.max.tokenizing.time", 2250000);
+		profile.setPreference("content.notify.interval", 750000);
+		profile.setPreference("content.notify.ontimer", true);
+		profile.setPreference("content.switch.threshold", 750000);
+		profile.setPreference("browser.cache.memory.capacity", 65536)
+		*/
+
+
+
+		profile.setPreference("network.http.pipelining", true);
+		profile.setPreference("network.http.pipelining.firstrequest", true);
+		profile.setPreference("network.http.pipelining.maxrequests", 8);
+		profile.setPreference("network.http.max-connections", 32);
+		profile.setPreference("network.http.max-connections-per-server", 8);
+		profile.setPreference("network.http.max-persistent-connections-per-proxy", 8);
+		profile.setPreference("network.http.max-persistent-connections-per-server", 4);
+		profile.setPreference("nglayout.initialpaint.delay", 0);
+		profile.setPreference("content.notify.backoffcount", 5);
+		profile.setPreference("plugin.expose_full_path", true);
+		profile.setPreference("ui.submenuDelay", 0);
+		profile.setPreference("content.interrupt.parsing", true);
+		profile.setPreference("content.max.tokenizing.time", 2250000);
+		profile.setPreference("content.notify.interval", 750000);
+		profile.setPreference("content.notify.ontimer", true);
+		profile.setPreference("content.switch.threshold", 750000);
+		profile.setPreference("browser.cache.memory.capacity", 65536);
+
+    	FirefoxOptions options = new FirefoxOptions();
+    	options.setProfile(profile);
+    	WebDriver driver = new FirefoxDriver(options);
+
+    	///FirefoxProfile profile = new FirefoxProfile();
+
+
+    	/*
+	    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+	    capabilities.setCapability(FirefoxDriver.PROFILE, profile);
         @SuppressWarnings("deprecation")
 		WebDriver driver = new FirefoxDriver(capabilities);
+		*/
 		//WebDriver driver = new ChromeDriver();
 
 
@@ -355,7 +394,7 @@ public class ExecFeelcycleController {
 									&& perseTime.equals(LESSON_TIME)
 									&& feelcycleDto.lessonName.equals(LESSON_NAME)) {
 								System.out.println("ここまできた2");
-								
+
 								getLesson(driver, ae, feelcycleDto);
 								// e.findElement(By.cssSelector(".unit")).click();
 							}
@@ -375,7 +414,7 @@ public class ExecFeelcycleController {
 		if(GYM.equals("2")){
 			//driver = new FirefoxDriver();
 			System.out.println("b-monster:ログイン開始");
-			
+
 			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 
 			// ウィンドウ切り替え
@@ -403,7 +442,7 @@ public class ExecFeelcycleController {
 
 			//Thread.sleep(3000);
 			//Thread.sleep(1000);
-			
+
 			driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
 			//js.executeScript("document.getElementById('your-id').value='"+USER_ID +"';");
 			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
@@ -448,9 +487,9 @@ public class ExecFeelcycleController {
 				}
 				*/
 				System.out.println("b-monster：予約画面スケジュール一覧");
-				
+
 				String bmonsterStudioUrl = "https://www.b-monster.jp/reserve/?studio_code=" + LESSON_STATE;
-				
+
 				driver.get(bmonsterStudioUrl);
 				//System.out.println("30秒待つ");
 				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
@@ -593,10 +632,10 @@ public class ExecFeelcycleController {
 				/*
 				 * 銀座店に関しては7〜30が最前〜2列目を予約取ることとする
 				 */
-				
-				
+
+
 				boolean firstLoopFlag = true;
-				
+
 				int sheetMax = 0;
 				switch (LESSON_STATE) {
 				case "0001":
@@ -610,16 +649,16 @@ public class ExecFeelcycleController {
 					break;
 				case "0006":
 					sheetMax = 55;
-					break;			
+					break;
 
 				default:
 					sheetMax = 30;
 					break;
 				}
-				
-				
+
+
 				boolean firstFlagSheets = true;
-				
+
 				for(int i=1; i<=sheetMax; i++) {
 					if(firstFlagSheets) {
 						switch (LESSON_STATE) {
@@ -631,7 +670,7 @@ public class ExecFeelcycleController {
 							break;
 						}
 					}
-					
+
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
@@ -640,18 +679,18 @@ public class ExecFeelcycleController {
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
-							
+
 							String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 									"if(!bag.disabled) {bag.click(); count = 1; } ;";
 							 js.executeScript(msg);
-							 
+
 							Actions act = new Actions(driver);
 							act.sendKeys(Keys.PAGE_DOWN);
 							//ExecFeelcycleController.getCapture(driver,"test2");
 						}
 					}
-			
-					
+
+
 
 					//Long judgeMent = (Long) js.executeScript(msg);
 
@@ -673,9 +712,9 @@ public class ExecFeelcycleController {
 
 						//var leg =  document.getElementsByClassName('btn btn-large btn-gray btn-orange'); leg[0].click();
 
-						
-						
-						
+
+
+
 						//String msg3 = "var form = document.forms; form[0]; var foo = form[1].getElementsByClassName('btn-orange'); foo[0].click();";
 						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange > span")).click();
 						//driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange")).click();
@@ -696,14 +735,14 @@ public class ExecFeelcycleController {
 						int checkLastButton = driver.findElements(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).size();
 						System.out.println("数字：" + checkLastButton);
 						 driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).click();
-						
+
 						System.out.println("最終確認タップ");
 						///js.executeScript(msg2);
 						//Thread.sleep(2000);
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						ExecFeelcycleController.getCapture(driver,"test4");
-						
+
 						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
 							System.out.println("b-monster:取得完了");
 						} else {
@@ -756,17 +795,17 @@ public class ExecFeelcycleController {
 			FeelcycleLessonDto fc) throws InterruptedException, IOException {
 		//#day_ > a:nth-child(2)
 		//#day__b > a:nth-child(2)
-		
+
 		element.findElement(By.cssSelector(".unit")).click();
 		driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 		//System.out.println("ここまできた3");
-		
+
 		// driver.findElements(element.findElement(By.cssSelector(".unit"))).click();
 		// 座席のページに入る
 		int sheetCount = driver.findElements(By.cssSelector(".seat_map > div"))
 				.size();
-		
-		
+
+
 		// 0番目と1番目はインストラクターと入り口だからそれ以降でぶんまわす
 		if (sheetCount > 2) {
 			int sheetCountNumber = 1;
@@ -798,8 +837,8 @@ public class ExecFeelcycleController {
 								.click();
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					}
-					
-					
+
+
 
 					// div.coment:nth-child(9) > table:nth-child(1) >
 					// tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) >
