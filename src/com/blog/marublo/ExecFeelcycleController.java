@@ -142,6 +142,12 @@ public class ExecFeelcycleController {
 		options.addPreference("privacy.trackingprotection.enabled", true);
 		options.addPreference("view_source.wrap_long_lines", true);
 
+		options.addPreference("browser.cache.memory.enable", true);
+		options.addPreference("browser.cache.disk.enable", false);
+
+
+		options.addPreference("network.http.pipelining", true);
+		options.addPreference("network.http.pipelining.ssl", true);
 
     	//options.setProfile(profile);
     	WebDriver driver = new FirefoxDriver(options);
