@@ -148,9 +148,11 @@ public class ExecFeelcycleController {
 
 		options.addPreference("network.http.pipelining", true);
 		options.addPreference("network.http.pipelining.ssl", true);
+		
+		options.addPreference("browser.tabs.remote.autostart.2", false);
 
     	//options.setProfile(profile);
-    	WebDriver driver = new FirefoxDriver(options);
+		WebDriver driver = new FirefoxDriver(options);
 
 
 
