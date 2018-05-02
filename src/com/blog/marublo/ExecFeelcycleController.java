@@ -271,7 +271,7 @@ public class ExecFeelcycleController {
 				if(loopCount > 20) {
 					System.out.println("20回");
 					driver.quit();
-					driver = new FirefoxDriver(options);
+					//driver = new FirefoxDriver(options);
 					System.out.println("Feelcycle：Login");
 					driver.get("https://www.feelcycle.com/feelcycle_reserve/mypage.php");
 
