@@ -155,7 +155,6 @@ public class ExecFeelcycleController {
 
     	//options.setProfile(profile);
 		WebDriver driver = new FirefoxDriver(options);
-		WebDriver driver2 = new FirefoxDriver(options);
 
 
 
@@ -269,12 +268,6 @@ public class ExecFeelcycleController {
 			//ループに入ってからの時間を測定 ミリ秒
 			long startMilli = System.currentTimeMillis();
 			
-			
-			
-			driver.quit();
-			System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
-			getShellCall();
-			System.exit(0);
 			
 			
 			//int loopCount = 0;
@@ -543,8 +536,22 @@ public class ExecFeelcycleController {
 			//画面の切り替わりとクッキー関係のため待つ
 			//Thread.sleep(3000);
 			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-
+			long startMilliBmon = System.currentTimeMillis();
 			while(true){
+				
+				
+				/*
+				 *10分たったら強制的に終了 
+				 * */
+				
+				long loopMilli = System.currentTimeMillis();
+				//1秒1000ミリ秒
+				if(loopMilli - startMilliBmon > 600000 ) {
+					driver.quit();
+					System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
+					getShellCall();
+					System.exit(0);
+				}
 				//予約画面への遷移
 				//System.out.println("b-monster：予約画面の店舗選択");
 				/* いったんGINZA限定
@@ -822,21 +829,7 @@ public class ExecFeelcycleController {
 						} else {
 							ExecFeelcycleController.getCapture(driver,"test5");
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
-						    String command = "curl -sS 'http://133.242.235.62:8008/job/feelcycle_get_selenium/build?token=feelcycleBuild' -I -u " + jenkinsInfo.getId() + ":" + jenkinsInfo.getPass();
-						    System.out.println(command);
-						    Process p = Runtime.getRuntime().exec(command);
-					        p.waitFor();
-					        InputStream input = p.getInputStream();
-					        try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
-					            String lines = "";
-					            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-					                lines += line + "\n";
-					            }
-					            System.out.println(lines);
-					        }catch (Exception e) {
-								System.out.println("コマンドが入りませんでした");
-								System.out.println(e);
-							}
+							getShellCall();
 
 						}
 						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
@@ -971,15 +964,17 @@ public class ExecFeelcycleController {
 					System.out.println(calendar.getTime().toString()
 							+ ": feelcycle:取得完了");
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
-					// System.out.println("feelcycle:取得完了");
+					System.out.println("feelcycle:取得完了");
 					driver.quit();
 					System.exit(0);
 				}
 				sheetCountNumber++;
 			}
 		}
-		System.out.println("feelcycle:座席画面までいきましたが処理完了が出来ませんでした。再度取得して下さい");
+		System.out.println("feelcycle:座席画面までいきましたが処理完了が出来ませんでした。再度取得JOBが起動しました");
 		driver.quit();
+		//再取得実行
+		getShellCall();
 		System.exit(0);
 	}
 
