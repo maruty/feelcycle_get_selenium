@@ -856,7 +856,7 @@ public class ExecFeelcycleController {
 	public static void getShellCall() {
         BufferedReader br = null;
         // 起動するコマンド、引数でProcessBuilderを作る。
-        ProcessBuilder pb = new ProcessBuilder("~/tiritir_script/automationLessson.sh");
+        ProcessBuilder pb = new ProcessBuilder("/root/tiritir_script/automationLessson.sh");
         // 実行するプロセスの標準エラー出力を標準出力に混ぜる。(標準エラー出力を標準入力から入力できるようになる)
         pb.redirectErrorStream(true);
         try {
