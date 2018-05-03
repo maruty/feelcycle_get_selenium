@@ -271,6 +271,12 @@ public class ExecFeelcycleController {
 			
 			
 			
+			driver.quit();
+			System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
+			getShellCall();
+			System.exit(0);
+			
+			
 			//int loopCount = 0;
 			//実際の座席取得処理
 			while (true) {
@@ -874,15 +880,18 @@ public class ExecFeelcycleController {
             // 終了コードを表示
             System.out.println("ret = " + ret);
         } catch (IOException ex) {
+        		System.out.println(ex);
             //Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
            // Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
+        	System.out.println(ex);
         } finally {
             if(br != null) {
                 try {
                     br.close();
                 } catch (IOException ex) {
                     //Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
+                		System.out.println(ex);
                 }
             }
         }
