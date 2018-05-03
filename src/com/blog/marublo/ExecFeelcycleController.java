@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -264,6 +266,11 @@ public class ExecFeelcycleController {
 			System.out.println("Feelcycle：座席予約");
 			//json作るのは１回でいいよね
 			boolean firstFlag = true;
+			//ループに入ってからの時間を測定 ミリ秒
+			long startMilli = System.currentTimeMillis();
+			
+			
+			
 			//int loopCount = 0;
 			//実際の座席取得処理
 			while (true) {
@@ -289,6 +296,21 @@ public class ExecFeelcycleController {
 					//driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				}
 			*/
+				
+				
+				/*
+				 *10分たったら強制的に終了 
+				 * */
+				
+				long loopMilli = System.currentTimeMillis();
+				//1秒1000ミリ秒
+				if(loopMilli -startMilli > 600000 ) {
+					driver.quit();
+					System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
+					getShellCall();
+					System.exit(0);
+				}
+				
 				
 				driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
@@ -824,7 +846,47 @@ public class ExecFeelcycleController {
 			}
 		}
 	}
-
+	
+	public static void getShellCall() {
+        BufferedReader br = null;
+        // 起動するコマンド、引数でProcessBuilderを作る。
+        ProcessBuilder pb = new ProcessBuilder("~/tiritir_script/automationLessson.sh");
+        // 実行するプロセスの標準エラー出力を標準出力に混ぜる。(標準エラー出力を標準入力から入力できるようになる)
+        pb.redirectErrorStream(true);
+        try {
+            // プロセス起動
+            Process process = pb.start();
+            
+            // 起動したプロセスの標準出力を取得して表示する。
+            //   標準出力やエラー出力が必要なくても読んどかないとバッファがいっぱいになって
+            //   プロセスが止まる(一時停止)してしまう場合がある。
+            InputStream is = process.getInputStream();
+            br = new BufferedReader(new InputStreamReader(is));
+            while(true) {
+                String line = br.readLine();
+                if(line == null) {
+                    break;
+                }
+                System.out.println(line);
+            }
+            // プロセスの終了を待つ。
+            int ret = process.waitFor();
+            // 終了コードを表示
+            System.out.println("ret = " + ret);
+        } catch (IOException ex) {
+            //Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+           // Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(br != null) {
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    //Logger.getLogger(TestProcess.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+	}
 
 
 
