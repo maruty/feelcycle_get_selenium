@@ -959,6 +959,7 @@ public class ExecFeelcycleController {
 							.click();
 					
 					driver.manage().timeouts().implicitlyWait(10 ,TimeUnit.SECONDS);
+					Thread.sleep(10000);
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
 					
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
