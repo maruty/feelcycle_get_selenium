@@ -958,7 +958,7 @@ public class ExecFeelcycleController {
 							By.xpath("/html/body/div/div/div[9]/table/tbody/tr/td[2]/a"))
 							.click();
 					
-					driver.manage().timeouts().implicitlyWait(3 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(10 ,TimeUnit.SECONDS);
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
 					
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
