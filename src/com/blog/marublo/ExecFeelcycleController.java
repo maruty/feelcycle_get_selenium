@@ -958,8 +958,11 @@ public class ExecFeelcycleController {
 							By.cssSelector("div.coment:nth-child(9) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) > a:nth-child(1)"))
 							.click();
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
+					
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
-						String finishText = driver.findElement(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td > p")).getText();
+						String finishText = driver.findElement(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).getText();
+						System.out.println("finishText:" + finishText);
 						if(finishText.equals("下記の内容で予約確定いたしました。")) {
 							// 取得完了
 							Calendar calendar = Calendar.getInstance();
@@ -983,7 +986,7 @@ public class ExecFeelcycleController {
 						System.exit(0);
 					}
 					
-					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
+					
 					
 				}
 				sheetCountNumber++;
