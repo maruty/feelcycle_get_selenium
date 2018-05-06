@@ -955,7 +955,7 @@ public class ExecFeelcycleController {
 					// a:nth-child(1)
 					// 決定ボタン
 					driver.findElement(
-							By.cssSelector("#form_back_dark > div:nth-child(9) > table > tbody > tr > td:nth-child(10) > a"))
+							By.cssSelector("#form_back_dark > div:nth-child(9) > table > tbody > tr > td:nth-child(10) > a > img"))
 							.click();
 					
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
