@@ -955,10 +955,10 @@ public class ExecFeelcycleController {
 					// a:nth-child(1)
 					// 決定ボタン
 					driver.findElement(
-							By.cssSelector("#form_back_dark > div:nth-child(9) > table > tbody > tr > td:nth-child(10) > a > img"))
+							By.xpath("/html/body/div/div/div[9]/table/tbody/tr/td[2]/a"))
 							.click();
 					
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(3 ,TimeUnit.SECONDS);
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
 					
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
