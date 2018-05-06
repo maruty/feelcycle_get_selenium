@@ -962,7 +962,7 @@ public class ExecFeelcycleController {
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
 					
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
-						String finishText = driver.findElement(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).getText();
+						String finishText = driver.findElement(By.xpath("/html/body/div/div/div[4]/table/tbody/tr/td/p")).getText();
 						System.out.println("finishText:" + finishText);
 						if(finishText.equals("下記の内容で予約確定いたしました。")) {
 							// 取得完了
