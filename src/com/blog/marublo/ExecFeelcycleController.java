@@ -958,15 +958,33 @@ public class ExecFeelcycleController {
 							By.cssSelector("div.coment:nth-child(9) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(10) > a:nth-child(1)"))
 							.click();
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-					// 取得完了
-
-					Calendar calendar = Calendar.getInstance();
-					System.out.println(calendar.getTime().toString()
-							+ ": feelcycle:取得完了");
+					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td > p")).size() > 0) {
+						String finishText = driver.findElement(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td > p")).getText();
+						if(finishText.equals("下記の内容で予約確定いたしました。")) {
+							// 取得完了
+							Calendar calendar = Calendar.getInstance();
+							System.out.println(calendar.getTime().toString()
+									+ ": feelcycle:取得完了");
+							System.out.println("feelcycle:取得完了");
+							driver.quit();
+							System.exit(0);
+						} else {
+							System.out.println("feelcycle:座席画面までいきましたが処理完了が出来ませんでした。再度取得JOBが起動しました");
+							driver.quit();
+							//再取得実行
+							getShellCall();
+							System.exit(0);
+						}
+					} else {
+						System.out.println("feelcycle:座席画面までいきましたが処理完了が出来ませんでした。再度取得JOBが起動しました");
+						driver.quit();
+						//再取得実行
+						getShellCall();
+						System.exit(0);
+					}
+					
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
-					System.out.println("feelcycle:取得完了");
-					driver.quit();
-					System.exit(0);
+					
 				}
 				sheetCountNumber++;
 			}
