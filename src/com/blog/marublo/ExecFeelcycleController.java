@@ -761,11 +761,15 @@ public class ExecFeelcycleController {
 					if(LESSON_STATE.equals("0006") && i > 25 && i < 29) {
 						i = 29;
 					}
+					if(LESSON_STATE.equals("0006") && i > 39 && i < 43) {
+						i = 43;
+					}
 
 					int judgeMent = 0;
-					System.out.println("rootA");
+					
 					
 					//ExecFeelcycleController.getCapture(driver,"test1");
+					System.out.println("バッグ選択ループへ");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
 						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
 						System.out.println(msgJudge);
