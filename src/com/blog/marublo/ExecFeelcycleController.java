@@ -762,7 +762,7 @@ public class ExecFeelcycleController {
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
-						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} a;";
+						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
 						System.out.println(msgJudge);
 						boolean abmonJudgeMent = (boolean)js.executeScript(msgJudge);
 						System.out.println("判定:" + abmonJudgeMent);
