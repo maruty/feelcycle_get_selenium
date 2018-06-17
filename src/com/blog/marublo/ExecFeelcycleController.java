@@ -729,7 +729,7 @@ public class ExecFeelcycleController {
 					sheetMax = 94;
 					break;
 				case "0006":
-					sheetMax = 55;
+					sheetMax = 53;
 					break;
 
 				default:
@@ -745,6 +745,10 @@ public class ExecFeelcycleController {
 						switch (LESSON_STATE) {
 						case "0001":
 							i = 7;
+							break;
+						
+						case "0006":
+							i = 15;
 							break;
 
 						default:
