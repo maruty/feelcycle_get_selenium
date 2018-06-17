@@ -758,7 +758,7 @@ public class ExecFeelcycleController {
 							break;
 						}
 					}
-					if(LESSON_STATE.equals("0006") && i < 25 && i < 29) {
+					if(LESSON_STATE.equals("0006") && i > 25 && i < 29) {
 						i = 29;
 					}
 
