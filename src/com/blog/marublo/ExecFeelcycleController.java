@@ -688,7 +688,7 @@ public class ExecFeelcycleController {
 					//ここまで来るということは座席空席なし
 					Calendar calendar = Calendar.getInstance();
 					// System.out.println(calendar.getTime().toString());
-					System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
+					System.out.println(calendar.getTime().toString() + ": 満席状態1なので再度取得");
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					continue;
 				}
@@ -859,7 +859,7 @@ public class ExecFeelcycleController {
 				//ここまで来るということは座席空席なし
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
-				System.out.println(calendar.getTime().toString() + ": 満席状態なので再度取得");
+				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得");
 			}
 		}
 	}
