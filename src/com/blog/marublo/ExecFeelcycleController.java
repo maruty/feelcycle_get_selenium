@@ -672,6 +672,7 @@ public class ExecFeelcycleController {
 
 				//座席ページへの移動完了 waiting-list
 				driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
+				Thread.sleep(1000);
 				System.out.println("座席ページに移動したはず");
 
 				//満員だとキャン待ち画面になるのでチェック
