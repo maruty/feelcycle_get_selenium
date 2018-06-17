@@ -143,7 +143,9 @@ public class ExecFeelcycleController {
 		options.addPreference("network.http.speculative-parallel-limit", 0);
 		options.addPreference("privacy.trackingprotection.enabled", true);
 		options.addPreference("view_source.wrap_long_lines", true);
-
+		//
+		options.addPreference("network.http.use-cache", true);
+		options.addPreference("browser.cache.offline.enable", true);
 		options.addPreference("browser.cache.memory.enable", true);
 		options.addPreference("browser.cache.disk.enable", false);
 
