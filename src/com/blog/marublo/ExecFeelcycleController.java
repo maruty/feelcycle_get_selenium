@@ -803,7 +803,7 @@ public class ExecFeelcycleController {
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
 						driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
 
 						//System.out.println("lessonID = " + hiddenCall);
 
