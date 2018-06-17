@@ -679,6 +679,9 @@ public class ExecFeelcycleController {
 				//String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
 				//		"if(bag.length > 0) {count = 1} return count;";
 				//Long judgeMent1 = (Long) js.executeScript(msg0);
+				
+				System.out.println("キャン待ち状態か？人数：" + judgeMent1);
+				
 
 				if(judgeMent1 > 0){
 
@@ -760,6 +763,8 @@ public class ExecFeelcycleController {
 					}
 
 					int judgeMent = 0;
+					System.out.println("rootA");
+					
 					//ExecFeelcycleController.getCapture(driver,"test1");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
 						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
