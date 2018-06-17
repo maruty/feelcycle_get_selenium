@@ -755,6 +755,9 @@ public class ExecFeelcycleController {
 							break;
 						}
 					}
+					if(LESSON_STATE.equals("0006") && i < 25 && i < 29) {
+						i = 29;
+					}
 
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
@@ -764,6 +767,7 @@ public class ExecFeelcycleController {
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
+							//var $elementNodeReference = document.getElementById( "#5" );
 
 							String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
 									"if(!bag.disabled) {bag.click(); count = 1; } ;";
