@@ -764,9 +764,9 @@ public class ExecFeelcycleController {
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
 						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} a;";
 						System.out.println(msgJudge);
-						String bmonJudgeMent = (String)js.executeScript(msgJudge);
-						System.out.println("判定:" + bmonJudgeMent);
-						if(bmonJudgeMent.equals("true")) {
+						boolean abmonJudgeMent = (boolean)js.executeScript(msgJudge);
+						System.out.println("判定:" + abmonJudgeMent);
+						if(abmonJudgeMent == true) {
 						//if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
 							judgeMent = 1;
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
