@@ -762,7 +762,11 @@ public class ExecFeelcycleController {
 					int judgeMent = 0;
 					//ExecFeelcycleController.getCapture(driver,"test1");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
-						if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
+						String msgJudge = "var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ return false; }else{return true;}";
+						String bmonJudgeMent = (String)js.executeScript(msgJudge);
+						System.out.println("判定:" + bmonJudgeMent);
+						if(bmonJudgeMent.equals("true")) {
+						//if(driver.findElement(By.cssSelector("#bag" + i)).isEnabled()) {
 							judgeMent = 1;
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
 							//driver.findElement(By.cssSelector("#bag" + i)).click();
