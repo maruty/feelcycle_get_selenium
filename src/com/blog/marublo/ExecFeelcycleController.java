@@ -527,6 +527,7 @@ public class ExecFeelcycleController {
 			if(loginCount < 1) {
 				while(true){
 					System.out.println("ログイン出来てなかったので再度ログインします");
+					driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 				    driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
