@@ -528,12 +528,12 @@ public class ExecFeelcycleController {
 				while(true){
 					System.out.println("ログイン出来てなかったので再度ログインします");
 					driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
-				    driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+				    driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					//js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
 					driver.findElement(By.cssSelector("#your-password")).sendKeys(USER_PASS);
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					//js.executeScript("document.querySelector(\"#login-btn > span\").click();");
 					driver.findElement(By.cssSelector("#login-btn")).click();
 					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
