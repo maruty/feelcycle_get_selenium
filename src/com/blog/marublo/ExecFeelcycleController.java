@@ -889,7 +889,9 @@ public class ExecFeelcycleController {
 				//ここまで来るということは座席空席なし
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
-				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得");
+				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
+				getShellCall();
+
 			}
 		}
 	}
