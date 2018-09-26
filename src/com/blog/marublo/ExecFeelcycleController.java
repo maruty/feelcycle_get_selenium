@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -152,7 +150,7 @@ public class ExecFeelcycleController {
 
 		options.addPreference("network.http.pipelining", true);
 		options.addPreference("network.http.pipelining.ssl", true);
-		
+
 		options.addPreference("browser.tabs.remote.autostart.2", false);
 
     	//options.setProfile(profile);
@@ -269,9 +267,9 @@ public class ExecFeelcycleController {
 			boolean firstFlag = true;
 			//ループに入ってからの時間を測定 ミリ秒
 			long startMilli = System.currentTimeMillis();
-			
-			
-			
+
+
+
 			//int loopCount = 0;
 			//実際の座席取得処理
 			while (true) {
@@ -284,7 +282,7 @@ public class ExecFeelcycleController {
 					driver = new FirefoxDriver(options);
 					System.out.println("Feelcycle：Login");
 					driver =  driver2;
-					
+
 					driver.get("https://www.feelcycle.com/feelcycle_reserve/mypage.php");
 
 					driver.findElement(By.name("login_id")).sendKeys(USER_ID);
@@ -292,17 +290,17 @@ public class ExecFeelcycleController {
 
 					driver.findElement(By.cssSelector(".submit_b")).click();
 					System.out.println("Feelcycle：ログイン成功");
-					
+
 					loopCount = 0;
 					//driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 				}
 			*/
-				
-				
+
+
 				/*
-				 *10分たったら強制的に終了 
+				 *10分たったら強制的に終了
 				 * */
-				
+
 				long loopMilli = System.currentTimeMillis();
 				//1秒1000ミリ秒
 				if(loopMilli -startMilli > 600000 ) {
@@ -311,8 +309,8 @@ public class ExecFeelcycleController {
 					getShellCall();
 					System.exit(0);
 				}
-				
-				
+
+
 				driver.get("https://www.feelcycle.com/feelcycle_reserve/reserve.php");
 
 				/*
@@ -523,6 +521,29 @@ public class ExecFeelcycleController {
 			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 
 
+			//#login-user-name
+			//ログインできたかチェック
+			int loginCount = driver.findElements(By.cssSelector("#login-user-name")).size();
+			if(loginCount < 1) {
+				while(true){
+					System.out.println("ログイン出来てなかったので再度ログインします");
+				    driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					//js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
+					driver.findElement(By.cssSelector("#your-password")).sendKeys(USER_PASS);
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					//js.executeScript("document.querySelector(\"#login-btn > span\").click();");
+					driver.findElement(By.cssSelector("#login-btn")).click();
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					int loginCountLoop = driver.findElements(By.cssSelector("#login-user-name")).size();
+					if(loginCountLoop > 0) {
+						break;
+					}
+				}
+			}
+
+
 		    System.out.println("ログインボタンチェック");
 			//driver.findElement(By.xpath("//*[@id=\"g-console\"]/li[1]/button")).click();
 			//Thread.sleep(1000);
@@ -540,12 +561,12 @@ public class ExecFeelcycleController {
 			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
 			long startMilliBmon = System.currentTimeMillis();
 			while(true){
-				
-				
+
+
 				/*
-				 *10分たったら強制的に終了 
+				 *10分たったら強制的に終了
 				 * */
-				
+
 				long loopMilli = System.currentTimeMillis();
 				//1秒1000ミリ秒
 				if(loopMilli - startMilliBmon > 600000 ) {
@@ -683,9 +704,9 @@ public class ExecFeelcycleController {
 				//String msg0 = "var bag = document.getElementsByClassName('waiting-list'); var count = 0;" +
 				//		"if(bag.length > 0) {count = 1} return count;";
 				//Long judgeMent1 = (Long) js.executeScript(msg0);
-				
+
 				System.out.println("キャン待ち状態か？人数：" + judgeMent1);
-				
+
 
 				if(judgeMent1 > 0){
 
@@ -753,7 +774,7 @@ public class ExecFeelcycleController {
 						case "0001":
 							i = 7;
 							break;
-						
+
 						case "0006":
 							i = 15;
 							break;
@@ -770,8 +791,8 @@ public class ExecFeelcycleController {
 					}
 
 					int judgeMent = 0;
-					
-					
+
+
 					//ExecFeelcycleController.getCapture(driver,"test1");
 					System.out.println("バッグ選択ループへ");
 					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
@@ -871,7 +892,7 @@ public class ExecFeelcycleController {
 			}
 		}
 	}
-	
+
 	public static void getShellCall() {
         BufferedReader br = null;
         // 起動するコマンド、引数でProcessBuilderを作る。
@@ -881,7 +902,7 @@ public class ExecFeelcycleController {
         try {
             // プロセス起動
             Process process = pb.start();
-            
+
             // 起動したプロセスの標準出力を取得して表示する。
             //   標準出力やエラー出力が必要なくても読んどかないとバッファがいっぱいになって
             //   プロセスが止まる(一時停止)してしまう場合がある。
@@ -983,11 +1004,11 @@ public class ExecFeelcycleController {
 					driver.findElement(
 							By.xpath("/html/body/div/div/div[9]/table/tbody/tr/td[2]/a"))
 							.click();
-					
+
 					driver.manage().timeouts().implicitlyWait(10 ,TimeUnit.SECONDS);
 					Thread.sleep(10000);
 					ExecFeelcycleController.getCapture(driver,"feelcycle_finish");
-					
+
 					if(driver.findElements(By.cssSelector("#form_back_dark > div:nth-child(4) > table > tbody > tr > td")).size() > 0) {
 						String finishText = driver.findElement(By.xpath("/html/body/div/div/div[4]/table/tbody/tr/td/p")).getText();
 						System.out.println("finishText:" + finishText);
@@ -1013,9 +1034,9 @@ public class ExecFeelcycleController {
 						getShellCall();
 						System.exit(0);
 					}
-					
-					
-					
+
+
+
 				}
 				sheetCountNumber++;
 			}
