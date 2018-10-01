@@ -531,12 +531,13 @@ public class ExecFeelcycleController {
 				    driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
+					driver.findElement(By.cssSelector("#your-id")).sendKeys(USER_ID);
 					//js.executeScript("document.getElementById('your-password').value='"+USER_PASS+ "';");
 					driver.findElement(By.cssSelector("#your-password")).sendKeys(USER_PASS);
 					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					//js.executeScript("document.querySelector(\"#login-btn > span\").click();");
 					driver.findElement(By.cssSelector("#login-btn")).click();
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(4 ,TimeUnit.SECONDS);
 					int loginCountLoop = driver.findElements(By.cssSelector("#login-user-name")).size();
 					if(loginCountLoop > 0) {
 						break;
