@@ -530,6 +530,9 @@ public class ExecFeelcycleController {
 					
 					driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 					driver.navigate().refresh();
+					driver.navigate().refresh();
+					driver.navigate().refresh();
+					driver.manage().timeouts().implicitlyWait(4 ,TimeUnit.SECONDS);
 				    driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
