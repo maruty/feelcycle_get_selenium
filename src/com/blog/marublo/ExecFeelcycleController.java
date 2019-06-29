@@ -58,11 +58,6 @@ public class ExecFeelcycleController {
 		    	//開発環境
 		    //System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
 
-
-
-
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,20 +78,14 @@ public class ExecFeelcycleController {
 		final String LESSON_DATE = lessonInfo.getLessonDate();
 		final String LESSON_TIME = lessonInfo.getLessonTime();
 		final String LESSON_STATE = lessonInfo.getLessonState();
-
 		final String USER_ID = lessonInfo.getUserId();
 		final String USER_PASS = lessonInfo.getUserPass();
-
 		final String GYM = lessonInfo.getGym();
-
-		//WebDriver driver = new FirefoxDriver();
 
 		//chrome driver用
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
-
 		FirefoxOptions options = new FirefoxOptions();
-		//options.addPreference(key, value)
 		options.addPreference("browser.chrome.image_icons.max_size", 0);
 		options.addPreference("browser.display.show_image_placeholders", false);
 		options.addPreference("browser.download.manager.addToRecentDocs", false);
@@ -146,45 +135,14 @@ public class ExecFeelcycleController {
 		options.addPreference("browser.cache.offline.enable", true);
 		options.addPreference("browser.cache.memory.enable", true);
 		options.addPreference("browser.cache.disk.enable", false);
-
-
 		options.addPreference("network.http.pipelining", true);
 		options.addPreference("network.http.pipelining.ssl", true);
-
 		options.addPreference("browser.tabs.remote.autostart.2", false);
 
-    	//options.setProfile(profile);
 		WebDriver driver = new FirefoxDriver(options);
 
 
-
-
-
-    	///FirefoxProfile profile = new FirefoxProfile();
-
-
-    	/*
-	    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	    capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-        @SuppressWarnings("deprecation")
-		WebDriver driver = new FirefoxDriver(capabilities);
-		*/
-		//WebDriver driver = new ChromeDriver();
-
-
-
-		//WebDriver driver = new ChromeDriver(options);
-	    /*
-		WebDriver driver = new RemoteWebDriver(service.getUrl(),
-	            DesiredCapabilities.chrome());
-		*/
-
-
-		//作業時はpomからやること
-		//System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
-		//WebDriver driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-		//driver.manage().window().setSize(new Dimension(width, height));
 
 		//feelcycle パターン
 		if(GYM.equals("1")){
@@ -364,6 +322,7 @@ public class ExecFeelcycleController {
 					} catch (Exception e) {
 						// 握りつぶす
 						// e.printStackTrace();
+						driver.quit();
 					}
 
 				}
@@ -476,6 +435,7 @@ public class ExecFeelcycleController {
 
 		} else {
 			//System.out.println("gym1の分岐に入らなかった");
+			driver.quit();
 		}
 		//b-monsterの場合
 		if(GYM.equals("2")){
@@ -697,6 +657,7 @@ public class ExecFeelcycleController {
 					//}
 				}else{
 					System.out.println("エラーのはず");
+					driver.quit();
 					System.exit(0);
 				}
 
@@ -880,7 +841,9 @@ public class ExecFeelcycleController {
 
 						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
 							System.out.println("b-monster:取得完了");
+							driver.quit();
 						} else {
+							driver.quit();
 							ExecFeelcycleController.getCapture(driver,"test5");
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
 							getShellCall();
@@ -896,6 +859,7 @@ public class ExecFeelcycleController {
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
 				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
+				driver.quit();
 				getShellCall();
 
 			}
