@@ -86,6 +86,7 @@ public class ExecFeelcycleController {
 		//jenkins のビルドの　MAVEN_OPTISに-DargLine="-Dwebdriver.chrome.driver=/opt/chromedriver/chromedriver"
 		//を設定している
 		FirefoxOptions options = new FirefoxOptions();
+		/*
 		options.addPreference("browser.chrome.image_icons.max_size", 0);
 		options.addPreference("browser.display.show_image_placeholders", false);
 		options.addPreference("browser.download.manager.addToRecentDocs", false);
@@ -130,14 +131,14 @@ public class ExecFeelcycleController {
 		options.addPreference("network.http.speculative-parallel-limit", 0);
 		options.addPreference("privacy.trackingprotection.enabled", true);
 		options.addPreference("view_source.wrap_long_lines", true);
-		//
-		options.addPreference("network.http.use-cache", true);
+				options.addPreference("network.http.use-cache", true);
 		options.addPreference("browser.cache.offline.enable", true);
 		options.addPreference("browser.cache.memory.enable", true);
 		options.addPreference("browser.cache.disk.enable", false);
 		options.addPreference("network.http.pipelining", true);
 		options.addPreference("network.http.pipelining.ssl", true);
 		options.addPreference("browser.tabs.remote.autostart.2", false);
+		*/
 
 		WebDriver driver = new FirefoxDriver(options);
 
