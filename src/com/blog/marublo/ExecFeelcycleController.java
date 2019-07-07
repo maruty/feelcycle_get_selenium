@@ -536,7 +536,7 @@ public class ExecFeelcycleController {
 				long loopMilli = System.currentTimeMillis();
 				//1秒1000ミリ秒
 				if(loopMilli - startMilliBmon > 600000 ) {
-					driver.quit();
+					//driver.quit();
 					System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
 					getShellCall();
 					System.exit(0);
@@ -664,7 +664,7 @@ public class ExecFeelcycleController {
 				driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 				Thread.sleep(1000);
 				System.out.println("座席ページに移動したはず");
-				ExecFeelcycleController.getCapture(driver,"b-lisdt");
+				//ExecFeelcycleController.getCapture(driver,"b-lisdt");
 
 				//満員だとキャン待ち画面になるのでチェック
 				int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
@@ -836,19 +836,19 @@ public class ExecFeelcycleController {
 						//Thread.sleep(2000);
 
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-						ExecFeelcycleController.getCapture(driver,"test4");
+						//ExecFeelcycleController.getCapture(driver,"test4");
 
 						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
 							System.out.println("b-monster:取得完了");
 							driver.quit();
 						} else {
-							driver.quit();
-							ExecFeelcycleController.getCapture(driver,"test5");
+							//driver.quit();
+							//ExecFeelcycleController.getCapture(driver,"test5");
 							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
 							getShellCall();
 
 						}
-						ExecFeelcycleController.getCapture(driver,"b-monster_finish");
+						//ExecFeelcycleController.getCapture(driver,"b-monster_finish");
 						driver.quit();
 						System.exit(0);
 					}
@@ -858,7 +858,7 @@ public class ExecFeelcycleController {
 				Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
 				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
-				driver.quit();
+				//driver.quit();
 				getShellCall();
 
 			}
