@@ -32,7 +32,7 @@ public class ExecFeelcycleController {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws InterruptedException,
-			IOException {
+			IOException, BmonsterException {
 
 		// jsonファイルで取得予定のファイルのコントロール
 		// String lessonJson = "";
@@ -370,6 +370,7 @@ public class ExecFeelcycleController {
 				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
 				//driver.quit();
 				getShellCall();
+				System.exit(0);
 
 			}
 		}
