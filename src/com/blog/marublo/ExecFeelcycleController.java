@@ -146,7 +146,7 @@ public class ExecFeelcycleController {
 			System.out.println("b-monster：ログイン成功");
 
 			
-			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 			long startMilliBmon = System.currentTimeMillis();
 			while(true){
 
@@ -338,7 +338,7 @@ public class ExecFeelcycleController {
 
 					if(judgeMent == 1){
 						System.out.println("座席bag=" + i + "をタップ");
-						driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
+						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange > span")).click();
 						System.out.println("最終確認前タップ");
 						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
