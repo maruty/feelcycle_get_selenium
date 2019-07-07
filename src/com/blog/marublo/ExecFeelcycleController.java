@@ -141,8 +141,6 @@ public class ExecFeelcycleController {
 		*/
 
 		WebDriver driver = new FirefoxDriver(options);
-
-
 		driver.manage().window().maximize();
 
 		//feelcycle パターン
@@ -442,7 +440,7 @@ public class ExecFeelcycleController {
 		if(GYM.equals("2")){
 			//driver = new FirefoxDriver();
 			System.out.println("b-monster:ログイン開始");
-
+			
 			driver.get("https://www.b-monster.jp/reserve/?studio_code=0001");
 
 			// ウィンドウ切り替え
