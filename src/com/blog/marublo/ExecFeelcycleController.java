@@ -124,7 +124,6 @@ public class ExecFeelcycleController {
 					driver.navigate().refresh();
 					driver.navigate().refresh();
 					driver.navigate().refresh();
-					driver.manage().timeouts().implicitlyWait(4 ,TimeUnit.SECONDS);
 				    driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					js.executeScript("var v = document.getElementsByTagName('button');v[0].click();");
 					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
@@ -134,7 +133,7 @@ public class ExecFeelcycleController {
 					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					//js.executeScript("document.querySelector(\"#login-btn > span\").click();");
 					driver.findElement(By.cssSelector("#login-btn")).click();
-					driver.manage().timeouts().implicitlyWait(4 ,TimeUnit.SECONDS);
+					driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 					int loginCountLoop = driver.findElements(By.cssSelector("#login-user-name")).size();
 					if(loginCountLoop > 0) {
 						break;
