@@ -321,7 +321,7 @@ public class ExecFeelcycleController {
 					} catch (Exception e) {
 						// 握りつぶす
 						// e.printStackTrace();
-						driver.quit();
+						//driver.quit();
 					}
 
 				}
