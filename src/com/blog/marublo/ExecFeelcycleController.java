@@ -434,7 +434,7 @@ public class ExecFeelcycleController {
 
 		} else {
 			//System.out.println("gym1の分岐に入らなかった");
-			driver.quit();
+			//driver.quit();
 		}
 		//b-monsterの場合
 		if(GYM.equals("2")){
@@ -656,7 +656,7 @@ public class ExecFeelcycleController {
 					//}
 				}else{
 					System.out.println("エラーのはず");
-					driver.quit();
+					//driver.quit();
 					System.exit(0);
 				}
 
