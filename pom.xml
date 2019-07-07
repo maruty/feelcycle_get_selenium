@@ -3,7 +3,7 @@
   <groupId>feelcycle_get_selenium</groupId>
   <artifactId>feelcycle_get_selenium</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
