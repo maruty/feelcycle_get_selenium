@@ -240,7 +240,7 @@ public class ExecFeelcycleController {
 				System.exit(0);
 			}
 
-			ExecFeelcycleController.getCapture(driver,"status_move");
+			ExecFeelcycleController.getCapture(driver,"status_move_list");
 
 			//座席ページへの移動完了 waiting-list
 			driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
@@ -262,6 +262,11 @@ public class ExecFeelcycleController {
 				driver.get(bmonsterStudioUrl);
 
 				int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
+
+
+
+				ExecFeelcycleController.getCapture(driver,"status_detail_list");
+
 				if(judgeMent1 > 0){
 
 					//ここまで来るということは座席空席なし
@@ -437,7 +442,7 @@ public class ExecFeelcycleController {
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			String fileName = site + "_"  + ".png";
 			String rootPath = "/var/www/html/log_images/";
-			String URL = "http://133.242.235.62";
+			String URL = "http://133.242.226.123";
 			FileUtils.copyFile(srcFile, new File(rootPath + fileName));
 			System.out.println("file:" + "  " + URL + "/log_images/" + fileName);
 	}
