@@ -188,13 +188,15 @@ public class ExecFeelcycleController {
 
 				if(lessonDay.equals(LESSON_DATE)) {
 					bmonLessonListCount = coutLessonDate;
+					System.out.println("日付一致");
+					break;
 				}
 
 				coutLessonDate++;
 
 			}
-
-
+			//7月12日(金)
+			//7月12日(金)
 
 			//for(int i=0; i < lessonCountList.size(); i++) {
 				//String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
