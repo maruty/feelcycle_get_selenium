@@ -20,6 +20,7 @@
 Thumbs.db
 .DS_Store
 
+#IntelJ
 
 # Maven
 target
@@ -35,3 +36,4 @@ bin
 *.bak
 jenkins.json
 lesson.json
+

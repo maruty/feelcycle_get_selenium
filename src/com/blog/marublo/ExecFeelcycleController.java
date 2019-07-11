@@ -148,120 +148,131 @@ public class ExecFeelcycleController {
 			
 			driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 			long startMilliBmon = System.currentTimeMillis();
-			while(true){
 
-				/*
-				 *10分たったら強制的に終了
-				 * */
+			/*
+			 *10分たったら強制的に終了
+			 * */
 
-				long loopMilli = System.currentTimeMillis();
-				//1秒1000ミリ秒
-				if(loopMilli - startMilliBmon > 600000 ) {
-					//driver.quit();
-					System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
-					getShellCall();
-					System.exit(0);
+			long loopMilli = System.currentTimeMillis();
+			//1秒1000ミリ秒
+			if(loopMilli - startMilliBmon > 600000 ) {
+				//driver.quit();
+				System.out.println("10分経過しても座席が空きません、いったん再処理を行います");
+				getShellCall();
+				System.exit(0);
+			}
+
+			//初回のみ一覧画面からの選択とする それ移行はURL再アタックで効率化を図る
+
+			System.out.println("b-monster：予約画面スケジュール一覧");
+			String bmonsterStudioUrl = "https://www.b-monster.jp/reserve/?studio_code=" + LESSON_STATE;
+
+			driver.get(bmonsterStudioUrl);
+			//System.out.println("30秒待つ");
+			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+			//日にちの合致を行なって対象のオブジェクトのみを集めに行く
+
+			int bmonLessonDayCountint = driver.findElements(By.cssSelector(".flex-no-wrap")).size();
+
+			//List<WebElement>bmnonLessonList = null;
+
+			int bmonLessonListCount = 100;
+
+			for(int i=0; i < bmonLessonDayCountint; i++) {
+				String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
+						"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
+				//System.out.println(msg);
+				String bmonLessonDayMuch = (String)js.executeScript(msg);
+
+
+				if(bmonLessonDayMuch.equals(LESSON_DATE)){
+
+					bmonLessonListCount = i;
+					break;
 				}
+			}
 
-				System.out.println("b-monster：予約画面スケジュール一覧");
-				String bmonsterStudioUrl = "https://www.b-monster.jp/reserve/?studio_code=" + LESSON_STATE;
-
-				driver.get(bmonsterStudioUrl);
-				//System.out.println("30秒待つ");
-				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-				//日にちの合致を行なって対象のオブジェクトのみを集めに行く
-
-				int bmonLessonDayCountint = driver.findElements(By.cssSelector(".flex-no-wrap")).size();
-
-				//List<WebElement>bmnonLessonList = null;
-
-				int bmonLessonListCount = 100;
-
-				for(int i=0; i < bmonLessonDayCountint; i++) {
-					String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
-							"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
-					//System.out.println(msg);
-					String bmonLessonDayMuch = (String)js.executeScript(msg);
-
-
-					if(bmonLessonDayMuch.equals(LESSON_DATE)){
-
-						bmonLessonListCount = i;
-						break;
-					}
-				}
-
-				//System.out.println("bmnonLessonListの数は:" + bmnonLessonList.size());
-				//合致する時間のレッスンをクリックするこの100が1週間のどこの要素と合致しているかをあわしている 2=火曜日みたいな感じ
-				if(bmonLessonListCount != 100){
-					//for(WebElement element : bmnonLessonList) {
-						//時間帯の要素数を割り出す
-						String msg =
+			//System.out.println("bmnonLessonListの数は:" + bmnonLessonList.size());
+			//合致する時間のレッスンをクリックするこの100が1週間のどこの要素と合致しているかをあわしている 2=火曜日みたいな感じ
+			if(bmonLessonListCount != 100){
+				//for(WebElement element : bmnonLessonList) {
+					//時間帯の要素数を割り出す
+					String msg =
+							"var box=document.getElementById('scroll-box'); " +
+							"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
+							"var leg =  tags.getElementsByClassName('daily-panel'); " +
+							"var low =  leg[0].getElementsByClassName('panel'); " +
+							"return low.length";
+					Long hourCountElement = (Long) js.executeScript(msg);
+					//System.out.println("時間の要素数：" + hourCountElement);
+					//この要素数でまわす
+					//String bmonTimeStr ="";
+					for(int i=0; i < hourCountElement; i++){
+						//時間で合致するものがあったらクリックする
+						String msg1 =
 								"var box=document.getElementById('scroll-box'); " +
 								"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
 								"var leg =  tags.getElementsByClassName('daily-panel'); " +
 								"var low =  leg[0].getElementsByClassName('panel'); " +
-								"return low.length";
-						Long hourCountElement = (Long) js.executeScript(msg);
-						//System.out.println("時間の要素数：" + hourCountElement);
-						//この要素数でまわす
-						//String bmonTimeStr ="";
-						for(int i=0; i < hourCountElement; i++){
-							//時間で合致するものがあったらクリックする
-							String msg1 =
+								"var low2 = low[" + i + "].getElementsByClassName('tt-time')[0];" +
+								"return low2.innerHTML";
+						//System.out.println("取得:" + msg1);
+						String hourStringNameHour = (String) js.executeScript(msg1);
+						if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
+
+							String msg2 =
 									"var box=document.getElementById('scroll-box'); " +
 									"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
 									"var leg =  tags.getElementsByClassName('daily-panel'); " +
 									"var low =  leg[0].getElementsByClassName('panel'); " +
-									"var low2 = low[" + i + "].getElementsByClassName('tt-time')[0];" +
-									"return low2.innerHTML";
-							//System.out.println("取得:" + msg1);
-							String hourStringNameHour = (String) js.executeScript(msg1);
-							if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
-
-								String msg2 =
-										"var box=document.getElementById('scroll-box'); " +
-										"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
-										"var leg =  tags.getElementsByClassName('daily-panel'); " +
-										"var low =  leg[0].getElementsByClassName('panel'); " +
-										"var low2 = low[" + i + "].getElementsByTagName('a')[0];" +
-										"low2.click();";
-								js.executeScript(msg2);
-								break;
-							}
-
+									"var low2 = low[" + i + "].getElementsByTagName('a')[0];" +
+									"low2.click();";
+							js.executeScript(msg2);
+							break;
 						}
 
-					//}
-				}else{
-					System.out.println("エラーのはず");
-					//driver.quit();
-					System.exit(0);
-				}
+					}
 
-				//座席ページへの移動完了 waiting-list
-				driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
-				System.out.println("座席ページに移動したはず");
-
-				//満員だとキャン待ち画面になるのでチェック
-				int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
-				System.out.println("キャン待ち状態か？人数：" + judgeMent1);
+				//}
+			}else{
+				System.out.println("エラーのはず");
+				//driver.quit();
+				System.exit(0);
+			}
 
 
-				if(judgeMent1 > 0){
+			//座席ページへの移動完了 waiting-list
+			driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
 
-					//ここまで来るということは座席空席なし
-					Calendar calendar = Calendar.getInstance();
-					// System.out.println(calendar.getTime().toString());
-					System.out.println(calendar.getTime().toString() + ": 満席状態1なので再度取得");
-					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-					continue;
-				}
 
+
+			//満員だとキャン待ち画面になるのでチェック
+			int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
+			System.out.println("キャン待ち状態か？人数：" + judgeMent1);
+
+			bmonsterStudioUrl = driver.getCurrentUrl();
+
+			System.out.println("targetUrl:" + bmonsterStudioUrl);
+
+
+			System.out.println("座席ページに移動したはず");
+
+
+			if(judgeMent1 > 0){
+
+				//ここまで来るということは座席空席なし
+				Calendar calendar = Calendar.getInstance();
+				// System.out.println(calendar.getTime().toString());
+				System.out.println(calendar.getTime().toString() + ": 満席状態1なので再度取得");
+				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+
+			}
+
+			while(true){
 				//String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
-				String hiddenCall = driver.findElement(By.name("lesson_id")).getAttribute("value");
-				String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=" + LESSON_STATE;
-				driver.get(studioLessonURL);
+				//String hiddenCall = driver.findElement(By.name("lesson_id")).getAttribute("value");
+				//String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=" + LESSON_STATE;
+				driver.get(bmonsterStudioUrl);
 				js = (JavascriptExecutor) driver;
 
 
