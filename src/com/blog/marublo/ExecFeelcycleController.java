@@ -240,6 +240,7 @@ public class ExecFeelcycleController {
 				System.exit(0);
 			}
 
+			ExecFeelcycleController.getCapture(driver,"status_move");
 
 			//座席ページへの移動完了 waiting-list
 			driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
@@ -248,7 +249,6 @@ public class ExecFeelcycleController {
 
 
 			//満員だとキャン待ち画面になるのでチェック
-
 			System.out.println("targetUrl:" + bmonsterStudioUrl);
 			//System.out.println("キャン待ち状態か？人数：" + judgeMent1);
 			//System.out.println("座席ページに移動したはず");
