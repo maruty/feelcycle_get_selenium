@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -172,25 +173,47 @@ public class ExecFeelcycleController {
 			driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 			//日にちの合致を行なって対象のオブジェクトのみを集めに行く
 
-			int bmonLessonDayCountint = driver.findElements(By.cssSelector(".flex-no-wrap")).size();
+			//int bmonLessonDayCountint = driver.findElements(By.cssSelector(".flex-no-wrap")).size();
+			List<WebElement> lessonCountList = driver.findElements(By.cssSelector(".flex-no-wrap"));
 
 			//List<WebElement>bmnonLessonList = null;
 
 			int bmonLessonListCount = 100;
 
-			for(int i=0; i < bmonLessonDayCountint; i++) {
-				String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
-						"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
+			int coutLessonDate = 0;
+
+			for(WebElement e : lessonCountList) {
+				String lessonDay = e.findElement(By.cssSelector(".today")).getText();
+				System.out.println(lessonDay);
+
+				if(lessonDay.equals(LESSON_DATE)) {
+					bmonLessonListCount = coutLessonDate;
+				}
+
+				coutLessonDate++;
+
+			}
+
+
+
+			//for(int i=0; i < lessonCountList.size(); i++) {
+				//String msg = "var box=document.getElementById('scroll-box'); var tags = box.getElementsByClassName('flex-no-wrap');  var leg =  tags[" +(i) + "].getElementsByClassName('column-header'); " +
+				//		"var a; for(var i = 0; i < leg.length; i++){ a = leg[i].getElementsByTagName('h3')[0]}; return a.innerHTML;";
 				//System.out.println(msg);
-				String bmonLessonDayMuch = (String)js.executeScript(msg);
+				//String bmonLessonDayMuch = (String)js.executeScript(msg);
+				//#scroll-box > div > div:nth-child(1) > div > h3
+				//#scroll-box > div > div:nth-child(1)
+				//driver.findElement(By.cssSelector())
 
-
+				/*
 				if(bmonLessonDayMuch.equals(LESSON_DATE)){
 
 					bmonLessonListCount = i;
 					break;
 				}
 			}
+			*/
+
 
 			//System.out.println("bmnonLessonListの数は:" + bmnonLessonList.size());
 			//合致する時間のレッスンをクリックするこの100が1週間のどこの要素と合致しているかをあわしている 2=火曜日みたいな感じ
