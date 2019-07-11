@@ -220,18 +220,42 @@ public class ExecFeelcycleController {
 			if(bmonLessonListCount != 100){
 				//for(WebElement element : bmnonLessonList) {
 					//時間帯の要素数を割り出す
+					/*
 					String msg =
 							"var box=document.getElementById('scroll-box'); " +
 							"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
 							"var leg =  tags.getElementsByClassName('daily-panel'); " +
 							"var low =  leg[0].getElementsByClassName('panel'); " +
 							"return low.length";
-					Long hourCountElement = (Long) js.executeScript(msg);
+
+					 */
+					//Long hourCountElement = (Long) js.executeScript(msg);
+
+					//該当の要素のの.flex-no-wrapを取得
+					List <WebElement> hourList = lessonCountList.get(bmonLessonListCount+1).findElements(By.cssSelector("panel"));
+
+					//Long hourCountElement = driver.findElements(By.cssSelector(".flex-no-wrap"));
+
+
+
 					//System.out.println("時間の要素数：" + hourCountElement);
 					//この要素数でまわす
 					//String bmonTimeStr ="";
-					for(int i=0; i < hourCountElement; i++){
-						//時間で合致するものがあったらクリックする
+
+					for(WebElement e : hourList) {
+						String time = e.findElement(By.cssSelector("tt-time")).getText();
+						if(time.substring(0,5).equals(LESSON_TIME)){
+							e.findElement(By.cssSelector("a:nth-child(1)")).click();
+							break;
+						}
+
+					}
+
+
+
+
+					/*
+					for(int i=0; i < hourList.size(); i++){
 						String msg1 =
 								"var box=document.getElementById('scroll-box'); " +
 								"var tags = box.getElementsByClassName('flex-no-wrap')[" + bmonLessonListCount + "];" +
@@ -239,7 +263,6 @@ public class ExecFeelcycleController {
 								"var low =  leg[0].getElementsByClassName('panel'); " +
 								"var low2 = low[" + i + "].getElementsByClassName('tt-time')[0];" +
 								"return low2.innerHTML";
-						//System.out.println("取得:" + msg1);
 						String hourStringNameHour = (String) js.executeScript(msg1);
 						if(hourStringNameHour.substring(0, 5).equals(LESSON_TIME)){
 
@@ -255,6 +278,8 @@ public class ExecFeelcycleController {
 						}
 
 					}
+					*/
+
 
 				//}
 			}else{
