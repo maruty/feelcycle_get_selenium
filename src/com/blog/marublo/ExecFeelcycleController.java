@@ -245,7 +245,7 @@ public class ExecFeelcycleController {
 					//String bmonTimeStr ="";
 
 					for(WebElement e : hourList) {
-						String time = e.findElement(By.cssSelector("tt-time")).getText();
+						String time = e.findElement(By.cssSelector(".tt-time")).getText();
 						System.out.println(time);
 						if(time.substring(0,5).equals(LESSON_TIME)){
 							e.findElement(By.cssSelector("a:nth-child(1)")).click();
