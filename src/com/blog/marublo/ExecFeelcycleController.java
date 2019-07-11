@@ -234,7 +234,7 @@ public class ExecFeelcycleController {
 					//Long hourCountElement = (Long) js.executeScript(msg);
 
 					//該当の要素のの.flex-no-wrapを取得
-					List <WebElement> hourList = lessonCountList.get(bmonLessonListCount+1).findElements(By.cssSelector("panel"));
+					List <WebElement> hourList = lessonCountList.get(coutLessonDate+1).findElements(By.cssSelector("panel"));
 
 					//Long hourCountElement = driver.findElements(By.cssSelector(".flex-no-wrap"));
 
