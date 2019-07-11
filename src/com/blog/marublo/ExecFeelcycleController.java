@@ -183,7 +183,7 @@ public class ExecFeelcycleController {
 			int coutLessonDate = 0;
 
 			for(WebElement e : lessonCountList) {
-				String lessonDay = e.findElement(By.cssSelector(".today")).getText();
+				String lessonDay = e.findElement(By.cssSelector(".smooth-text")).getText();
 				System.out.println(lessonDay);
 
 				if(lessonDay.equals(LESSON_DATE)) {
