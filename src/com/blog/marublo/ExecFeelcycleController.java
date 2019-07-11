@@ -243,145 +243,145 @@ public class ExecFeelcycleController {
 
 			//座席ページへの移動完了 waiting-list
 			driver.manage().timeouts().implicitlyWait(2 ,TimeUnit.SECONDS);
+			bmonsterStudioUrl = driver.getCurrentUrl();
 
 
 
 			//満員だとキャン待ち画面になるのでチェック
-			int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
-			System.out.println("キャン待ち状態か？人数：" + judgeMent1);
-
-			bmonsterStudioUrl = driver.getCurrentUrl();
 
 			System.out.println("targetUrl:" + bmonsterStudioUrl);
+			//System.out.println("キャン待ち状態か？人数：" + judgeMent1);
+			//System.out.println("座席ページに移動したはず");
 
+			boolean loopFlagBmonster = true;
 
-			System.out.println("座席ページに移動したはず");
-
-
-			if(judgeMent1 > 0){
-
-				//ここまで来るということは座席空席なし
-				Calendar calendar = Calendar.getInstance();
-				// System.out.println(calendar.getTime().toString());
-				System.out.println(calendar.getTime().toString() + ": 満席状態1なので再度取得");
-				driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-
-			}
-
-			while(true){
+			while(loopFlagBmonster){
 				//String msg1 = "var val = document.getElementsByName('lesson_id'); return val[0].value;";
 				//String hiddenCall = driver.findElement(By.name("lesson_id")).getAttribute("value");
 				//String studioLessonURL = "https://www.b-monster.jp/reserve/punchbag?lesson_id=" + hiddenCall + "&studio_code=" + LESSON_STATE;
 				driver.get(bmonsterStudioUrl);
-				js = (JavascriptExecutor) driver;
 
+				int judgeMent1 = driver.findElements(By.cssSelector(".waiting-list")).size();
+				if(judgeMent1 > 0){
 
-				//boolean firstLoopFlag = true;
-				//座席
-				int sheetMax = 0;
-				switch (LESSON_STATE) {
-				case "0001":
-					sheetMax = 30;
-					break;
-				case "0002":
-					sheetMax = 54;
-					break;
-				case "0003":
-					sheetMax = 94;
-					break;
-				case "0006":
-					sheetMax = 53;
-					break;
+					//ここまで来るということは座席空席なし
+					Calendar calendar = Calendar.getInstance();
+					// System.out.println(calendar.getTime().toString());
+					System.out.println(calendar.getTime().toString() + ": 満席状態1なので再度取得");
+					driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
 
-				default:
-					sheetMax = 30;
-					break;
-				}
+				} else {
+					js = (JavascriptExecutor) driver;
 
-
-				boolean firstFlagSheets = true;
-
-				for(int i=1; i<=sheetMax; i++) {
-					if(firstFlagSheets) {
-						switch (LESSON_STATE) {
+					//boolean firstLoopFlag = true;
+					//座席
+					int sheetMax = 0;
+					switch (LESSON_STATE) {
 						case "0001":
-							i = 7;
+							sheetMax = 30;
 							break;
-
+						case "0002":
+							sheetMax = 54;
+							break;
+						case "0003":
+							sheetMax = 94;
+							break;
 						case "0006":
-							i = 15;
+							sheetMax = 53;
 							break;
 
 						default:
+							sheetMax = 30;
 							break;
+					}
+
+
+					boolean firstFlagSheets = true;
+
+					for(int i=1; i<=sheetMax; i++) {
+						if(firstFlagSheets) {
+							switch (LESSON_STATE) {
+								case "0001":
+									i = 7;
+									break;
+
+								case "0006":
+									i = 15;
+									break;
+
+								default:
+									break;
+							}
 						}
-					}
-					if(LESSON_STATE.equals("0006") && i > 25 && i < 29) {
-						i = 29;
-					}
-					if(LESSON_STATE.equals("0006") && i > 39 && i < 43) {
-						i = 43;
-					}
-
-					int judgeMent = 0;
-
-
-					//ExecFeelcycleController.getCapture(driver,"test1");
-					System.out.println("バッグ選択ループへ");
-					if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
-						String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
-						System.out.println(msgJudge);
-						boolean abmonJudgeMent = (boolean)js.executeScript(msgJudge);
-						System.out.println("判定:" + abmonJudgeMent);
-						if(abmonJudgeMent == true) {
-							judgeMent = 1;
-	
-							String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
-									"if(!bag.disabled) {bag.click(); count = 1; } ;";
-							 js.executeScript(msg);
-
-							Actions act = new Actions(driver);
-							act.sendKeys(Keys.PAGE_DOWN);
+						if(LESSON_STATE.equals("0006") && i > 25 && i < 29) {
+							i = 29;
 						}
-					}
-
-
-
-					if(judgeMent == 1){
-						System.out.println("座席bag=" + i + "をタップ");
-						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-						driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange > span")).click();
-						System.out.println("最終確認前タップ");
-						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-
-						int checkLastButton = driver.findElements(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).size();
-						System.out.println("数字：" + checkLastButton);
-						 driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).click();
-
-						System.out.println("最終確認タップ");
-
-						driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
-
-						if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
-							System.out.println("b-monster:取得完了");
-							driver.quit();
-						} else {
-							System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
-							getShellCall();
-
+						if(LESSON_STATE.equals("0006") && i > 39 && i < 43) {
+							i = 43;
 						}
-						//driver.quit();
-						System.exit(0);
+
+						int judgeMent = 0;
+
+
+						//ExecFeelcycleController.getCapture(driver,"test1");
+						System.out.println("バッグ選択ループへ");
+						if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
+							String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
+							System.out.println(msgJudge);
+							boolean abmonJudgeMent = (boolean)js.executeScript(msgJudge);
+							System.out.println("判定:" + abmonJudgeMent);
+							if(abmonJudgeMent == true) {
+								judgeMent = 1;
+
+								String msg = "var bag = document.getElementById('bag" + i + "'); var count = 0;" +
+										"if(!bag.disabled) {bag.click(); count = 1; } ;";
+								js.executeScript(msg);
+
+								Actions act = new Actions(driver);
+								act.sendKeys(Keys.PAGE_DOWN);
+							}
+						}
+
+
+
+						if(judgeMent == 1){
+							System.out.println("座席bag=" + i + "をタップ");
+							driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+							driver.findElement(By.cssSelector("#your-reservation > button.btn.btn-large.btn-gray.btn-orange > span")).click();
+							System.out.println("最終確認前タップ");
+							driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+
+							int checkLastButton = driver.findElements(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).size();
+							System.out.println("数字：" + checkLastButton);
+							driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/button/span")).click();
+
+							System.out.println("最終確認タップ");
+
+							driver.manage().timeouts().implicitlyWait(1 ,TimeUnit.SECONDS);
+
+							if(driver.findElements(By.cssSelector("#main-container > div > section > h2")).size() > 0) {
+								System.out.println("b-monster:取得完了");
+								driver.quit();
+							} else {
+								System.out.println("b-monster:最終画面で取得NGになりました再度取得Qをいれます");
+								getShellCall();
+
+							}
+							//driver.quit();
+							System.exit(0);
+						}
+						firstFlagSheets = false;
 					}
-					firstFlagSheets = false;
+
 				}
+
 				//ここまで来るということは座席空席なし
-				Calendar calendar = Calendar.getInstance();
+				//Calendar calendar = Calendar.getInstance();
 				// System.out.println(calendar.getTime().toString());
-				System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
+				//System.out.println(calendar.getTime().toString() + ": 満席状態2なので再度取得ここだとおかしいので再度取得Qいれます");
 				//driver.quit();
-				getShellCall();
-				System.exit(0);
+				//getShellCall();
+				//System.exit(0);
 
 			}
 		}
