@@ -248,11 +248,14 @@ public class ExecFeelcycleController {
 						String time = e.findElement(By.cssSelector(".tt-time")).getText();
 						time = time.replaceAll("\\s+","");
 						System.out.println(time);
-						if(time.substring(0,5).equals(LESSON_TIME)){
-							e.findElement(By.cssSelector("a:nth-child(1)")).click();
-							System.out.println("タップ押された");
-							break;
+						if(!time.equals("")){
+							if(time.substring(0,5).equals(LESSON_TIME)){
+								e.findElement(By.cssSelector("a:nth-child(1)")).click();
+								System.out.println("タップ押された");
+								break;
+							}
 						}
+
 
 					}
 
