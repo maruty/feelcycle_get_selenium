@@ -348,7 +348,7 @@ public class ExecFeelcycleController {
 							sheetMax = 94;
 							break;
 						case "0006":
-							sheetMax = 53;
+							sheetMax = 54;
 							break;
 
 						default:
@@ -367,13 +367,14 @@ public class ExecFeelcycleController {
 									break;
 
 								case "0006":
-									i = 15;
+									i = 1;
 									break;
 
 								default:
 									break;
 							}
 						}
+						/*
 						if(LESSON_STATE.equals("0006") && i > 25 && i < 29) {
 							i = 29;
 						}
@@ -381,13 +382,15 @@ public class ExecFeelcycleController {
 							i = 43;
 						}
 
+						 */
+
 						int judgeMent = 0;
 
 
 						//ExecFeelcycleController.getCapture(driver,"test1");
 						System.out.println("バッグ選択ループへ");
 						if(driver.findElements(By.cssSelector("#bag" + i)).size() > 0 ) {
-							String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled){ a = false; }else{a = true;} return a;";
+							String msgJudge = "var a; var elm1 = document.getElementById(\"bag" + i + "\"); if(elm1.disabled || (window.getComputedStyle(elm1).visibility === \"hidden\")){ a = false; }else{a = true;} return a;";
 							System.out.println(msgJudge);
 							boolean abmonJudgeMent = (boolean)js.executeScript(msgJudge);
 							System.out.println("判定:" + abmonJudgeMent);
